@@ -1,2 +1,3 @@
-# Gericht
-Masih Dalam Pengembangan Maybe 75%
+### Masih Tahab Pengembangan
+
+Sekitar 75%
