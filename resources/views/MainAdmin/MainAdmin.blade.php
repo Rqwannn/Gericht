@@ -100,7 +100,7 @@
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
                                 <h5>Subscribe</h5>
-                                <h4>+37</h4>
+                                <h4>{{count($Subscribe)}}</h4>
                                 <div class="pertumbuhanUntung d-flex mt-2">
                                     <i class="material-icons">trending_up</i>
                                     <p style="font-size: 14px; margin-left: 1vw;">2.38%</p>

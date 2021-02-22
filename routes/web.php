@@ -16,6 +16,8 @@ use App\Http\Controllers\SubscribeController;
 
 // Admin
 
+use App\Http\Controllers\OrderSuccessController;
+use App\Http\Controllers\OrderFailedController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\TotalOrderController;
@@ -52,10 +54,13 @@ Route::group(["middleware" => "check"], function () {
 
     // Admin
 
+    Route::get('/orderSuccess', [OrderSuccessController::class, "index"]);
+    Route::get('/orderFailed', [OrderFailedController::class, "index"]);
     Route::get('/dasbord', [MainAdminController::class, "index"])->name("dasbord");
     Route::get("/profileAdmin", [ProfileAdminController::class, "index"]);
     Route::get("/totalOrder", [TotalOrderController::class, "index"]);
     Route::get("/totalUser", [TotalUserController::class, "index"]);
+    Route::get("/updateUser/{id}", [TotalUserController::class, "updateUserView"]);
 });
 
 Route::group(["middleware" => "after"], function () {

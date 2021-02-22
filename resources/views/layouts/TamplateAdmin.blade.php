@@ -71,19 +71,19 @@
               </li>
             </ul>
            
-            <ul class="sideNav-link mt-2">
+            <ul class="sideNav-link <?php echo($Status == "Order Failed") ? 'activeBG' : '' ?> mt-2">
               <li>
-                <a class="nav-link" href="#">
-                  <i class="material-icons failIcon">donut_small</i>
+                <a class="nav-link <?php echo($Status == "Order Failed") ? 'activeColor' : '' ?>" href="/orderFailed">
+                  <i class="material-icons <?php echo($CekIcon == "Order_Failed") ? '' : 'failIcon' ?>">donut_small</i>
                   <p>Order Failed</p>
                 </a>
               </li>
             </ul>
             
-            <ul class="sideNav-link mt-2">
+            <ul class="sideNav-link <?php echo($Status == "Order Success") ? 'activeBG' : '' ?> mt-2">
               <li>
-                <a class="nav-link" href="#">
-                  <i class="material-icons trueIcon">donut_small</i>
+                <a class="nav-link <?php echo($Status == "Order Success") ? 'activeColor' : '' ?>" href="/orderSuccess">
+                  <i class="material-icons <?php echo($CekIcon == "Order_Success") ? '' : 'trueIcon' ?>">donut_small</i>
                   <p>Order Success</p>
                 </a>
               </li>

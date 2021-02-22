@@ -55,4 +55,21 @@ class BaseData extends Model
     {
         return DB::table("pesanan")->get();
     }
+
+    public function getPesananByDate()
+    {
+        return DB::table('pesanan')
+            ->orderBy('tanggal_pesan', 'desc')
+            ->get();
+    }
+
+    public function getUserById($data)
+    {
+        return DB::table("user")->where("id", $data)->first();
+    }
+
+    public function getOrderById($data)
+    {
+        return DB::table("pesanan")->where("id", $data)->first();
+    }
 }

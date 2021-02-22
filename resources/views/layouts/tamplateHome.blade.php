@@ -58,19 +58,19 @@
         <div class="nav-links">
             <ul class="d-flex justify-content-center">
                 <li>
-                    <a href="/" style="color: {{Request()->is('/') ? '#e34749' : ''}};" class="nav-link">Home</a>
+                    <a href="/" style="color: {{Request()->is('/') ? '#fb6340' : ''}};" class="nav-link">Home</a>
                 </li>
                 <li>
-                    <a href="/about" style="color: {{Request()->is('about') ? '#e34749' : ''}};" class="nav-link">About</a>
+                    <a href="/about" style="color: {{Request()->is('about') ? '#fb6340' : ''}};" class="nav-link">About</a>
                 </li>
                 <li>
-                    <a href="/privatedining" style="color: {{Request()->is('privatedining') ? '#e34749' : ''}};" class="nav-link">Private Dining</a>
+                    <a href="/privatedining" style="color: {{Request()->is('privatedining') ? '#fb6340' : ''}};" class="nav-link">Private Dining</a>
                 </li>
                 <li>
-                    <a href="/menu" style="color: {{Request()->is('menu') ? '#e34749' : ''}}" class="nav-link">Menu</a>
+                    <a href="/menu" style="color: {{Request()->is('menu') ? '#fb6340' : ''}}" class="nav-link">Menu</a>
                 </li>
                 <li>
-                    <a href="/order" style="color: {{Request()->is('order') ? '#e34749' : ''}};" class="nav-link">Order</a>
+                    <a href="/order" style="color: {{Request()->is('order') ? '#fb6340' : ''}};" class="nav-link">Order</a>
                 </li>
             </ul>
         </div>
@@ -93,7 +93,7 @@
                         @if ($Email)
                         <label class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Picture</label>     
                         <a href="/withoutPicture" class="dropdown-item">Without Picture</a>
-                        <a href="/subscribe" class="dropdown-item">Subscribe</a>
+                        <a href="/subscribe" style="background: {{Request()->is('subscribe') ? '#fb6340' : ''}}; color: {{Request()->is('subscribe') ? '#fff' : ''}}" class="dropdown-item">Subscribe</a>
                         <label class="dropdown-item">Status : {{$StatusUser}}</label>     
                         @endif
                         <a href="signIn" class="nav-link">Sign In</a>

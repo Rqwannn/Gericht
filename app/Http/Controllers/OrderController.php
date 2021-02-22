@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $photo = $this->BaseData->getUser($request->session()->get("email"));
-        $getAllPesanan = $this->BaseData->getPesanan();
+        $getAllPesanan = $this->BaseData->getPesananByDate();
 
         $setPhoto = "";
 

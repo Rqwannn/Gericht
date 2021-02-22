@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
-use mysqli;
-use mysqli_result;
 
-class MainAdminController extends Controller
+class OrderSuccessController extends Controller
 {
     private $BaseData;
 
@@ -20,9 +18,7 @@ class MainAdminController extends Controller
     public function index(Request $request)
     {
         $photo = $this->BaseData->getAdmin($request->session()->get("email"));
-        $Employe = $this->BaseData->getEmployee();
-        $Order = $this->BaseData->getPesanan();
-        $User = $this->BaseData->getAllUser();
+        $getAllOrder = $this->BaseData->getPesanan();
 
         $setPhoto = "";
 
@@ -32,26 +28,16 @@ class MainAdminController extends Controller
             $setPhoto .= $request->session()->get("gambar");
         }
 
-        $setSubscribe = [];
-
-        foreach ($User as $Result) {
-            if ($Result->status == "Premium") {
-                $setSubscribe[] = $Result;
-            }
-        }
-
         $data = [
-            "JS" => "/dasbord.js",
-            "Employe" => $Employe,
+            "JS" => "/TotalData.js",
             "Name" => $photo->name,
             "Email" => $photo->email,
             "Gambar" => $setPhoto,
-            "Order" => count($Order),
-            "CekIcon" => "dasbord",
-            "User" => count($User),
-            "Status" => "Dasbord",
-            "Subscribe" => $setSubscribe
+            "Status" => "Order Success",
+            "CekIcon" => "Order_Success",
+            "Data" => $getAllOrder
         ];
-        return view("MainAdmin/MainAdmin", $data);
+
+        return view("OrderSuccess/OrderSuccess", $data);
     }
 }

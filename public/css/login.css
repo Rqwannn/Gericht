@@ -1,3 +1,5 @@
+@import url(admin.css);
+
 * {
     padding: 0;
     margin: 0;
@@ -13,7 +15,7 @@ body {
 }
 
 .text-google {
-    color: #db4a39;
+    color: var(--orange);
 }
 
 .text-facebook {
@@ -43,7 +45,7 @@ body {
 }
 
 .text-orange {
-    color: #e34749;
+    color: var(--orange);
 }
 
 .card-right {
@@ -54,7 +56,7 @@ body {
 }
 
 .btn-orange {
-    background-color: #e34749;
+    background-color: var(--orange);
     margin: 5px;
     transition: 0.3s;
 }
@@ -64,14 +66,14 @@ body {
 }
 
 .btn-orange-line {
-    border: 2px solid #e34749;
+    border: 2px solid var(--orange);
     margin: 5px 5px 5px 5px;
     transition: 0.3s;
 }
 
 .btn-orange-line:hover {
     opacity: 0.9;
-    color: #e34749;
+    color: var(--orange);
 }
 
 .scroll-right {
@@ -107,7 +109,7 @@ body {
     left: 0;
     transform: translateY(-50%);
     padding: 20px 25px 20px 20px;
-    background: #e34749;
+    background: var(--orange);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     transition: 0.5s;

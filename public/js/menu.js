@@ -1183,8 +1183,9 @@ PayNow.addEventListener("click", function () {
                                         </div>
                                         <div class="col-md-12">
                                             <div class="textValue d-flex mt-3 mb-5">
-                                                <button type="submit" id"${id_Order}">PayNow</button>
-                                                <button type="submit">PayLater</button>
+                                                <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                                <button type="submit" onclick="PayLaterLink()">PayLater</button>
+                                                <button type="submit">Pay On The Spot</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1233,3 +1234,7 @@ PayNow.addEventListener("click", function () {
         }
     });
 });
+
+function PayLaterLink(){
+    document.location.href ="/order";
+}

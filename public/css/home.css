@@ -12,7 +12,7 @@ body {
 }
 
 .text-orange {
-    color: #e34749;
+    color: var(--orange);
 }
 
 .btn-orange:hover {
@@ -20,7 +20,7 @@ body {
 }
 
 .btn-orange {
-    background-color: #e34749;
+    background-color: var(--orange);
     margin: 5px;
     transition: 0.3s;
 }
@@ -32,14 +32,14 @@ body {
 }
 
 .btn-orange-line {
-    border: 2px solid #e34749;
+    border: 2px solid var(--orange);
     margin: 5px;
     transition: 0.3s;
 }
 
 .btn-orange-line:hover {
     opacity: 0.9;
-    color: #e34749;
+    color: var(--orange);
 }
 
 .btn-white-line {
@@ -76,23 +76,24 @@ body {
     display: block;
     width: 0;
     height: 2px;
-    background: #e34749;
+    background: var(--orange);
     position: absolute;
     left: 0;
     bottom: 7px;
-    color: #e34749;
+    color: var(--orange);
     transition: 0.5s;
 }
 
 .Header .nav-links ul li:hover a {
-    color: #e34749;
+    color: var(--orange);
 }
 
 .Header .nav-links ul a:hover:after {
     width: 100%;
 }
 
-.blackTrans {
+.blackTrans,
+.blackTrans-2 {
     width: 100%;
     height: 120vh;
     position: absolute;
@@ -100,11 +101,20 @@ body {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.fotoHeader img {
+.blackTrans-2 {
+    height: 100vh;
+}
+
+.fotoHeader img,
+.fotoHeader-2 img {
     width: 100%;
     z-index: -1;
     height: 120vh;
     background-size: cover;
+}
+
+.fotoHeader-2 img {
+    height: 100vh;
 }
 
 .card-special-menu {
@@ -137,7 +147,7 @@ body {
 .about-card-top {
     width: 100%;
     padding: 10px;
-    background: #e34749;
+    background: var(--orange);
     position: relative;
     border-radius: 10px;
     margin-top: 100px;
@@ -150,7 +160,7 @@ body {
     bottom: -20px;
     left: -20px;
     right: -20px;
-    border: 4px solid #e34749;
+    border: 4px solid var(--orange);
     border-radius: 10px;
 }
 
@@ -212,8 +222,8 @@ body {
 .footer {
     width: 100%;
     background: #fff;
-    border-top: 2px solid #e34749;
-    border-bottom: 2px solid #e34749;
+    border-top: 2px solid var(--orange);
+    border-bottom: 2px solid var(--orange);
     padding: 10px 0;
     position: relative;
 }
@@ -338,7 +348,7 @@ body {
     position: absolute;
     cursor: pointer;
     font-size: 40px;
-    color: #e34749;
+    color: var(--orange);
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
@@ -366,7 +376,7 @@ body {
 }
 
 .orange-horizontal {
-    background: #e34749;
+    background: var(--orange);
     width: 80%;
     height: 125vh;
     position: relative;
@@ -464,7 +474,7 @@ body {
     margin: 7px 0;
     width: 1vw;
     height: 5vh;
-    background: #e34749;
+    background: var(--orange);
     border-radius: 10px;
 }
 
@@ -521,7 +531,11 @@ body {
 }
 
 .textValue button:nth-child(2) {
-    background: var(--danger);
+    background: var(--red);
+}
+
+.textValue button:nth-child(3) {
+    background: var(--orange);
 }
 
 .textValue select {
@@ -687,4 +701,90 @@ body {
     right: 5%;
     top: 5%;
     font-size: 35px;
+}
+
+.cardSub-Left,
+.cardSub-Right {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12),
+        0 7px 10px -5px rgba(0, 0, 0, 0.15);
+}
+
+.cardSub-Right {
+    border: 2px solid var(--orange);
+}
+
+.headerCardSub h3 {
+    width: 100%;
+    border-radius: 5px;
+    background: var(--orange);
+    padding: 7px;
+}
+
+.headerCardSub p {
+    font-size: 18px;
+    color: var(--orange);
+    line-height: 30px;
+    letter-spacing: 0.5px;
+}
+
+.headerCardSub-Right {
+    width: 100%;
+    border-radius: 5px;
+    background: var(--orange);
+    color: #fff;
+}
+
+.headerCardSub-Right p {
+    margin-bottom: 0px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contentCardSub-Right ul li {
+    list-style-type: disc;
+    color: var(--orange);
+    margin: 7px 0;
+}
+
+.contentCardSub-Right ul li span {
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+
+.infoPriceSub p:nth-child(1) {
+    color: var(--blue);
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.infoPriceSub p:nth-child(2) {
+    color: var(--gray);
+    margin-bottom: 5px;
+    font-size: 15px;
+    text-decoration: line-through;
+}
+
+.infoPriceSub h5 {
+    color: var(--orange);
+    font-size: 25px;
+}
+
+.btnCheckout {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--orange);
+    background: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s;
+    color: var(--orange);
+}
+
+.btnCheckout:hover {
+    color: var(--orange);
+    opacity: 0.8;
 }

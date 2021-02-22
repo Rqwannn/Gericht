@@ -23,6 +23,7 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th>Created At</th>
                         <th>Aksi</th>
                     </tr>
@@ -38,9 +39,10 @@
                             <td>{{$i++}}</td>
                             <td>{{$result->name}}</td>
                             <td>{{$result->email}}</td>
+                            <td style="color: <?php echo($result->status == "Premium") ? 'gold' : '#8898aa' ?>">{{$result->status}}</td>
                             <td>{{$getCreated}}</td>
                             <td>
-                                <button type="submit" class="btn-table">Update</button>
+                                <button type="submit" class="btn-table" onclick="intUpdate({{$result->id}})">Update</button>
                                 <button type="submit" class="btn-table" onclick="intDelete({{$result->id}})">Delete</button>
                             </td>
                         </tr>

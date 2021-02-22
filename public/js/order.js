@@ -88,8 +88,9 @@ function btnDetail(DataId){
                         </div>
                         <div class="col-md-12">
                             <div class="textValue d-flex mt-3 mb-5">
-                                <button type="submit" id"${id_Order}">PayNow</button>
-                                <button type="submit">PayLater</button>
+                                <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
+                                <button type="submit">Pay On The Spot</button>
                             </div>
                         </div>
                     </div>
@@ -120,3 +121,47 @@ closeBtn.addEventListener("click", function(){
     const cardDetail = document.querySelector(".bgShowDetail");
     cardDetail.style.display = "none";
 })
+
+function DeleteOrderUser(Data){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You will delete it permanently!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            setTimeout(function () {
+                $.ajax({
+                    url: "http://127.0.0.1:8000/Api/DeleteOrder.php",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        id: Data,
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!",
+                            footer:
+                                "<a href>Please report if there is a problem?</a>",
+                        });
+                    },
+                    success: function () {
+                        Swal.fire(
+                            "Deleted!",
+                            "Your order has been deleted.",
+                            "success"
+                        );
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 250);
+                    },
+                });
+            }, 100);
+        }
+    });
+}

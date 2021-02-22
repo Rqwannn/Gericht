@@ -19,6 +19,23 @@ class TotalOrderController extends Controller
     {
         $photo = $this->BaseData->getAdmin($request->session()->get("email"));
         $getAllOrder = $this->BaseData->getPesanan();
+        $getAllFood = $this->BaseData->getFood();
+        $getAllDrink = $this->BaseData->getDrink();
+        $getAllDessert = $this->BaseData->getDessert();
+
+        $setArray = [];
+
+        foreach ($getAllFood as $result) {
+            $setArray[] = $result;
+        }
+
+        foreach ($getAllDrink as $result) {
+            $setArray[] = $result;
+        }
+
+        foreach ($getAllDessert as $result) {
+            $setArray[] = $result;
+        };
 
         $setPhoto = "";
 
@@ -35,7 +52,8 @@ class TotalOrderController extends Controller
             "Gambar" => $setPhoto,
             "Status" => "Total Order",
             "CekIcon" => "Total_Order",
-            "Data" => $getAllOrder
+            "Data" => $getAllOrder,
+            "DataCapacity" => $setArray
         ];
 
         return view("TotalOrder/TotalOrder", $data);
