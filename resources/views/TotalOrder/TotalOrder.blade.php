@@ -91,7 +91,7 @@
             <div class="container">
                 <div class="headerSold d-felx flex-column mt-2">
                     <p>Capacity</p>
-                    <h5 class="mt-2">Quantity available</h5>
+                    <h5 class="mt-2">Quantity Available</h5>
                 </div>
                 <div class="contentSold">
                     <div id="contentTable">

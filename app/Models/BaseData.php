@@ -51,9 +51,15 @@ class BaseData extends Model
     {
         return DB::table("petinggi")->get();
     }
+
     public function getPesanan()
     {
         return DB::table("pesanan")->get();
+    }
+
+    public function getOrderTable()
+    {
+        return DB::table("book_table")->get();
     }
 
     public function getPesananByDate()
@@ -71,5 +77,10 @@ class BaseData extends Model
     public function getOrderById($data)
     {
         return DB::table("pesanan")->where("id", $data)->first();
+    }
+
+    public function deleteTable($id)
+    {
+        DB::table("book_table")->where("id", $id)->delete();
     }
 }

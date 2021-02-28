@@ -196,7 +196,7 @@ body {
     background: var(--orange);
     color: #fff;
     width: 100%;
-    box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12),
+    box-shadow: 0 4px 15px 0px rgba(0, 0, 0, 0.12),
         0 7px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -787,6 +787,7 @@ body {
 }
 
 .cardTableData {
+    position: relative;
     width: 100%;
     padding: 10px;
     border-radius: 10px;

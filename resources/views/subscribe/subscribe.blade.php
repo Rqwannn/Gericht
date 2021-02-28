@@ -40,6 +40,7 @@
                         <li><span class="text-dark">Delivery will be faster</span></li>
                         <li><span class="text-dark">Wrapped securely and kept clean</span></li>
                         <li><span class="text-dark">Orders are processed immediately</span></li>
+                        <li><span class="text-dark">50% Discount when booking a table</span></li>
                     </ul>
                 </div>
                 <div class="btnCardSub-Rigt mt-3">

@@ -52,4 +52,52 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-7">
+        <div class="cardTableData mt-4">
+            <div class="container">
+                <div class="headerSold d-felx flex-column mt-2">
+                    <p>Comparison</p>
+                    <h5 class="mt-2">Lots Of Customers</h5>
+                </div>
+                <div class="contentSold mt-3">
+                    <div id="chart-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="cardTableData mt-4">
+            <div class="container">
+                <div class="headerSold d-felx flex-column mt-2">
+                    <p>Performance</p>
+                    <h5 class="mt-2">Premium User</h5>
+                </div>
+                <div class="contentSold">
+                    <div id="contentTable">
+                        <table border="0" id="TableOrder-2" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($Data as $result) : ?>
+                                    @if ($result->status == "Premium")
+                                    <tr>
+                                        <td>{{$result->name}}</td>
+                                        <td style="color:gold;">{{$result->status}}</td>
+                                    </tr>
+                                    @endif
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

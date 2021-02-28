@@ -17,6 +17,7 @@ class TotalUserController extends Controller
     {
         $photo = $this->BaseData->getAdmin($request->session()->get("email"));
         $getAllUser = $this->BaseData->getAllUser();
+        $getAllPesanan = $this->BaseData->getPesanan();
 
         $setPhoto = "";
 

@@ -95,7 +95,7 @@ body {
 .blackTrans,
 .blackTrans-2 {
     width: 100%;
-    height: 120vh;
+    height: 100vh;
     position: absolute;
     top: 0;
     background: rgba(0, 0, 0, 0.8);
@@ -109,7 +109,7 @@ body {
 .fotoHeader-2 img {
     width: 100%;
     z-index: -1;
-    height: 120vh;
+    height: 100vh;
     background-size: cover;
 }
 
@@ -558,14 +558,26 @@ body {
 }
 
 .cardOrder,
-.cardOrder-2 {
+.cardOrder-2,
+.cardOrder-3,
+.cardOrder-4,
+.cardOrder-5 {
     width: 100%;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
     background-color: #fff;
     border-radius: 10px;
     padding: 40px;
 }
-.cardOrder-2 {
+
+.cardOrder-3,
+.cardOrder-4,
+.cardOrder-5 {
+    background: transparent;
+    box-shadow: none;
+}
+
+.cardOrder-2,
+.cardOrder-5 {
     padding: 0px;
 }
 
@@ -787,4 +799,189 @@ body {
 .btnCheckout:hover {
     color: var(--orange);
     opacity: 0.8;
+}
+
+.bodyContent {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background: var(--white);
+    margin-bottom: -100px;
+}
+
+.wrapperTableLeft {
+    width: 50%;
+    overflow-x: hidden;
+    background: #f1eff7;
+}
+
+.wrapperTableRight {
+    width: 50%;
+    height: 100%;
+    overflow-x: hidden;
+    z-index: 100;
+}
+
+.infoPaymentStatus {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: var(--orange);
+    margin-top: 25px;
+}
+
+.infoPaymentStatus::after,
+.infoPaymentStatus::before {
+    content: "";
+    position: absolute;
+    right: 2.5%;
+    top: 50%;
+    background: #f1eff7;
+    transform: translateY(-50%) rotate(45deg);
+    width: 75px;
+    height: 75px;
+}
+
+.infoPaymentStatus::before {
+    right: 4.5%;
+    z-index: 10;
+    background: var(--orange);
+    width: 50px;
+    height: 50px;
+}
+
+.barOne,
+.barTwo,
+.barThree {
+    position: relative;
+    margin-left: -100px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    transform: translateY(100%);
+}
+
+.barTwo,
+.barThree {
+    margin-left: -200px;
+}
+
+.barOne::after,
+.barTwo::after,
+.barThree::after {
+    content: "Book A Table";
+    position: absolute;
+    left: -100%;
+    top: 145%;
+    transform: translateY(-50%);
+    color: #fff;
+    width: 200px;
+}
+
+.barTwo::after {
+    content: "Order Food";
+}
+
+.barThree::after {
+    content: "Into Payment";
+}
+
+.barOne .LineOne,
+.barTwo .LineTwo {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 11.5vw;
+    height: 1.5px;
+    background: #fff;
+    transition: 0.5s;
+}
+
+.wrapperInfoName {
+    cursor: pointer;
+}
+
+.WrapperTable-One,
+.WrapperTable-Two,
+.WrapperTable-Three,
+.WrapperTable-Four {
+    transition: 0.5s;
+}
+
+.wrapperInfoName p {
+    padding: 7px 15px;
+    font-size: 14px;
+    border-radius: 15px;
+    border: 1.5px solid var(--orange);
+}
+
+.wrapperInfoName .activeTable {
+    background: var(--orange);
+    color: #fff;
+}
+
+.WrapperDetailTable {
+    width: 100%;
+    display: flex;
+    overflow-x: hidden;
+    margin-bottom: 25px;
+}
+
+.deskripsiTable p {
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 27px;
+}
+
+.lineTable {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.lineTable::after {
+    content: "";
+    width: 25px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.WrapperTable-Two,
+.WrapperTable-Three,
+.WrapperTable-Four {
+    display: none;
+    transform: translateX(600px);
+}
+
+.headerOrderTable div {
+    font-size: 25px;
+}
+
+.ceck {
+    font-size: 15px;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.WrapperLPart-1 {
+    transition: 0.5s;
+}
+
+.WrapperRPart-1 {
+    transition: 0.5s;
+    overflow-x: hidden;
+    margin-top: 50%;
+    transform: translateY(-50%);
+}
+
+.WrapperLPart-2,
+.WrapperRPart-2 {
+    display: none;
+    transition: 0.5s;
+    transform: translateX(635px);
+    transition: 0.5s;
 }

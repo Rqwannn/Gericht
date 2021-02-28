@@ -13,6 +13,7 @@ use App\Http\Controllers\PrivateDiningController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\InputDinningController;
 
 // Admin
 
@@ -47,10 +48,12 @@ Route::group(["middleware" => "check"], function () {
     Route::get('/withoutPicture', [HomeController::class, "withoutPicture"]);
     Route::get('/about', [AboutController::class, "index"])->name("about");
     Route::get('/privatedining', [PrivateDiningController::class, "index"]);
+    Route::get('/inputdining', [InputDinningController::class, "index"]);
     Route::get('/menu', [MenuController::class, "index"])->name("menu");
     Route::post('/pay', [MenuController::class, "Payment"]);
-    Route::get('/order', [OrderController::class, "index"]);
+    Route::get('/order', [OrderController::class, "index"])->name("order");
     Route::get('/subscribe', [SubscribeController::class, "index"]);
+    Route::get('/DeleteTable/{id}', [OrderController::class, "DeleteTableHistori"]);
 
     // Admin
 

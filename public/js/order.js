@@ -1,21 +1,20 @@
-function btnDetail(DataId){
-
+function btnDetail(DataId) {
     $.ajax({
-        url : "http://127.0.0.1:8000/Api/DetailOrder.php",
-        type : "POST",
-        dataType : "JSON",
-        data : {
-            Id : DataId
+        url: "http://127.0.0.1:8000/Api/DetailOrder.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: DataId,
         },
-        error : function(result){
+        error: function (result) {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href>Report A Problem?</a>'
-              })
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>Report A Problem?</a>",
+            });
         },
-        success : function(result){
+        success: function (result) {
             let Id = result.Id;
             let Nama = result.Nama;
             let Email = result.Email;
@@ -90,7 +89,7 @@ function btnDetail(DataId){
                             <div class="textValue d-flex mt-3 mb-5">
                                 <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
                                 <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
-                                <button type="submit">Pay On The Spot</button>
+                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
                             </div>
                         </div>
                     </div>
@@ -101,7 +100,7 @@ function btnDetail(DataId){
             const setAllOrder = document.querySelector(".wrapperOrder-Food");
 
             function getNumberPesanan() {
-                for (let index = 0; index < setNamaPesanan.length; index++ ) {
+                for (let index = 0; index < setNamaPesanan.length; index++) {
                     $(setAllOrder).append(`
                             <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} X ${setJumlahPesanan[index]}</option>
                         `);
@@ -111,18 +110,18 @@ function btnDetail(DataId){
             getNumberPesanan();
 
             cardDetail.style.display = "block";
-        }
-    })
+        },
+    });
 }
 
 const closeBtn = document.querySelector(".closeBtn");
 
-closeBtn.addEventListener("click", function(){
+closeBtn.addEventListener("click", function () {
     const cardDetail = document.querySelector(".bgShowDetail");
     cardDetail.style.display = "none";
-})
+});
 
-function DeleteOrderUser(Data){
+function DeleteOrderUser(Data) {
     Swal.fire({
         title: "Are you sure?",
         text: "You will delete it permanently!",
@@ -158,10 +157,134 @@ function DeleteOrderUser(Data){
                         );
                         setTimeout(function () {
                             window.location.reload();
-                        }, 250);
+                        }, 300);
                     },
                 });
             }, 100);
         }
     });
+}
+
+function PayConfirmation(Data) {
+    $.ajax({
+        url: "http://127.0.0.1:8000/Api/ConfirmProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
+        },
+        error: function () {},
+        success: function () {
+            Swal.fire("Success", "Thank you for ordering", "success");
+            setTimeout(function () {
+                window.location.reload();
+            }, 300);
+        },
+    });
+}
+
+function PayOnTheSpot(Data){
+    $.ajax({
+        url : "http://127.0.0.1:8000/Api/PayProses.php",
+        type : "POST",
+        dataType : "JSON",
+        data : {
+            Id : Data
+        },
+        error : function (){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href>If there is a problem please report it!</a>'
+              })
+        },
+        success : function (){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'The Order Has Been Made'
+              })
+
+            setTimeout(function(){
+                document.location.href ="/order";
+            }, 2200)
+        }
+    })
+}
+
+function PayRestaurant(Data){
+    $.ajax({
+        url : "http://127.0.0.1:8000/Api/PayTableProses.php",
+        type : "POST",
+        dataType : "JSON",
+        data : {
+            Id : Data
+        },
+        error : function (){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href>If there is a problem please report it!</a>'
+              })
+        },
+        success : function (){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'The Order Has Been Made'
+              })
+
+            setTimeout(function(){
+                window.location.reload();
+            }, 2200)
+        }
+    })
+}
+
+function DeleteTableInfo(Data){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will delete history forever!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'has been deleted.',
+            'success'
+          )
+
+          setTimeout(function(){
+            document.location.href = `/DeleteTable/${Data}`;
+          }, 350)
+        }
+      })
 }

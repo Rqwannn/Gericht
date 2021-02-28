@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
 
-class OrderController extends Controller
+class InputDinningController extends Controller
 {
-    private $BaseData;
-
     public function __construct()
     {
         $this->BaseData = new BaseData();
@@ -18,8 +16,6 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $photo = $this->BaseData->getUser($request->session()->get("email"));
-        $getAllPesanan = $this->BaseData->getPesananByDate();
-        $getAllTable = $this->BaseData->getOrderTable();
 
         $setPhoto = "";
 
@@ -30,22 +26,16 @@ class OrderController extends Controller
         }
 
         $data = [
-            "JS" => "/order.js",
+            "JS" => "/inputDinning.js",
             "Name" => $request->session()->get("nama"),
             "Email" => $request->session()->get("email"),
             "Gambar" => $setPhoto,
-            "Pesanan" => $getAllPesanan,
-            "StatusUser" => $photo->status,
-            "OrderTable" => $getAllTable
+            "Food" => $this->BaseData->getFood(),
+            "Drink" => $this->BaseData->getDrink(),
+            "Dessert" => $this->BaseData->getDessert(),
+            "StatusUser" => $photo->status
         ];
 
-        return view("Order/Order", $data);
-    }
-
-    public function DeleteTableHistori(Request $request)
-    {
-        $this->BaseData->deleteTable($request->id);
-
-        return redirect()->route("order");
+        return view("InputDinning/InputDinning", $data);
     }
 }

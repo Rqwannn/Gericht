@@ -5,6 +5,7 @@
 @section('content')
 
     {{-- Card Show Detail --}}
+    
     <div class="bgShowDetail">
         <div class="closeBtn">
             <i class="far fa-times-circle"></i>
@@ -20,7 +21,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="headerPaymentDetail">
-                                    <h4 class="mt-5 fw-bold">Payment Detail</h4>
+                                    <h4 class="mt-5 fw-bold">Order Details</h4>
                                 </div>
                                 <div class="contentPaymentDetail mt-3">
 
@@ -46,6 +47,202 @@
         <h5 class="text-center mt-3" style="margin: 0 10vw;">Hello, our respected guests, this is the info page of your order and the details of the order you ordered beforehand, I hope you always enjoy the dishes we serve, come here again, thank you</h5>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="infoOrder">
+                @foreach ($Pesanan as $result)
+                    @if ($result->proses == 1 && $result->id_user == $Name)
+                    
+                    <?php 
+                        $setDate = explode(" ", $result->tanggal_pesan);
+                        $getPesan = $setDate[0];
+
+                        $getNameOrder = explode(",", $result->nama_orderan);    
+                        $getAmountOrder = explode(",", $result->jml_orderan);
+
+                        $idUser = $result->id;
+                    ?>
+
+                    <div class="cardOrder-2 mt-5" style="border-radius: 0px;">
+                        <div class="row">
+    
+                            <div class="col-md-12 position-relative">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img src="{{asset('img')}}/PaymentDetail.jpg" style="border-radius: 0px;" class="imgProof" alt="">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="headerPaymentDetail">
+                                            <h4 class="mt-5 fw-bold">Payment Detail</h4>
+                                        </div>
+                                        <div class="contentPaymentDetail mt-3">
+    
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="textValue mb-3">
+                                                        <p>Email Name</p>
+                                                        <p>{{$result->email_pemesan}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Order Name</p>
+                                                        <p>{{$result->nama_pemesan}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Order Number</p>
+                                                        <p>{{$result->kodePesanan}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Total</p>
+                                                        <p>$ {{$result->total}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Date</p>
+                                                        <p>{{$getPesan}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Your Order</p>
+                                                        <select class="form-select wrapperOrder-Food" aria-label="Default select example">
+                                                            <option selected>Click For Detail</option>
+                                                            @foreach ($getNameOrder as $index => $result)
+                                                                <option value="{{$result}} X {{$getAmountOrder[$index]}}">{{$result}} X {{$getAmountOrder[$index]}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Status</p>
+                                                        <p class="text-success">Delivered</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="textValue d-flex mt-3 mb-5">
+                                                        <button type="submit" onclick="PayConfirmation({{$idUser}})">Payment Confirmation</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                        
+                    @endif
+                @endforeach
+
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            <div class="infoOrder">
+                @foreach ($OrderTable as $result)
+                    @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name)
+
+                    <?php 
+                    
+                    $idUser = $result->id;
+                    
+                    ?>
+
+                    <div class="cardOrder-2 mt-5" style="border-radius: 0px;">
+                        <div class="row">
+
+                            <div class="col-md-12 position-relative">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img src="{{asset('img')}}/PaymentDetail.jpg" style="border-radius: 0px;" class="imgProof" alt="">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="headerPaymentDetail">
+                                            <h4 class="mt-5 fw-bold">Table Info</h4>
+                                        </div>
+                                        <div class="contentPaymentDetail mt-3">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="textValue mb-3">
+                                                        <p>Email Name</p>
+                                                        <p>{{$result->email}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Order Name</p>
+                                                        <p>{{$result->nama}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Table Name</p>
+                                                        <p>{{$result->nama_meja}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Tax</p>
+                                                        <p>$ {{$result->pajak}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="textValue mb-3">
+                                                        <p>Date</p>
+                                                        <p>{{$result->tanggal_pesan}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="textValue mb-3">
+                                                        <p>Status</p>
+                                                        <p class="text-warning"><?php echo ($result->proses == 1) ? 'Waiting For Payment' : 'Payment In Full' ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="textValue d-flex mt-3 mb-5">
+                                                        @if ($result->proses == 1)
+                                                            <button type="submit">Pay Now</button>  
+                                                            <p style="display: none;"></p>
+                                                            <button type="submit" onclick="PayRestaurant({{$idUser}})">Pay At The Restaurant</button>
+                                                        @else
+                                                            <p style="display: none;"></p>
+                                                            <button type="submit" onclick="DeleteTableInfo({{$idUser}})">Delete History</button>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                        
+                    @endif
+                @endforeach
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="container">
     <div class="headerPageOrder mt-5">
         <h4 class="textOrder fw-bold">Your Order</h4>

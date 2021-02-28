@@ -1,14 +1,447 @@
-const showCard = (element) => {
-    return `<div class="contentMenu-2 mt-5">
-    <div class="infoFood d-flex flex-column">
-        <div class="d-flex justify-content-between">
-            <h5 class="text-orange">${element["nama"]}</h5>
-            <h5 class="text-orange">$ <span class="hargaFood">${element["harga"]}</span></h5>
-        </div>
-        <p style="font-size: 15px; line-height: 28px;">${element["penjelasan"]}</p>
-    </div>
-</div>`;
-};
+const ReturnTable = document.querySelector("#ReturnTable");
+const ReturnTable2 = document.querySelector("#ReturnTable-2");
+
+ReturnTable.addEventListener("click", function(){
+    document.location.href = "/privatedining"
+})
+
+ReturnTable2.addEventListener("click", function(){
+    document.location.href = "/privatedining"
+})
+
+const TableOne = document.querySelector(".TableText-1");
+const TableTwo = document.querySelector(".TableText-2");
+const TableThree = document.querySelector(".TableText-3");
+const TableFour = document.querySelector(".TableText-4");
+
+const WrapperTableOne = document.querySelector(".WrapperTable-One"); 
+const WrapperTableTwo = document.querySelector(".WrapperTable-Two"); 
+const WrapperTableThree = document.querySelector(".WrapperTable-Three"); 
+const WrapperTableFour = document.querySelector(".WrapperTable-Four"); 
+
+TableOne.addEventListener("click", function(result){
+
+    if(WrapperTableOne.classList.contains("TrueLine")){
+
+        const btnNode = document.querySelectorAll(".wrapperInfoName p");
+        btnNode.forEach( Value => {
+            if(Value.classList == "activeTable"){
+                Value.classList.remove("activeTable");
+            }
+        })
+
+        // Remove True Line
+    
+        const AllTrue = document.querySelectorAll(".TrueLine");
+        AllTrue.forEach( Value => {
+            if(Value.classList.contains("TrueLine")){
+                Value.classList.remove("TrueLine");
+            }
+        })
+    
+        const setNode = result.target;
+        setNode.classList.add("activeTable");
+    
+        // Slide Animation
+        
+        WrapperTableTwo.style.transform = "translateX(600px)";
+        WrapperTableThree.style.transform = "translateX(600px)";
+        WrapperTableFour.style.transform = "translateX(600px)";
+        
+        setTimeout(function(){
+            WrapperTableOne.style.display = "initial";
+    
+            setTimeout(function(){
+                WrapperTableTwo.style.display = "none";
+                WrapperTableThree.style.display = "none";
+                WrapperTableFour.style.display = "none";
+            }, 400)
+            setTimeout(function (){
+                WrapperTableOne.style.transform = "translateX(0px)";
+            }, 400)
+            setTimeout(function(){
+                AllTrue.forEach( Value => {
+                    console.log(Value);
+                    if(!Value.classList.contains("TrueLine")){
+                        Value.classList.add("TrueLine");
+                    }
+                })
+            }, 900)
+            
+        }, 400)
+
+    } else {
+
+    }
+
+})
+
+TableTwo.addEventListener("click", function(result){
+    if(WrapperTableTwo.classList.contains("TrueLine")){
+        const btnNode = document.querySelectorAll(".wrapperInfoName p");
+        btnNode.forEach( Value => {
+            if(Value.classList == "activeTable"){
+                Value.classList.remove("activeTable");
+            }
+        })
+    
+        // Remove True Line
+    
+        const AllTrue = document.querySelectorAll(".TrueLine");
+        AllTrue.forEach( Value => {
+            if(Value.classList.contains("TrueLine")){
+                Value.classList.remove("TrueLine");
+            }
+        })
+    
+        const setNode = result.target;
+        setNode.classList.add("activeTable");
+    
+        // Slide Animation
+        
+        WrapperTableOne.style.transform = "translateX(600px)";
+        WrapperTableThree.style.transform = "translateX(600px)";
+        WrapperTableFour.style.transform = "translateX(600px)";
+        
+        setTimeout(function(){
+            WrapperTableTwo.style.display = "initial";
+    
+            setTimeout(function(){
+                WrapperTableOne.style.display = "none";
+                WrapperTableThree.style.display = "none";
+                WrapperTableFour.style.display = "none";
+            }, 400)
+            setTimeout(function (){
+                WrapperTableTwo.style.transform = "translateX(0px)";
+            }, 400)
+            setTimeout(function(){
+                AllTrue.forEach( Value => {
+                    console.log(Value);
+                    if(!Value.classList.contains("TrueLine")){
+                        Value.classList.add("TrueLine");
+                    }
+                })
+            }, 900)
+
+        }, 400)
+    }
+})
+
+TableThree.addEventListener("click", function(result){
+    if(WrapperTableThree.classList.contains("TrueLine")){
+        const btnNode = document.querySelectorAll(".wrapperInfoName p");
+        btnNode.forEach( Value => {
+            if(Value.classList == "activeTable"){
+                Value.classList.remove("activeTable");
+            }
+        })
+
+        // Remove True Line
+    
+        const AllTrue = document.querySelectorAll(".TrueLine");
+        AllTrue.forEach( Value => {
+            if(Value.classList.contains("TrueLine")){
+                Value.classList.remove("TrueLine");
+            }
+        })
+    
+        const setNode = result.target;
+        setNode.classList.add("activeTable");
+    
+        // Slide Animation
+            
+            WrapperTableOne.style.transform = "translateX(600px)";
+            WrapperTableTwo.style.transform = "translateX(600px)";
+            WrapperTableFour.style.transform = "translateX(600px)";
+            
+            setTimeout(function(){
+                WrapperTableThree.style.display = "initial";
+        
+                setTimeout(function(){
+                    WrapperTableOne.style.display = "none";
+                    WrapperTableTwo.style.display = "none";
+                    WrapperTableFour.style.display = "none";
+                }, 400)
+                setTimeout(function (){
+                    WrapperTableThree.style.transform = "translateX(0px)";
+                }, 400)
+                setTimeout(function(){
+                    AllTrue.forEach( Value => {
+                        console.log(Value);
+                        if(!Value.classList.contains("TrueLine")){
+                            Value.classList.add("TrueLine");
+                        }
+                    })
+                }, 900)
+
+            }, 400)
+    } else {
+
+    }
+})
+
+TableFour.addEventListener("click", function(result){
+    if(WrapperTableFour.classList.contains("TrueLine")){
+        const btnNode = document.querySelectorAll(".wrapperInfoName p");
+        btnNode.forEach( Value => {
+            if(Value.classList == "activeTable"){
+                Value.classList.remove("activeTable");
+            }
+        })
+
+        // Remove True Line
+    
+        const AllTrue = document.querySelectorAll(".TrueLine");
+        AllTrue.forEach( Value => {
+            if(Value.classList.contains("TrueLine")){
+                Value.classList.remove("TrueLine");
+            }
+        })
+    
+        const setNode = result.target;
+        setNode.classList.add("activeTable");
+    
+            // Slide Animation
+            
+            WrapperTableOne.style.transform = "translateX(600px)";
+            WrapperTableTwo.style.transform = "translateX(600px)";
+            WrapperTableThree.style.transform = "translateX(600px)";
+            
+            setTimeout(function(){
+                WrapperTableFour.style.display = "initial";
+        
+                setTimeout(function(){
+                    WrapperTableOne.style.display = "none";
+                    WrapperTableTwo.style.display = "none";
+                    WrapperTableThree.style.display = "none";
+                }, 400)
+                setTimeout(function (){
+                    WrapperTableFour.style.transform = "translateX(0px)";
+                }, 400)
+                setTimeout(function(){
+                    AllTrue.forEach( Value => {
+                        console.log(Value);
+                        if(!Value.classList.contains("TrueLine")){
+                            Value.classList.add("TrueLine");
+                        }
+                    })
+                }, 900)
+
+            }, 400)
+    } else {
+
+    }
+})
+
+const BtnStep1 = document.querySelector("#BtnStep1");
+
+BtnStep1.addEventListener("click", function(){
+    const EmailValue = document.querySelector("#EmailUser");
+    const NamaValue = document.querySelector("#NameUser");
+    const TotalOrder = document.querySelector("#TotalOrder");
+    const MessageDate = document.querySelector("#MessageDate");
+    const TableName = document.querySelector("#TableName");
+
+    const AuthNamaTable = document.querySelector(".AuthNamaTable");
+    const AuthEmailTable = document.querySelector(".AuthEmailTable");
+    const AuthTotalTable = document.querySelector(".AuthTotalTable");
+    const AuthTanggalTable = document.querySelector(".AuthTanggalTable");
+
+    $.ajax({
+        url : "http://127.0.0.1:8000/Api/AuthAmounTable.php",
+        type : "POST",
+        dataType : "JSON",
+        data : {
+            NamaTabel : $(TableName).val()
+        },
+        error : function (){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href>If there is a problem please report it immediately!</a>'
+              })
+        },
+        success : function(result){
+            const TotalTersedia = result.tersedia;
+
+            if(EmailValue.value == "" || NamaValue.value == "" || MessageDate.value == "" || TotalOrder.value == ""){
+
+                for(let index = 0; index <= 3; index++){
+                    if(EmailValue.value == "" && index == 0){
+                        AuthEmailTable.style.display = "block";
+                        AuthEmailTable.innerHTML = "Email must be entered";
+                        continue
+                    } else if(NamaValue.value == "" && index == 1){
+                        AuthNamaTable.style.display = "block";
+                        AuthNamaTable.innerHTML = "Name must be entered";
+                        continue
+                    } else if(MessageDate.value == "" && index == 2){
+                        AuthTanggalTable.style.display = "block";
+                        AuthTanggalTable.innerHTML = "Date must be entered";
+                        continue
+                    } else if(TotalOrder.value == "" && index == 3){
+                        AuthTotalTable.style.display = "block";
+                        AuthTotalTable.innerHTML = "Total Table must be entered";
+                        break
+                    }
+                }
+        
+            } else if(TotalOrder.value >= TotalTersedia){
+                AuthTotalTable.style.display = "block";
+                AuthTotalTable.innerHTML = `Only ${TotalTersedia} tables available`;
+            } else if (TotalOrder.value == 0){
+                AuthTotalTable.style.display = "block";
+                AuthTotalTable.innerHTML = "The total cannot contain numbers of 0";
+            } else {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you also want to order a meal?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#fb6340',
+                    confirmButtonText: 'Yes Message Too!',
+                    cancelButtonText: 'Want to order food?'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        'Success',
+                        'Your Order Has been processed.',
+                        'success'
+                      )
+            
+                      $.ajax({
+                          url : "http://127.0.0.1:8000/Api/OrderTable.php",
+                          type : "POST",
+                          dataType : "JSON",
+                          data : {
+                            id_user : $("#Id_User").val(),
+                            NamaTabel : $("#TableName").val(),
+                            Nama : $("#NameUser").val(),
+                            Email : $("#EmailUser").val(),
+                            Total : $("#TotalOrder").val(),
+                            MessageDate : $("#MessageDate").val()
+                          },
+                          error: function(){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: '<a href>If there is a problem please report it immediately!</a>'
+                              })
+                          },
+                          success : function(result){
+                            const Name = result.nama;   
+            
+                            Swal.fire(
+                                'Success',
+                                `${Name}, Your table is reserved`,
+                                'success'
+                            )
+            
+                            setTimeout(function(){
+                                document.location.href = "/privatedining"
+                              }, 350)
+            
+                          }
+                      })
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                      ) {
+            
+                        $.ajax({
+                            url : "http://127.0.0.1:8000/Api/OrderTable.php",
+                            type : "POST",
+                            dataType : "JSON",
+                            data : {
+                              id_user : $("#Id_User").val(),
+                              NamaTabel : $("#TableName").val(),
+                              Nama : $("#NameUser").val(),
+                              Email : $("#EmailUser").val(),
+                              Total : $("#TotalOrder").val(),
+                              MessageDate : $("#MessageDate").val()
+                            },
+                            error: function(){
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  text: 'Something went wrong!',
+                                  footer: '<a href>If there is a problem please report it immediately!</a>'
+                                })
+                            },
+                            success : function(result){
+                              const Name = result.nama;   
+            
+                              Swal.fire(
+                                'What you want to enjoy?',
+                                `${Name}, The table that you ordered has been processed`,
+                                'success'
+                              )
+              
+                            }
+                        })
+            
+                        const CircleOne = document.querySelector(".barOne");
+                        const CircleOneAfter = document.querySelector(".LineOne");
+                        const Check = document.querySelector(".fa-check-circle");
+                        const iconTable = document.querySelector(".fa-feather-alt")
+            
+                        CircleOne.style.background = " #2dce89";
+                        CircleOneAfter.style.background = "#2dce89";
+                        Check.style.display = "block";
+                        Check.style.color = "white";
+                        iconTable.style.display = "none";
+            
+                        const WrapperLPartOne = document.querySelector(".WrapperLPart-1");
+                        const WrapperRPartOne = document.querySelector(".WrapperRPart-1");
+                        const WrapperLPartTwo = document.querySelector(".WrapperLPart-2");
+                        const WrapperRPartTwo = document.querySelector(".WrapperRPart-2");
+            
+                        const barTwo = document.querySelector(".barTwo i");
+            
+                        if(barTwo.classList.contains("text-primary")){
+                            barTwo.classList.remove("text-primary")
+                            barTwo.classList.add("text-success")
+                        }
+            
+                        WrapperLPartOne.style.transform = "translateX(635px)";
+                        WrapperRPartOne.style.transform = "translateX(635px) translateY(-50%)";
+            
+                        setTimeout(function(){
+                            WrapperLPartOne.style.display = "none";
+                            WrapperRPartOne.style.display = "none";
+                        }, 500)
+            
+                        setTimeout(function(){
+                            WrapperLPartTwo.style.display = "block";
+                            WrapperRPartTwo.style.display = "block";
+                        }, 100)
+            
+                        setTimeout(function(){
+                            WrapperLPartTwo.style.transform = "translateX(0px)";
+                            WrapperRPartTwo.style.transform = "translateX(0px)";
+                        }, 500)
+                    }
+                })
+            }
+
+        } // end success ajax pertama
+    })
+
+})
+
+
+
+// JS Pesanan 
+
+let setNameFood = [];
+let setNameDrink = [];
+let setNameDessert = [];
+
+let setHargaFood = [];
+let setHargaDrink = [];
+let setHargaDessert = [];
 
 const FoodsetHarga = (element) => {
     return `${element["harga"]}`;
@@ -34,18 +467,6 @@ const DessertsetName = (element) => {
     return `${element["nama"]}`;
 };
 
-let setIndexFood = 0;
-let lastIndexFood = 0;
-let fristIndexFood = 0;
-
-let setHargaFood = [];
-let setHargaDrink = [];
-let setHargaDessert = [];
-
-let setNameFood = [];
-let setNameDrink = [];
-let setNameDessert = [];
-
 const callFood = () => {
     fetch("http://127.0.0.1:8000/Api/Food.php")
         .then((result) => {
@@ -53,78 +474,15 @@ const callFood = () => {
             return Value;
         })
         .then((result) => {
-            const Pembungkus = document.querySelector(".hiddenFood-Y");
-            let setCard = "";
             let IndexValue = 0;
             result.forEach((value, index) => {
-                setCard += showCard(value);
                 setHargaFood.push(FoodsetHarga(value));
                 setNameFood.push(FoodsetName(value));
-
-                if (index >= 5) {
-                    if (value != "") {
-                        IndexValue++;
-                    }
-                    lastIndexFood = IndexValue;
-                }
-
-                if (index == 0) {
-                    fristIndexFood = index;
-                }
             });
-            Pembungkus.innerHTML = setCard;
         });
 };
 
 callFood();
-
-const Pembungkus = document.querySelector(".hiddenFood-Y");
-let indexFood = 0;
-
-function BtnUpFood() {
-    const InfoFood = document.querySelectorAll(".contentMenu-2");
-
-    if (setIndexFood == fristIndexFood) {
-    } else {
-        indexFood -= 26;
-        [...InfoFood].forEach((result) => {
-            result.style.transform = `translateY(-${indexFood}vh)`;
-        });
-
-        setIndexFood--;
-    }
-}
-
-function BtnDownFood() {
-    const InfoFood = document.querySelectorAll(".contentMenu-2");
-
-    if (setIndexFood == lastIndexFood) {
-    } else {
-        indexFood += 26;
-        [...InfoFood].forEach((result) => {
-            result.style.transform = `translateY(-${indexFood}vh)`;
-        });
-        setIndexFood++;
-    }
-}
-
-// Minuman
-
-const showDrink = (element) => {
-    return `<div class="contentMenu-3 mt-5">
-    <div class="infoFood d-flex flex-column">
-        <div class="d-flex justify-content-between">
-            <h5 class="text-orange">${element["nama"]}</h5>
-            <h5 class="text-orange">$ <span class="hargaFood">${element["harga"]}</span></h5>
-        </div>
-        <p style="font-size: 15px; line-height: 28px;">${element["penjelasan"]}</p>
-    </div>
-</div>`;
-};
-
-let setIndexDrink = 0;
-let lastIndexDrink = 0;
-let fristIndexDrink = 0;
 
 const callDrink = () => {
     fetch("http://127.0.0.1:8000/Api/Drink.php")
@@ -133,78 +491,14 @@ const callDrink = () => {
             return Value;
         })
         .then((result) => {
-            const Pembungkus = document.querySelector(".hiddenDrink-Y");
-            let setCard = "";
-            let IndexValue = 0;
             result.forEach((value, index) => {
-                setCard += showDrink(value);
                 setHargaDrink.push(DrinksetHarga(value));
                 setNameDrink.push(DrinksetName(value));
-
-                if (index >= 5) {
-                    if (value != "") {
-                        IndexValue++;
-                    }
-
-                    lastIndexDrink = IndexValue;
-                }
-
-                if (index == 0) {
-                    fristIndexDrink = index;
-                }
             });
-
-            Pembungkus.innerHTML = setCard;
         });
 };
 
 callDrink();
-
-const Pembungkus2 = document.querySelector(".hiddenFood-Y");
-let indexDrink = 0;
-
-function BtnUpDrink() {
-    const InfoDrink = document.querySelectorAll(".contentMenu-3");
-    console.log(lastIndexDrink);
-    if (setIndexDrink == fristIndexDrink) {
-    } else {
-        indexDrink -= 26;
-        [...InfoDrink].forEach((result) => {
-            result.style.transform = `translateY(-${indexDrink}vh)`;
-        });
-        setIndexDrink--;
-    }
-}
-
-function BtnDownDrink() {
-    const InfoDrink = document.querySelectorAll(".contentMenu-3");
-
-    if (setIndexDrink == lastIndexDrink) {
-    } else {
-        indexDrink += 26;
-        [...InfoDrink].forEach((result) => {
-            result.style.transform = `translateY(-${indexDrink}vh)`;
-        });
-        setIndexDrink++;
-    }
-}
-
-// Dessert
-const showDessert = (element) => {
-    return `<div class="contentMenu-4 mt-5">
-    <div class="infoFood d-flex flex-column">
-        <div class="d-flex justify-content-between">
-            <h5 class="text-orange">${element["nama"]}</h5>
-            <h5 class="text-orange">$ <span class="hargaFood">${element["harga"]}</span></h5>
-        </div>
-        <p style="font-size: 15px; line-height: 28px;">${element["penjelasan"]}</p>
-    </div>
-</div>`;
-};
-
-let setIndexDessert = 0;
-let lastIndexDessert = 0;
-let fristIndexDessert = 0;
 
 const callDessert = () => {
     fetch("http://127.0.0.1:8000/Api/Dessert.php")
@@ -213,59 +507,14 @@ const callDessert = () => {
             return Value;
         })
         .then((result) => {
-            const Pembungkus = document.querySelector(".hiddenDessert-Y");
-            let setCard = "";
-            let IndexValue = 0;
             result.forEach((value, index) => {
-                setCard += showDessert(value);
                 setHargaDessert.push(DessertsetHarga(value));
                 setNameDessert.push(DessertsetName(value));
-
-                if (index >= 5) {
-                    if (value != "") {
-                        IndexValue++;
-                    }
-
-                    lastIndexDessert = IndexValue;
-                }
-
-                if (index == 0) {
-                    fristIndexDessert = index;
-                }
             });
-
-            Pembungkus.innerHTML = setCard;
         });
 };
 
 callDessert();
-
-const Pembungkus3 = document.querySelector(".hiddenDessert-Y");
-let indexDessert = 0;
-
-function BtnUpDessert() {
-    const InfoDessert = document.querySelectorAll(".contentMenu-4");
-    if (setIndexDessert == fristIndexDessert) {
-    } else {
-        indexDessert -= 26;
-        [...InfoDessert].forEach((result) => {
-            result.style.transform = `translateY(-${indexDessert}vh)`;
-        });
-        setIndexDessert--;
-    }
-}
-
-function BtnDownDessert() {
-    const InfoDessert = document.querySelectorAll(".contentMenu-4");
-    if (setIndexDessert == lastIndexDessert) {
-    } else {
-        indexDessert += 26;
-        [...InfoDessert].forEach((result) => {
-            result.style.transform = `translateY(-${indexDessert}vh)`;
-        });
-        setIndexDessert++;
-    }
-}
 
 const SubmitOrder = document.querySelector(".SubmitOrder");
 

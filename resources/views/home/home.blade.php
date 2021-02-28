@@ -5,7 +5,7 @@
 @section('content')
       <div class="fotoHeader">
           <div class="blackTrans"></div>
-          <img src="{{asset('img')}}/header.png" alt="">
+          <img src="{{asset('img')}}/BgHome.jpg" alt="">
       </div>
 
       <div class="container mt-5 pt-5">

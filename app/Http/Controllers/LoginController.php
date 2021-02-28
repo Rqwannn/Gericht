@@ -36,7 +36,7 @@ class LoginController extends Controller
         ]);
 
 
-        if ($data) {
+        if ($data && $request->email != "Guest@gmail.com") {
             if (Hash::check($request->password, $data->password)) {
                 $sessionNama = $data->name;
                 $sessionGambar = $data->gambar;
@@ -81,6 +81,9 @@ class LoginController extends Controller
 
         session()->put('Submit', true);
         session()->put('gambar', $fileName);
+        session()->put('email', "Guest@gmail.com");
+        session()->put('nama', "Guest");
+        session()->put('status', "Member");
         return redirect()->route("home");
     }
 

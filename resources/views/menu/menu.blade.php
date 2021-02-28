@@ -258,7 +258,11 @@
                                 <div class="PayOrder mb-3">
                                     <div class="contentOrder mt-2 d-flex justify-content-between">
                                         <p>Shipping Cost :</p>
+                                        @if ($StatusUser == "Premium")
+                                        <p><span class="Shipping-Cost">FREE</span></p>
+                                        @else
                                         <p>$ <span class="Shipping-Cost">2</span></p>
+                                        @endif
                                     </div>
                                     <div class="contentOrder mt-2 d-flex justify-content-between">
                                         <p>Tax :</p>

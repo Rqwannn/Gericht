@@ -65,7 +65,8 @@ function funDelete(Data) {
     });
 }
 
-var options = {
+if(document.getElementById("chartSold") != null && document.getElementById("chartSoldBar") != null){
+  var options = {
     series: [{
     name: 'Dessert',
     type: 'column',
@@ -174,8 +175,50 @@ var options = {
 
   var chart = new ApexCharts(document.querySelector("#chartSoldBar"), options);
   chart.render();
+}
 
 // User Page
+
+if(document.getElementById("chart-3") != null){
+  var options = {
+    series: [{
+    name: 'User',
+    data: [1, 3, 4, 7, 12, 19, 20, 27, 28, 30, 35, 39]
+  }, {
+    name: 'Subscribe',
+    data: [2, 4, 4, 6, 8, 8, 11, 13, 15, 18, 22, 27]
+  }],
+    chart: {
+    height: 350,
+    type: 'area'
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'smooth'
+  },
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+    y: {
+      formatter: function (y) {
+        if (typeof y !== "undefined") {
+          return y.toFixed(0) + " People";
+        }
+        return y;
+  
+      }
+    }
+  }
+  };
+}
+
+var chart = new ApexCharts(document.querySelector("#chart-3"), options);
+chart.render();
 
 function intDelete(Data) {
     Swal.fire({

@@ -12,9 +12,9 @@
                 <button type="submit" class="btn">Filter</button>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-md-3">
-                <div class="cardInfoDasbord">
+                <div class="cardInfoDasbord mt-4">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="cardInfoDasbord">
+                <div class="cardInfoDasbord mt-4">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex justify-content-end">
-                            <a href="totalUser">
+                            <a href="/totalUser">
                                 <div class="rounded-circle iconInfoDasbord-2 d-flex align-items-center justify-content-center">
                                     <i class="material-icons noteIcon text-white">pie_chart</i>
                                 </div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="cardInfoDasbord">
+                <div class="cardInfoDasbord mt-4">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="cardInfoDasbord">
+                <div class="cardInfoDasbord mt-4">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">

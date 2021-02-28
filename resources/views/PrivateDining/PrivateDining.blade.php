@@ -25,7 +25,7 @@
             </p>
         </div>
         <div class="privateDining-bottom">
-            <button class="btn btn-orange text-white mt-3">Book Your Table</button>
+            <button class="btn btn-orange text-white mt-3" id="BookTable">Book Your Table</button>
         </div>
     </div>
 
