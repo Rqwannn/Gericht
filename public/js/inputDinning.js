@@ -384,7 +384,7 @@ BtnStep1.addEventListener("click", function(){
             
                         const CircleOne = document.querySelector(".barOne");
                         const CircleOneAfter = document.querySelector(".LineOne");
-                        const Check = document.querySelector(".fa-check-circle");
+                        const Check = document.querySelector(".circle-1");
                         const iconTable = document.querySelector(".fa-feather-alt")
             
                         CircleOne.style.background = " #2dce89";
@@ -1299,6 +1299,8 @@ PayNow.addEventListener("click", function () {
                         Email: $(".yourEmail").text(),
                         Nama: $(".yourName").text(),
                         Total_Harga: $(".totalPembayaran").text(),
+                        Alamat : '-',
+                        Pembelian : "Offline"
                     },
                     error: (result) => {
                         const Toast = Swal.mixin({
@@ -1431,16 +1433,37 @@ PayNow.addEventListener("click", function () {
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="textValue d-flex mt-3 mb-5">
-                                                <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
-                                                <button type="submit" onclick="PayLaterLink()">PayLater</button>
-                                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
+                                            <div class="textValue btnInfoPayment d-flex mt-3 mb-5">
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 `;
 
                             wrapperFullInfo.innerHTML = setCard;
+
+                            const idUser = document.querySelector("#Id_User");
+                            const btnInfoPayment = document.querySelector(".btnInfoPayment");
+
+                            if(idUser.value != "Guest"){
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                <button type="submit" onclick="PayLaterLink()">PayLater</button>
+                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>`
+                            } else {
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                <button type="submit" onclick="PayIfGuest(${Id})">Pay On The Spot</button>`
+                            }
+
+                            const CircleTwo = document.querySelector(".barTwo");
+                            const CircleTwoAfter = document.querySelector(".LineTwo");
+                            const CheckTwo = document.querySelector(".circle-2");
+                            const iconTable = document.querySelector(".fa-scroll");
+
+                            CircleTwo.style.background = " #2dce89";
+                            CircleTwoAfter.style.background = "#2dce89";
+                            CheckTwo.style.display = "block";
+                            CheckTwo.style.color = "white";
+                            iconTable.style.display = "none";
 
                             const setAllOrder = document.querySelector(".wrapperOrder-Food");
 
@@ -1472,7 +1495,7 @@ PayNow.addEventListener("click", function () {
                         "Your Email Or Name Must Be Entered",
                         "error"
                     );
-                } else if (setName.innerHTML != "Order...") {
+                } else if (setName.innerHTML == "Order...") {
                     Swal.fire(
                         "Something Went Wrong",
                         "The Order Must Be More Than Zero",
@@ -1527,4 +1550,45 @@ function PayOnTheSpot(Data){
             }, 2200)
         }
     })
+}
+
+function PayIfGuest(Data){
+    $.ajax({
+        url: "http://127.0.0.1:8000/Api/PayProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
+        },
+        error: function () {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
+        },
+        success: function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "The Order Has Been Made",
+            });
+
+            setTimeout(function () {
+                document.location.href = "/privatedining";
+            }, 2200);
+        },
+    });
 }

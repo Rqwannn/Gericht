@@ -70,7 +70,14 @@
                     <a href="/menu" style="color: {{Request()->is('menu') ? '#fb6340' : ''}}" class="nav-link">Menu</a>
                 </li>
                 <li>
-                    <a href="/order" style="color: {{Request()->is('order') ? '#fb6340' : ''}};" class="nav-link">Order</a>
+                    @if ($Name != 'Guest')
+                    <a style="width: 100%; height: 100%; position: relative;" href="/order" style="color: {{Request()->is('order') ? '#fb6340' : ''}};" class="nav-link">
+                        Order
+                        <div class="infoAllOrder d-flex justify-content-center align-items-center rounded-circle">
+                            <div>0</div>
+                        </div>
+                    </a>
+                    @endif
                 </li>
             </ul>
         </div>
@@ -79,23 +86,18 @@
             <div class="position-relative d-flex">
                 <img class="rounded-circle" style="width: 50px; height: 50px; margin-right: 10px;" src="{{asset('img')}}/{{$Gambar}}" alt="">
                 <div class="dropdown">
-                    <h5 class="text-white dropdown-toggle" style="line-height: 50px;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (($Name))
-                            {{$Name}}
-                        @else
-                            Profile
-                        @endif
-                    </h5>
+                    <h5 class="text-white dropdown-toggle idUser" style="line-height: 50px;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">@if (($Name)){{$Name}}@else Profile @endif</h5>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <form action="/home" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        @if ($Email)
-                        <label class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Picture</label>     
-                        <a href="/withoutPicture" class="dropdown-item">Without Picture</a>
-                        <a href="/subscribe" style="background: {{Request()->is('subscribe') ? '#fb6340' : ''}}; color: {{Request()->is('subscribe') ? '#fff' : ''}}" class="dropdown-item">Subscribe</a>
-                        <label class="dropdown-item">Status : {{$StatusUser}}</label>     
+                        @if ($Email != "Guest@gmail.com")
+                            <label class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Picture</label>     
+                            <a href="/withoutPicture" class="dropdown-item">Without Picture</a>
+                            <a href="/subscribe" style="background: {{Request()->is('subscribe') ? '#fb6340' : ''}}; color: {{Request()->is('subscribe') ? '#fff' : ''}}" class="dropdown-item">Subscribe</a>
+                            <label class="dropdown-item">Status : {{$StatusUser}}</label>     
                         @endif
+                        
                         <a href="signIn" class="nav-link">Sign In</a>
                         <a href="signUp" class="nav-link">Sign Up</a>
                       </form>
@@ -145,6 +147,7 @@
     <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
     <script src="{{asset('js')}}/jquery.min.js"></script>
     <script src="{{asset('js')}}/apexcharts.min.js"></script>
+    <script src="{{asset('js')}}/navbarHome.js"></script>
     <script src="{{asset('js')}}{{$JS}}"></script>
   </body>
 </html>

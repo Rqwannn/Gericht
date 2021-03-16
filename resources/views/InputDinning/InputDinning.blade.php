@@ -11,11 +11,12 @@
                 <div class="barOne rounded-circle d-flex justify-content-center align-items-center">
                     <div class="LineOne"></div>
                     <i class="fas fa-feather-alt text-success" style="font-size: 12px;"></i>
-                    <i class="fas fa-check-circle" style="font-size: 12px; display: none;"></i>
+                    <i class="fas fa-check-circle circle-1" style="font-size: 12px; display: none;"></i>
                 </div>
                 <div class="barTwo rounded-circle d-flex justify-content-center align-items-center">
                     <div class="LineTwo"></div>
                     <i class="fas fa-scroll text-primary" style="font-size: 12px;"></i>
+                    <i class="fas fa-check-circle circle-2" style="font-size: 12px; display: none;"></i>
                 </div>
                 <div class="barThree rounded-circle d-flex justify-content-center align-items-center">
                     <i class="fas fa-credit-card text-primary" style="font-size: 12px;"></i>
@@ -185,7 +186,7 @@
                                             <div class="inputValues d-flex flex-column mt-3">
                                                 <label for="email" class="mb-1">Email</label>
                                                 <input type="email" name="email" id="email" class="form-control" value=" 
-                                                    @if ($Email)
+                                                    @if ($Email != 'Guest@gmail.com')
                                                         {{$Email}}
                                                     @else
                                                         
@@ -196,7 +197,7 @@
                                         <div class="col-md-6">
                                             <div class="inputValues d-flex flex-column mt-3">
                                                 <label for="name" class="mb-1">Name</label>
-                                                <input type="text" name="name" id="name" class="form-control" value="<?php echo($Name != '') ? $Name : '' ?>" placeholder="Type Your Name">
+                                                <input type="text" name="name" id="name" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>" placeholder="Type Your Name">
                                                 <label class="text-danger AuthName" style="font-size: 14px; display: none;"></label>
                                             </div>
                                         </div>
@@ -307,14 +308,14 @@
                             <div class="inputTable d-flex flex-column mb-3">
                                 <input type="hidden" id="Id_User" value="{{$Name}}">
                                 <label class="mb-2">Email</label>
-                                <input type="email" id="NameUser" value="{{$Email}}" class="form-control">
+                                <input type="email" id="NameUser" value="<?php echo($Email != 'Guest@gmail.com') ? $Email : '' ?>" class="form-control">
                                 <label class="text-danger AuthEmailTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Name</label>
-                                <input type="text" id="EmailUser" class="form-control" value="{{$Name}}">
+                                <input type="text" id="EmailUser" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>">
                                 <label class="text-danger AuthNamaTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>

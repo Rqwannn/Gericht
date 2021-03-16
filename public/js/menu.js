@@ -311,10 +311,47 @@ SubmitOrder.addEventListener("click", function (event) {
     const setOrderName = document.querySelector(".setOrder p:nth-child(1)");
     const setOrderPrice = document.querySelector(".setPrice");
     const setOrderAmount = document.querySelector(".setAmount");
+    const YourAddress = document.querySelector(".YourAddress");
 
     const AuthTotalFood = document.querySelector(".AuthTotalFood");
     const AuthTotalDrink = document.querySelector(".AuthTotalDrink");
     const AuthTotalDessert = document.querySelector(".AuthTotalDessert");
+    const AuthAddress = document.querySelector(".AuthAddress");
+
+    for (let index = 0; index < 4; index++) {
+        if (
+            totalFood.value == "" &&
+            index == 0 &&
+            Food.value != "Choose Your Food"
+        ) {
+            AuthTotalFood.innerHTML = `Total Food Must Be Field`;
+            AuthTotalFood.style.display = "block";
+            continue;
+        } else if (
+            totalDrink.value == "" &&
+            index == 1 &&
+            Drink.value != "Choose Your Drink"
+        ) {
+            AuthTotalDrink.innerHTML = `Total Drink Must Be Field`;
+            AuthTotalDrink.style.display = "block";
+            continue;
+        } else if (
+            totalDessert.value == "" &&
+            index == 2 &&
+            Dessert.value != "Choose Your Dessert"
+        ) {
+            AuthTotalDessert.innerHTML = `Total Dessert Must Be Field`;
+            AuthTotalDessert.style.display = "block";
+            continue;
+        } else if(
+            YourAddress.value == "" && 
+            index == 3
+        ) {
+            AuthAddress.innerHTML = `Address Must Be Filled`;
+            AuthAddress.style.display = "block";
+            continue;
+        }
+    }
 
     // Validation Total
 
@@ -335,7 +372,14 @@ SubmitOrder.addEventListener("click", function (event) {
                 TotalDrink: $(totalDrink).val(),
                 TotalDessert: $(totalDessert).val(),
             },
-            error: function () {},
+            error: function () {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: "<a href>Report A Problem?</a>",
+                });
+            },
             success: function (result) {
                 let tersediaFood = result.TersediaFood;
                 let tersediaDrink = result.TersediaDrink;
@@ -894,7 +938,7 @@ SubmitOrder.addEventListener("click", function (event) {
                     }
                 }
 
-                    // Set All Price
+                // Set All Price
 
                 let TotalPrice = 0;
 
@@ -917,11 +961,20 @@ SubmitOrder.addEventListener("click", function (event) {
                         parseInt(OrderFee.innerHTML);
                     setTotal.innerHTML = Hasil;
                 } else {
-                    let Hasil = parseInt(Tax.innerHTML) + parseInt(OrderFee.innerHTML);
+                    let Hasil =
+                        parseInt(Tax.innerHTML) + parseInt(OrderFee.innerHTML);
                     setTotal.innerHTML = Hasil;
                 }
             },
         });
+    }
+
+    // set Address Here
+
+    const wrapperAddress = document.querySelector(".wrapperAddress");
+
+    if(YourAddress.value != ""){
+        wrapperAddress.innerHTML = YourAddress.value;
     }
 
     const getAllPrice = document.querySelectorAll(".setPrice");
@@ -1018,6 +1071,7 @@ PayNow.addEventListener("click", function () {
 
             const setAllOrderName = document.querySelectorAll(".setName");
             const setAllOrderAmount = document.querySelectorAll(".setAmount");
+            const YourAddress = document.querySelector(".wrapperAddress");
 
             [...setAllOrderAmount].forEach((result) => {
                 setArrayAllAmount.push(result.innerHTML);
@@ -1037,7 +1091,8 @@ PayNow.addEventListener("click", function () {
             if (
                 setName.innerHTML != "Order..." &&
                 yourEmail.innerHTML != "YourEmail@gmail.com" &&
-                yourName.innerHTML != "John Doe"
+                yourName.innerHTML != "John Doe" &&
+                YourAddress.innerHTML != "Where will we deliver"
             ) {
                 $.ajax({
                     url: "http://127.0.0.1:8000/Api/Order.php",
@@ -1050,6 +1105,8 @@ PayNow.addEventListener("click", function () {
                         Email: $(".yourEmail").text(),
                         Nama: $(".yourName").text(),
                         Total_Harga: $(".totalPembayaran").text(),
+                        Alamat : $(".wrapperAddress").text(),
+                        Pembelian : "Online"
                     },
                     error: (result) => {
                         const Toast = Swal.mixin({
@@ -1076,7 +1133,6 @@ PayNow.addEventListener("click", function () {
                         });
                     },
                     success: function (result) {
-
                         let Id = result.Id;
                         let Nama = result.Nama;
                         let Email = result.Email;
@@ -1099,7 +1155,9 @@ PayNow.addEventListener("click", function () {
                         const setName = document.querySelector(".yourName");
                         const setEmail = document.querySelector(".yourEmail");
                         const setFee = document.querySelector(".Order-Fee");
-                        const setTotalPayment = document.querySelector(".totalPembayaran");
+                        const setTotalPayment = document.querySelector(
+                            ".totalPembayaran"
+                        );
 
                         let id_Order = `id_order-${Id}`;
 
@@ -1182,10 +1240,8 @@ PayNow.addEventListener("click", function () {
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="textValue d-flex mt-3 mb-5">
-                                                <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
-                                                <button type="submit" onclick="PayLaterLink()">PayLater</button>
-                                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
+                                            <div class="textValue btnInfoPayment d-flex mt-3 mb-5">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -1193,10 +1249,28 @@ PayNow.addEventListener("click", function () {
 
                             wrapperFullInfo.innerHTML = setCard;
 
-                            const setAllOrder = document.querySelector(".wrapperOrder-Food");
+                            const idUser = document.querySelector(".idUser");
+                            const btnInfoPayment = document.querySelector(".btnInfoPayment");
+
+                            if(idUser.innerHTML != "Guest"){
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                <button type="submit" onclick="PayLaterLink()">PayLater</button>
+                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>`
+                            } else {
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                <button type="submit" onclick="PayIfGuest(${Id})">Pay On The Spot</button>`
+                            }
+
+                            const setAllOrder = document.querySelector(
+                                ".wrapperOrder-Food"
+                            );
 
                             function getNumberPesanan() {
-                                for (let index = 0; index < setNamaPesanan.length; index++ ) {
+                                for (
+                                    let index = 0;
+                                    index < setNamaPesanan.length;
+                                    index++
+                                ) {
                                     $(setAllOrder).append(`
                                             <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} X ${setJumlahPesanan[index]}</option>
                                         `);
@@ -1210,6 +1284,7 @@ PayNow.addEventListener("click", function () {
                         setTotalPayment.innerHTML = 0;
                         setEmail.innerHTML = "YourEmail@gmail.com";
                         setName.innerHTML = "John Doe";
+                        YourAddress.innerHTML = "Where will we deliver";
                         setPembungkus.innerHTML = setBackOrder();
                     },
                 });
@@ -1223,10 +1298,16 @@ PayNow.addEventListener("click", function () {
                         "Your Email Or Name Must Be Entered",
                         "error"
                     );
-                } else if (setName.innerHTML != "Order...") {
+                } else if (setName.innerHTML == "Order...") {
                     Swal.fire(
                         "Something Went Wrong",
                         "The Order Must Be More Than Zero",
+                        "error"
+                    );
+                } else if(YourAddress.innerHTML == "Where will we deliver"){
+                    Swal.fire(
+                        "Something Went Wrong",
+                        "Address Must Be Filled",
                         "error"
                     );
                 }
@@ -1235,47 +1316,88 @@ PayNow.addEventListener("click", function () {
     });
 });
 
-function PayLaterLink(){
-    document.location.href ="/order";
+function PayLaterLink() {
+    document.location.href = "/order";
 }
 
-function PayOnTheSpot(Data){
+function PayOnTheSpot(Data) {
     $.ajax({
-        url : "http://127.0.0.1:8000/Api/PayProses.php",
-        type : "POST",
-        dataType : "JSON",
-        data : {
-            Id : Data
+        url: "http://127.0.0.1:8000/Api/PayProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
         },
-        error : function (){
+        error: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href>If there is a problem please report it!</a>'
-              })
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
         },
-        success : function (){
+        success: function () {
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: "top-end",
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'The Order Has Been Made'
-              })
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
 
-            setTimeout(function(){
-                document.location.href ="/order";
-            }, 2200)
-        }
-    })
+            Toast.fire({
+                icon: "success",
+                title: "The Order Has Been Made",
+            });
+
+            setTimeout(function () {
+                document.location.href = "/order";
+            }, 2200);
+        },
+    });
+}
+
+function PayIfGuest(Data){
+    $.ajax({
+        url: "http://127.0.0.1:8000/Api/PayProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
+        },
+        error: function () {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
+        },
+        success: function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "The Order Has Been Made",
+            });
+
+            setTimeout(function () {
+                window.location.reload();
+            }, 2200);
+        },
+    });
 }

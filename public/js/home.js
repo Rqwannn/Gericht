@@ -108,14 +108,14 @@ function ClickRight() {
             CardArray.shift();
 
             IndexSlide = 0;
-            
+
             let setCard = CardFood(
                 NameFood[IndexSlide],
                 ImgFood[IndexSlide],
                 HargaFood[IndexSlide]
-                );
-                
-                IndexSlide++;
+            );
+
+            IndexSlide++;
 
             CardArray.push(setCard);
 
@@ -127,15 +127,14 @@ function ClickRight() {
         } else {
             CardArray.shift();
 
-            
             let setCard = CardFood(
                 NameFood[IndexSlide],
                 ImgFood[IndexSlide],
                 HargaFood[IndexSlide]
-                );
- 
+            );
+
             IndexSlide++;
-                
+
             CardArray.push(setCard);
 
             let JoinArray = CardArray.join("");

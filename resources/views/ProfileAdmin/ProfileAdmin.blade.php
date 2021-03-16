@@ -19,7 +19,7 @@
                 </div>
                 <div class="container">
                     <div class="titleContent">
-                        <p class="mb-5">User Information</p>
+                        <p class="mb-5">Admin Information</p>
                         <div class="lineTitleAdmin"></div>
                     </div>
                 </div>

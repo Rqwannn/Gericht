@@ -445,7 +445,7 @@ body {
 .hiddenDrink-Y,
 .hiddenDessert-Y {
     overflow-y: hidden;
-    height: 135vh;
+    height: 130vh;
 }
 
 .contentMenu-2,
@@ -562,6 +562,7 @@ body {
 .cardOrder-3,
 .cardOrder-4,
 .cardOrder-5 {
+    position: relative;
     width: 100%;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
     background-color: #fff;
@@ -984,4 +985,17 @@ body {
     transition: 0.5s;
     transform: translateX(635px);
     transition: 0.5s;
+}
+
+.infoAllOrder {
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    padding: 7px;
+    background: transparent;
+}
+
+.infoAllOrder div {
+    font-size: 13px;
+    color: var(--danger);
 }

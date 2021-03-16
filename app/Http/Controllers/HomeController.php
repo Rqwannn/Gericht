@@ -53,16 +53,17 @@ class HomeController extends Controller
         $file = $request->change;
         $fileEmail = explode(".", session()->get("email"));
 
-        $getEmail = "";
+        $getEmail = [];
 
-        for ($c = 0; $c <= count($fileEmail); $c++) {
+        for ($c = 0; $c < count($fileEmail); $c++) {
             if ($fileEmail[$c] != "com") {
-                $getEmail .= $fileEmail[$c];
-                break;
+                $getEmail[] = $fileEmail[$c];
             }
         }
 
-        $fileName = $getEmail . "." . $file->extension();
+        $joinArray = implode(".", $getEmail);
+
+        $fileName = $joinArray . "." . $file->extension();
         $file->move(public_path('img'), $fileName);
 
         $data = [
@@ -86,16 +87,17 @@ class HomeController extends Controller
         $email = session()->get("email");
         $getEmail = explode(".", $email);
 
-        $setEmail = "";
+        $setEmail = [];
 
-        for ($c = 0; $c <= count($getEmail); $c++) {
+        for ($c = 0; $c < count($getEmail); $c++) {
             if ($getEmail[$c] != "com") {
-                $setEmail .= $getEmail[$c];
-                break;
+                $setEmail[] = $getEmail[$c];
             }
         }
 
-        $fileName = $setEmail . "." . $getFileOld;
+        $joinArray = implode(".", $setEmail);
+
+        $fileName = $joinArray . "." . $getFileOld;
 
         unlink(public_path('img') . "/" . $fileName);
 

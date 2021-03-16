@@ -9,12 +9,14 @@ $Nama_Pesanan = $_POST["Nama_Pesanan"];
 $Jumlah_Pesanan = $_POST["Jumlah_Pesanan"];
 $Email = $_POST["Email"];
 $Nama = $_POST["Nama"];
+$Alamat = $_POST["Alamat"];
+$Pembelian = $_POST["Pembelian"];
 $Total_Harga = $_POST["Total_Harga"];
 $KodePesanan = time();
 $Konfirmasi = 0;
 $proses = 0;
 
-$Pesanan = mysqli_query($conn, "INSERT INTO pesanan VALUES('', '$id_user', '$KodePesanan' ,'$Nama_Pesanan', '$Jumlah_Pesanan' ,'$Nama', '$Email', null, '$Total_Harga', '$proses' ,$Konfirmasi) ");
+$Pesanan = mysqli_query($conn, "INSERT INTO pesanan VALUES('', '$id_user', '$KodePesanan' ,'$Nama_Pesanan', '$Jumlah_Pesanan' ,'$Nama', '$Email', '$Alamat', '$Pembelian', null, '$Total_Harga', '$proses' ,$Konfirmasi) ");
 
 $getDate = mysqli_query($conn, "SELECT * FROM pesanan WHERE kodePesanan = '$KodePesanan'");
 $getAssocDate = mysqli_fetch_assoc($getDate);

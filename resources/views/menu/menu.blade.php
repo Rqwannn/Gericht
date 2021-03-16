@@ -111,7 +111,7 @@
                                     <div class="inputValues d-flex flex-column mt-3">
                                         <label for="email" class="mb-1">Email</label>
                                         <input type="email" name="email" id="email" class="form-control" value=" 
-                                            @if ($Email)
+                                            @if ($Email != 'Guest@gmail.com')
                                                 {{$Email}}
                                             @else
                                                 
@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <div class="inputValues d-flex flex-column mt-3">
                                         <label for="name" class="mb-1">Name</label>
-                                        <input type="text" name="name" id="name" class="form-control" value="<?php echo($Name != '') ? $Name : '' ?>" placeholder="Type Your Name">
+                                        <input type="text" name="name" id="name" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>" placeholder="Type Your Name">
                                         <label class="text-danger AuthName" style="font-size: 14px; display: none;"></label>
                                     </div>
                                 </div>
@@ -178,6 +178,13 @@
                                         <label for="Total" class="mb-1">Total</label>
                                         <input type="text" name="totalDessert" id="totalDessert" class="form-control" placeholder="Total" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                         <label class="text-danger AuthTotalDessert" style="font-size: 14px; display: none;"></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="inputValues d-flex flex-column mt-3">
+                                        <label for="Total" class="mb-1">Your Address</label>
+                                        <textarea class="form-control YourAddress" placeholder="Give Your Address Here" name="totalDessert" id="Address" style="resize: none; height: 100px;"></textarea>
+                                        <label class="text-danger AuthAddress" style="font-size: 14px; display: none;"></label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -248,6 +255,18 @@
                                         <div class="mt-2 d-flex justify-content-between">
                                             <p class="textName">Name :</p>
                                             <p class="yourName">John Doe</p>
+                                        </div>
+                                    </div>
+                                    <div class="headerOrder-Right">
+                                        <h5 class="lineDown fw-bold mb-4">Your Address</h5>
+                                    </div>
+                                    <div class="content-Person">
+                                        <div class="mt-2">
+                                            <div class="row">
+                                                <div class="col-md-12" style="overflow-x: hidden;">
+                                                    <p class="wrapperAddress">Where will we deliver</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

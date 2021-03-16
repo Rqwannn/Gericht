@@ -250,7 +250,7 @@
     <div class="row mt-5">
         
     @foreach ($Pesanan as $Result)
-        @if ($Name == $Result->id_user)
+        @if ($Name == $Result->id_user && "Online" == $Result->pembelian)
             <?php 
                 $setJoinDate = explode(" ", $Result->tanggal_pesan);
                 $getDate = $setJoinDate[0];
