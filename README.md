@@ -1,3 +1,3 @@
 ### Masih Tahab Pengembangan
 
-Sekitar 90%
+Sekitar 95%
