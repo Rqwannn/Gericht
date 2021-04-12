@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d1a508a7c1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('css')}}/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{asset('css')}}/aos.min.css">
+    <link rel="stylesheet" href="{{asset('css')}}/owl.carousel.min.css">
     <link rel="stylesheet" href="{{asset('css')}}/home.css">
     <link rel="icon" href="{{asset('img')}}/MainLogo.png">
     <title>@yield('title')</title>
@@ -54,7 +56,7 @@
   </div>
 
     <nav class="Header d-flex flex-column pt-5">
-        <h4 class="text-white fw-bold text-center">Gericht</h4>
+        <h4 class="text-white LogoTitle fw-bold text-center">Gericht</h4>
         <div class="nav-links">
             <ul class="d-flex justify-content-center">
                 <li>
@@ -71,10 +73,10 @@
                 </li>
                 <li>
                     @if ($Name != 'Guest')
-                    <a style="width: 100%; height: 100%; position: relative;" href="/order" style="color: {{Request()->is('order') ? '#fb6340' : ''}};" class="nav-link">
-                        Order
+                    <a style="width: 100%; height: 100%; position: relative;" href="/order" class="nav-link">
+                        <span style="color: {{Request()->is('order') ? '#fb6340' : ''}};">Order</span>
                         <div class="infoAllOrder d-flex justify-content-center align-items-center rounded-circle">
-                            <div>0</div>
+                            <div class="AmountOrderValue">0</div>
                         </div>
                     </a>
                     @endif
@@ -114,14 +116,16 @@
     
     <div class="footer" style="margin-top: 100px;">
         <div class="container">
-            <div class="row d-flex flex-column">
-                <img src="{{asset('img')}}/LogoGericht.png" alt="">
+            <div class="row d-flex justify-content-center align=items-center flex-column">
+                <div class="d-flex justify-content-center">
+                    <img src="{{asset('img')}}/LogoGericht.png" data-aos="fade-up">
+                </div>
                 <div class="info-restaurant-footer d-flex justify-content-center">
-                    <h5 style="font-size: 15px;">Jakarta, Indonesia</h5>
-                    <h5 style="margin: 0 10px; font-size: 15px;">|</h5>
-                    <h5 style="font-size: 15px;">+62 2124 8913</h5>
-                    <h5 style="margin: 0 10px; font-size: 15px;">|</h5>
-                    <h5 style="font-size: 15px;">Gericht@Gericht.com</h5>
+                    <h5 style="font-size: 15px;" data-aos="fade-up" data-aos-delay="0">Jakarta, Indonesia</h5>
+                    <h5 style="margin: 0 10px; font-size: 15px;" data-aos="fade-up" data-aos-delay="200">|</h5>
+                    <h5 style="font-size: 15px;" data-aos="fade-up" data-aos-delay="300">+62 2124 8913</h5>
+                    <h5 style="margin: 0 10px; font-size: 15px;" data-aos="fade-up" data-aos-delay="400">|</h5>
+                    <h5 style="font-size: 15px;" data-aos="fade-up" data-aos-delay="500">Gericht@Gericht.com</h5>
                 </div>
                 <div class="wrapper-footer d-flex justify-content-center mt-3">
                     <div class="wrapper-icon">
@@ -141,12 +145,26 @@
         </div>
     </div>
 
+    {{-- Btn Slide Up --}}
+
+    <a href="#." class="LinkCircleUp">
+        <div class="WrapperCircleUp">
+            <i class="fas fa-angle-up"></i>
+        </div>
+    </a>
+
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"> --}}
     <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
     <script src="{{asset('js')}}/jquery.min.js"></script>
     <script src="{{asset('js')}}/apexcharts.min.js"></script>
+    <script src="{{asset('js')}}/TweenMax.min.js"></script>
+    <script src="{{asset('js')}}/aos.min.js"></script>
+    <script src="{{asset('js')}}/owl.carousel.min.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="{{asset('js')}}/navbarHome.js"></script>
     <script src="{{asset('js')}}{{$JS}}"></script>
   </body>

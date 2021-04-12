@@ -57,7 +57,7 @@ body {
 
 .btn-orange {
     background-color: var(--orange);
-    margin: 5px;
+    margin: 5px 0;
     transition: 0.3s;
 }
 

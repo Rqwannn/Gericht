@@ -5,3 +5,7 @@ if(document.querySelector("#BookTable") != null){
         document.location.href = "/inputdining"
     })
 }
+
+if(JSON.parse(localStorage.getItem('Order'))){
+    localStorage.removeItem('Order');
+  }

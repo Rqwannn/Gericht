@@ -308,14 +308,14 @@
                             <div class="inputTable d-flex flex-column mb-3">
                                 <input type="hidden" id="Id_User" value="{{$Name}}">
                                 <label class="mb-2">Email</label>
-                                <input type="email" id="NameUser" value="<?php echo($Email != 'Guest@gmail.com') ? $Email : '' ?>" class="form-control">
+                                <input type="email" id="EmailUser" disabled value="<?php echo($Email != 'Guest@gmail.com') ? $Email : '' ?>" class="form-control">
                                 <label class="text-danger AuthEmailTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Name</label>
-                                <input type="text" id="EmailUser" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>">
+                                <input type="text" id="NameUser" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>">
                                 <label class="text-danger AuthNamaTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
@@ -337,11 +337,13 @@
                             <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Table Name</label>
                                 <select id="TableName" class="form-select">
+                                    <option value="">Choose Your Table</option>
                                     <option value="Japanese Table">Japanese Table</option>
                                     <option value="Chinese Table">Chinese Table</option>
                                     <option value="Dating Table">Dating Table</option>
                                     <option value="Family Table">Family Table</option>
                                 </select>
+                                <label class="text-danger AuthTableName mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -353,6 +355,7 @@
                         <div class="col-md-6">
                             <div class="inputTable mb-3">
                                 <button type="submit" class="btn btn-primary" id="BtnStep1">Submit</button>
+                                <button type="submit" class="btn btn-danger" id="BtnReset1">Reset</button>
                             </div>
                         </div>
                     </div>

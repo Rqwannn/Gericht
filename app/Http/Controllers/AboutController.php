@@ -31,7 +31,7 @@ class AboutController extends Controller
             "Name" => $request->session()->get("nama"),
             "Email" => $request->session()->get("email"),
             "Gambar" => $setPhoto,
-            "JS" => "/home.js",
+            "JS" => "/AboutUs.js",
             "StatusUser" => $photo->status
         ];
 

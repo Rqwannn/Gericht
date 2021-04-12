@@ -11,6 +11,33 @@ body {
     background: #f1eff7;
 }
 
+.WrapperCircleUp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.SlideUpOpacity {
+    opacity: 1;
+}
+
+.LinkCircleUp {
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+}
+
 .text-orange {
     color: var(--orange);
 }
@@ -66,6 +93,7 @@ body {
 }
 
 .Header .nav-links ul a {
+    opacity: 1;
     transition: 0.5s;
     position: relative;
     color: #fff;
@@ -164,8 +192,14 @@ body {
     border-radius: 10px;
 }
 
-.edit-our-chef {
+.edit-our-chef,
+.edit-our-location {
     margin-top: 100px;
+}
+
+.phoneNumber {
+    margin-left: 10px;
+    color: var(--orange);
 }
 
 .line-about,
@@ -187,8 +221,6 @@ body {
 .photo-our-chef h5 {
     position: absolute;
     bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .under-background-chef {
@@ -231,9 +263,7 @@ body {
 .footer img {
     width: 250px;
     height: 250px;
-    margin-left: 50%;
     margin-bottom: -3%;
-    transform: translateX(-50%);
 }
 
 .wrapper-footer label {
@@ -300,66 +330,6 @@ body {
 
 .wrapper-footer .wrapper-icon:hover {
     width: 200px;
-}
-
-.card-trending-food {
-    width: 90%;
-    margin-left: -95%;
-    background: #22242a;
-    padding: 10px;
-    border-radius: 10px;
-    transition: 0.6s;
-}
-
-.card-trending-dessert {
-    width: 90%;
-    margin-left: 5%;
-    background: #22242a;
-    padding: 10px;
-    border-radius: 10px;
-    transition: 0.6s;
-}
-
-.card-trending-food img,
-.card-trending-dessert img {
-    width: 150px;
-    height: 150px;
-}
-
-.harga-trending-food h5,
-.harga-trending-dessert h5 {
-    font-size: 17px;
-}
-
-.harga-trending-food i,
-.harga-trending-dessert i {
-    font-size: 12px;
-}
-
-.slide-trending-food,
-.slide-trending-dessert {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-}
-
-.slide-left i,
-.slide-right i {
-    position: absolute;
-    cursor: pointer;
-    font-size: 40px;
-    color: var(--orange);
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.slide-right i {
-    right: 2%;
-}
-
-.slide-left i {
-    left: 2%;
 }
 
 .privateDining2 {
@@ -557,17 +527,31 @@ body {
     border-radius: 5px;
 }
 
+.WrapperInfoOrder,
+.WrapperInfoTable {
+    width: 100%;
+    height: 95vh;
+    overflow-y: hidden;
+    padding: 50px 0;
+    display: flex;
+}
+
 .cardOrder,
 .cardOrder-2,
 .cardOrder-3,
 .cardOrder-4,
-.cardOrder-5 {
+.cardOrder-5,
+.cardOrder-6 {
     position: relative;
     width: 100%;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
     background-color: #fff;
     border-radius: 10px;
     padding: 40px;
+}
+
+.cardOrder-2 {
+    width: 700px;
 }
 
 .cardOrder-3,
@@ -578,7 +562,8 @@ body {
 }
 
 .cardOrder-2,
-.cardOrder-5 {
+.cardOrder-5,
+.cardOrder-6 {
     padding: 0px;
 }
 
@@ -998,4 +983,110 @@ body {
 .infoAllOrder div {
     font-size: 13px;
     color: var(--danger);
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.WrapperOverflow::-webkit-scrollbar {
+    width: 5px;
+    transition: 0.5s;
+}
+
+.WrapperOverflow::-webkit-scrollbar-thumb {
+    background: var(--orange);
+    transition: 0.5s;
+    border-radius: 15px;
+}
+
+.contenrAllMenu,
+.OwlMenu {
+    width: 100%;
+    padding: 20px 0;
+    overflow-x: hidden;
+}
+
+.cardAllMenu {
+    width: 325px;
+    border-radius: 10px;
+    position: relative;
+    background: transparent;
+    margin: 5% 0 5% 5%;
+}
+
+.cardAllMenu img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.cardContentMenu {
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    transform: translateY(-30%);
+    background: #fff;
+    box-shadow: 0 4px 15px 0px rgba(0, 0, 0, 0.12),
+        0 7px 10px -5px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.circleHot,
+.circleGreen {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.circleRelative,
+.circleFix {
+    width: 15px;
+    height: 15px;
+    background: var(--red);
+    border-radius: 50%;
+    position: relative;
+}
+
+.circleFix {
+    background: var(--green);
+}
+
+.circleHot:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--red);
+    border-radius: 50%;
+}
+
+.circleGreen::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--green);
+    border-radius: 50%;
+}
+
+.BookingBtn {
+    position: absolute;
+    left: 50%;
+    bottom: -20%;
+    transform: translate(-50%, -30%);
+}
+
+.BookingBtn button {
+    padding: 7px 50px;
+    background: var(--orange);
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: #fff;
 }

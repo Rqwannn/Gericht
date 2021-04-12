@@ -25,7 +25,7 @@ class RegisterController extends Controller
     {
         Request()->validate([
             'email' => 'required|unique:user,email|min:10',
-            'name' => 'required|min:4',
+            'name' => 'required|unique:user,name|min:4',
             'password' => 'required|min:8',
         ], [
             "email.required" => "Email Cannot Be Empty",
@@ -34,8 +34,8 @@ class RegisterController extends Controller
             "email.mimes" => "Invalid Format",
             "password.required" => "Password Cannot Be Empty",
             "password.min" => "Password Minimum 8 Characters",
-            "name.required" => "Name Cannot Be Empty",
-            "name.min" => "Name Minimum 4 Characters",
+            "name.required" => "Username Cannot Be Empty",
+            "name.min" => "Username Minimum 4 Characters",
         ]);
 
         if (Request()->password != Request()->password_confirmation) {

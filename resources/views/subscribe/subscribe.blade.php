@@ -44,7 +44,11 @@
                     </ul>
                 </div>
                 <div class="btnCardSub-Rigt mt-3">
+                    @if ($StatusUser == 'Premium')
+                    <button class="btn btnCheckout">Thank You For Subscribing</button>
+                    @else
                     <button type="submit" class="btn btnCheckout">Secure Checkout</button>
+                    @endif
                 </div>
             </div>
         </div>

@@ -318,6 +318,11 @@ SubmitOrder.addEventListener("click", function (event) {
     const AuthTotalDessert = document.querySelector(".AuthTotalDessert");
     const AuthAddress = document.querySelector(".AuthAddress");
 
+    AuthTotalFood.style.display = "none";
+    AuthTotalDrink.style.display = "none";
+    AuthTotalDessert.style.display = "none";
+    AuthAddress.style.display = "none";
+
     for (let index = 0; index < 4; index++) {
         if (
             totalFood.value == "" &&
@@ -992,6 +997,9 @@ SubmitOrder.addEventListener("click", function (event) {
     const AuthName = document.querySelector(".AuthName");
     const AuthEmail = document.querySelector(".AuthEmail");
 
+    AuthEmail.style.display = "none";
+    AuthName.style.display = "none";
+
     for (Auth = 1; Auth <= 2; Auth++) {
         if (Auth == 1) {
             if (getName.value.length == 0) {
@@ -1012,6 +1020,11 @@ SubmitOrder.addEventListener("click", function (event) {
                 break;
             } else if (getEmail.value.length <= 10) {
                 AuthEmail.innerHTML = "Invalid Email";
+                AuthEmail.style.display = "initial";
+                setEmail.innerHTML = "YourEmail@gmail.com";
+                break;
+            } else if(!Email.value.includes('@')) {
+                AuthEmail.innerHTML = "Must Have An @ Symbol";
                 AuthEmail.style.display = "initial";
                 setEmail.innerHTML = "YourEmail@gmail.com";
                 break;
@@ -1401,3 +1414,129 @@ function PayIfGuest(Data){
         },
     });
 }
+
+if(JSON.parse(localStorage.getItem('Order'))){
+    const totalFood = document.querySelector("#totalFood");
+    const totalDrink = document.querySelector("#totalDrink");
+    const totalDessert = document.querySelector("#totalDessert");
+
+    const Food = document.getElementById("food");
+    const Drink = document.getElementById("drink");
+    const Dessert = document.getElementById("dessert");
+
+    const getLocalStorage = JSON.parse(localStorage.getItem('Order'));
+
+    const setName = getLocalStorage.Nama;
+    const setTotal = getLocalStorage.Jumlah;
+    const setStatus = getLocalStorage.Status;
+
+    if(setStatus == 'Food'){
+        Food.value = setName;
+        totalFood.value = setTotal;
+    } else if(setStatus == 'Drink'){
+        Drink.value = setName;
+        totalDrink.value = setTotal;
+    } else if(setStatus == 'Dessert'){
+        Dessert.value = setName;
+        totalDessert.value = setTotal;
+    }
+}
+
+const ResetOrder = document.querySelector('.ResetOrder');
+
+ResetOrder.addEventListener('click', function(){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "All inputs will be reset again!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, reset it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const AuthTotalFood = document.querySelector(".AuthTotalFood");
+            const AuthTotalDrink = document.querySelector(".AuthTotalDrink");
+            const AuthTotalDessert = document.querySelector(".AuthTotalDessert");
+            const AuthAddress = document.querySelector(".AuthAddress");
+            const AuthName = document.querySelector(".AuthName");
+            const AuthEmail = document.querySelector(".AuthEmail");
+        
+            AuthEmail.style.display = "none";
+            AuthName.style.display = "none";
+            AuthTotalFood.style.display = "none";
+            AuthTotalDrink.style.display = "none";
+            AuthTotalDessert.style.display = "none";
+            AuthAddress.style.display = "none";
+
+            const getName = document.querySelector("#name");
+            getName.value = '';
+
+
+            const contentOrder = document.querySelector('.contentOrder');
+
+            contentOrder.innerHTML = ` <div class="d-flex setOrder">
+                    <p style="margin-right: 5px;" class="setName">Order...</p>
+                    <p>X <span class="setAmount">...</span></p>
+                </div>
+            <p>$ <span class="setPrice">0</span></p>`;
+        
+            const yourEmail = document.querySelector('.yourEmail');
+            const yourName = document.querySelector('.yourName');
+        
+            yourEmail.innerHTML = 'YourEmail@gmail.com';
+            yourName.innerHTML = 'John Doe';
+        
+            const wrapperAddress = document.querySelector('.wrapperAddress');
+            wrapperAddress.innerHTML = 'Where will we deliver';
+        
+            let ShippingCost = document.querySelector(".Shipping-Cost");
+            let Tax = document.querySelector(".Tax");
+            let OrderFee = document.querySelector(".Order-Fee");
+            OrderFee.innerHTML = '0';
+            
+            const setTotal = document.querySelector(".totalPembayaran");
+            
+            if (ShippingCost.innerHTML != "FREE") {
+                let Hasil =
+                    parseInt(ShippingCost.innerHTML) +
+                    parseInt(Tax.innerHTML) +
+                    parseInt(OrderFee.innerHTML);
+                setTotal.innerHTML = Hasil;
+            } else {
+                let Hasil = parseInt(Tax.innerHTML) + parseInt(OrderFee.innerHTML);
+                setTotal.innerHTML = Hasil;
+            }
+
+            // Jumlah pesanan
+
+            const totalFood = document.querySelector("#totalFood");
+            const totalDrink = document.querySelector("#totalDrink");
+            const totalDessert = document.querySelector("#totalDessert");
+
+            // Input Value
+
+            const Food = document.getElementById("food");
+            const Drink = document.getElementById("drink");
+            const Dessert = document.getElementById("dessert");
+
+            totalFood.value = '';
+            totalDrink.value = '';
+            totalDessert.value = '';
+
+            Food.value = 'Choose Your Food';
+            Drink.value = 'Choose Your Drink';
+            Dessert.value = 'Choose Your Dessert';
+        
+            OrderFoodTwice = [];
+            OrderDrinkTwice = [];
+            OrderDessertTwice = [];
+
+            Swal.fire(
+                'Success!',
+                'Your order was successfully reset.',
+                'success'
+            )
+        }
+    })
+})

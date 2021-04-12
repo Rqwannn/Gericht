@@ -18,6 +18,8 @@ class CheckLogin
     {
         if (!session("Submit")) {
             return redirect()->route("login");
+        } else if (session("Submit") && session('As') == 'Admin') {
+            return redirect()->route("dasbord");
         }
         return $next($request);
     }

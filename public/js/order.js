@@ -39,61 +39,120 @@ function btnDetail(DataId) {
                 ".contentPaymentDetail"
             );
 
-            let setCard = `
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="textValue mb-3">
-                                <p>Email Name</p>
-                                <p>${Email}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Order Name</p>
-                                <p>${Nama}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Order Number</p>
-                                <p>${KodePemesanan}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Total</p>
-                                <p>$ ${TotalHarga}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Date</p>
-                                <p>${getTanggal}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Your Order</p>
-                                <select class="form-select wrapperOrder-Food" aria-label="Default select example">
-                                    <option selected>Click For Detail</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="textValue mb-3">
-                                <p>Status</p>
-                                <p>Waiting</p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="textValue d-flex mt-3 mb-5">
-                                <button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
-                                <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
-                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
-                            </div>
+            let setCard = ``;
+
+            if(Status == 1){
+                setCard = `
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="textValue mb-3">
+                            <p>Email Name</p>
+                            <p>${Email}</p>
                         </div>
                     </div>
-                `;
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Order Name</p>
+                            <p>${Nama}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Order Number</p>
+                            <p>${KodePemesanan}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Total</p>
+                            <p>$ ${TotalHarga}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Date</p>
+                            <p>${getTanggal}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Your Order</p>
+                            <select class="form-select wrapperOrder-Food" aria-label="Default select example">
+                                <option selected>Click For Detail</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Status</p>
+                            <p class='text-success'>Paid Off</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="textValue d-flex mt-3 mb-5">
+                            <button style='display:none;'></button>
+                            <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            } else if(Status == 0){
+                setCard = `
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="textValue mb-3">
+                            <p>Email Name</p>
+                            <p>${Email}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Order Name</p>
+                            <p>${Nama}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Order Number</p>
+                            <p>${KodePemesanan}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Total</p>
+                            <p>$ ${TotalHarga}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Date</p>
+                            <p>${getTanggal}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Your Order</p>
+                            <select class="form-select wrapperOrder-Food" aria-label="Default select example">
+                                <option selected>Click For Detail</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="textValue mb-3">
+                            <p>Status</p>
+                            <p class='text-warning'>Waiting</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="textValue d-flex mt-3 mb-5">
+                            <button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
+                            <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
+                            <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }
 
             wrapperFullInfo.innerHTML = setCard;
 
@@ -288,3 +347,29 @@ function DeleteTableInfo(Data){
         }
       })
 }
+
+function PayNowLink(data){
+    document.location.href = `/order/${data}`;
+}
+
+$(".WrapperInfoOrder").owlCarousel({
+    margin: 20,
+    loop: true,
+    autoWidth: true,
+    items: 4,
+    autoplay: true,
+    autoplayTimeout: 5000,
+  });
+
+  $(".WrapperInfoTable").owlCarousel({
+    margin: 20,
+    loop: true,
+    autoWidth: true,
+    items: 4,
+    autoplay: true,
+    autoplayTimeout: 5000,
+  });
+
+  if(JSON.parse(localStorage.getItem('Order'))){
+    localStorage.removeItem('Order');
+  }

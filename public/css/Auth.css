@@ -1,0 +1,41 @@
+@import url(admin.css);
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.backgroundLogin {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    filter: blur(5px);
+    background-size: cover;
+}
+
+.cardPassword {
+    width: 35%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    padding: 15px 10px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 15px 0px rgba(0, 0, 0, 0.12),
+        0 7px 10px -5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-orange {
+    background-color: var(--orange);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.btn-orange:hover {
+    opacity: 0.9;
+}

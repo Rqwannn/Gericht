@@ -83,7 +83,7 @@
                                         <label style="font-size: 15px">
                                             Sign In As 
                                             <a href="/guest">Guest</a>,
-                                            <a href="">Forgot Password?</a>
+                                            <a href="/ForgotPassword">Forgot Password?</a>
                                         </label>
                                     <div>
                                 </form>

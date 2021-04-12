@@ -246,188 +246,202 @@ BtnStep1.addEventListener("click", function(){
     const AuthEmailTable = document.querySelector(".AuthEmailTable");
     const AuthTotalTable = document.querySelector(".AuthTotalTable");
     const AuthTanggalTable = document.querySelector(".AuthTanggalTable");
+    const AuthTableName = document.querySelector('.AuthTableName');
 
-    $.ajax({
-        url : "http://127.0.0.1:8000/Api/AuthAmounTable.php",
-        type : "POST",
-        dataType : "JSON",
-        data : {
-            NamaTabel : $(TableName).val()
-        },
-        error : function (){
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href>If there is a problem please report it immediately!</a>'
-              })
-        },
-        success : function(result){
-            const TotalTersedia = result.tersedia;
+    AuthEmailTable.style.display = "none";
+    AuthNamaTable.style.display = "none";
+    AuthTanggalTable.style.display = "none";
+    AuthTotalTable.style.display = "none";
+    AuthTableName.style.display = "none";
 
-            if(EmailValue.value == "" || NamaValue.value == "" || MessageDate.value == "" || TotalOrder.value == ""){
-
-                for(let index = 0; index <= 3; index++){
-                    if(EmailValue.value == "" && index == 0){
-                        AuthEmailTable.style.display = "block";
-                        AuthEmailTable.innerHTML = "Email must be entered";
-                        continue
-                    } else if(NamaValue.value == "" && index == 1){
-                        AuthNamaTable.style.display = "block";
-                        AuthNamaTable.innerHTML = "Name must be entered";
-                        continue
-                    } else if(MessageDate.value == "" && index == 2){
-                        AuthTanggalTable.style.display = "block";
-                        AuthTanggalTable.innerHTML = "Date must be entered";
-                        continue
-                    } else if(TotalOrder.value == "" && index == 3){
-                        AuthTotalTable.style.display = "block";
-                        AuthTotalTable.innerHTML = "Total Table must be entered";
-                        break
-                    }
-                }
-        
-            } else if(TotalOrder.value >= TotalTersedia){
-                AuthTotalTable.style.display = "block";
-                AuthTotalTable.innerHTML = `Only ${TotalTersedia} tables available`;
-            } else if (TotalOrder.value == 0){
-                AuthTotalTable.style.display = "block";
-                AuthTotalTable.innerHTML = "The total cannot contain numbers of 0";
-            } else {
+    if(TableName.value == ''){
+        AuthTableName.style.display = "block";
+        AuthTableName.innerHTML = "Table must be entered";
+    } else {
+        $.ajax({
+            url : "http://127.0.0.1:8000/Api/AuthAmounTable.php",
+            type : "POST",
+            dataType : "JSON",
+            data : {
+                NamaTabel : $(TableName).val()
+            },
+            error : function (){
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Do you also want to order a meal?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#fb6340',
-                    confirmButtonText: 'Yes Message Too!',
-                    cancelButtonText: 'Want to order food?'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      Swal.fire(
-                        'Success',
-                        'Your Order Has been processed.',
-                        'success'
-                      )
-            
-                      $.ajax({
-                          url : "http://127.0.0.1:8000/Api/OrderTable.php",
-                          type : "POST",
-                          dataType : "JSON",
-                          data : {
-                            id_user : $("#Id_User").val(),
-                            NamaTabel : $("#TableName").val(),
-                            Nama : $("#NameUser").val(),
-                            Email : $("#EmailUser").val(),
-                            Total : $("#TotalOrder").val(),
-                            MessageDate : $("#MessageDate").val()
-                          },
-                          error: function(){
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Something went wrong!',
-                                footer: '<a href>If there is a problem please report it immediately!</a>'
-                              })
-                          },
-                          success : function(result){
-                            const Name = result.nama;   
-            
-                            Swal.fire(
-                                'Success',
-                                `${Name}, Your table is reserved`,
-                                'success'
-                            )
-            
-                            setTimeout(function(){
-                                document.location.href = "/privatedining"
-                              }, 350)
-            
-                          }
-                      })
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                      ) {
-            
-                        $.ajax({
-                            url : "http://127.0.0.1:8000/Api/OrderTable.php",
-                            type : "POST",
-                            dataType : "JSON",
-                            data : {
-                              id_user : $("#Id_User").val(),
-                              NamaTabel : $("#TableName").val(),
-                              Nama : $("#NameUser").val(),
-                              Email : $("#EmailUser").val(),
-                              Total : $("#TotalOrder").val(),
-                              MessageDate : $("#MessageDate").val()
-                            },
-                            error: function(){
-                              Swal.fire({
-                                  icon: 'error',
-                                  title: 'Oops...',
-                                  text: 'Something went wrong!',
-                                  footer: '<a href>If there is a problem please report it immediately!</a>'
-                                })
-                            },
-                            success : function(result){
-                              const Name = result.nama;   
-            
-                              Swal.fire(
-                                'What you want to enjoy?',
-                                `${Name}, The table that you ordered has been processed`,
-                                'success'
-                              )
-              
-                            }
-                        })
-            
-                        const CircleOne = document.querySelector(".barOne");
-                        const CircleOneAfter = document.querySelector(".LineOne");
-                        const Check = document.querySelector(".circle-1");
-                        const iconTable = document.querySelector(".fa-feather-alt")
-            
-                        CircleOne.style.background = " #2dce89";
-                        CircleOneAfter.style.background = "#2dce89";
-                        Check.style.display = "block";
-                        Check.style.color = "white";
-                        iconTable.style.display = "none";
-            
-                        const WrapperLPartOne = document.querySelector(".WrapperLPart-1");
-                        const WrapperRPartOne = document.querySelector(".WrapperRPart-1");
-                        const WrapperLPartTwo = document.querySelector(".WrapperLPart-2");
-                        const WrapperRPartTwo = document.querySelector(".WrapperRPart-2");
-            
-                        const barTwo = document.querySelector(".barTwo i");
-            
-                        if(barTwo.classList.contains("text-primary")){
-                            barTwo.classList.remove("text-primary")
-                            barTwo.classList.add("text-success")
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>If there is a problem please report it immediately!</a>'
+                  })
+            },
+            success : function(result){
+                const TotalTersedia = result.tersedia;
+    
+                if(EmailValue.value == "" || NamaValue.value == "" || MessageDate.value == "" || TotalOrder.value == "" || TotalOrder.value >= TotalTersedia || TotalOrder.value == 0){
+    
+                    for(let index = 0; index <= 5; index++){
+                        if(EmailValue.value == "" && index == 0){
+                            AuthEmailTable.style.display = "block";
+                            AuthEmailTable.innerHTML = "Email must be entered";
+                            continue
+                        } else if(NamaValue.value == "" && index == 1){
+                            AuthNamaTable.style.display = "block";
+                            AuthNamaTable.innerHTML = "Name must be entered";
+                            continue
+                        } else if(MessageDate.value == "" && index == 2){
+                            AuthTanggalTable.style.display = "block";
+                            AuthTanggalTable.innerHTML = "Date must be entered";
+                            continue
+                        } else if(TotalOrder.value == "" && index == 3){
+                            AuthTotalTable.style.display = "block";
+                            AuthTotalTable.innerHTML = "Total Table must be entered";
+                            continue
+                        } else if(parseInt(TotalOrder.value) >= parseInt(TotalTersedia) && index == 4){
+                            AuthTotalTable.style.display = "block";
+                            AuthTotalTable.innerHTML = `Only ${TotalTersedia} tables available`;
+                            continue
+                        } else if (parseInt(TotalOrder.value) == 0 && index == 5){
+                            AuthTotalTable.style.display = "block";
+                            AuthTotalTable.innerHTML = "The total cannot contain numbers of 0";
+                            break
                         }
-            
-                        WrapperLPartOne.style.transform = "translateX(635px)";
-                        WrapperRPartOne.style.transform = "translateX(635px) translateY(-50%)";
-            
-                        setTimeout(function(){
-                            WrapperLPartOne.style.display = "none";
-                            WrapperRPartOne.style.display = "none";
-                        }, 500)
-            
-                        setTimeout(function(){
-                            WrapperLPartTwo.style.display = "block";
-                            WrapperRPartTwo.style.display = "block";
-                        }, 100)
-            
-                        setTimeout(function(){
-                            WrapperLPartTwo.style.transform = "translateX(0px)";
-                            WrapperRPartTwo.style.transform = "translateX(0px)";
-                        }, 500)
                     }
-                })
-            }
-
-        } // end success ajax pertama
-    })
+            
+                } else {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "Do you also want to order a meal?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#fb6340',
+                        confirmButtonText: 'Yes Message Too!',
+                        cancelButtonText: 'Want to order food?'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire(
+                            'Success',
+                            'Your Order Has been processed.',
+                            'success'
+                          )
+                
+                          $.ajax({
+                              url : "http://127.0.0.1:8000/Api/OrderTable.php",
+                              type : "POST",
+                              dataType : "JSON",
+                              data : {
+                                id_user : $("#Id_User").val(),
+                                NamaTabel : $("#TableName").val(),
+                                Nama : $("#NameUser").val(),
+                                Email : $("#EmailUser").val(),
+                                Total : $("#TotalOrder").val(),
+                                MessageDate : $("#MessageDate").val()
+                              },
+                              error: function(){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong!',
+                                    footer: '<a href>If there is a problem please report it immediately!</a>'
+                                  })
+                              },
+                              success : function(result){
+                                const Name = result.nama;   
+                
+                                Swal.fire(
+                                    'Success',
+                                    `${Name}, Your table is reserved`,
+                                    'success'
+                                )
+                
+                                setTimeout(function(){
+                                    document.location.href = "/privatedining"
+                                  }, 350)
+                
+                              }
+                          })
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                          ) {
+                
+                            $.ajax({
+                                url : "http://127.0.0.1:8000/Api/OrderTable.php",
+                                type : "POST",
+                                dataType : "JSON",
+                                data : {
+                                  id_user : $("#Id_User").val(),
+                                  NamaTabel : $("#TableName").val(),
+                                  Nama : $("#NameUser").val(),
+                                  Email : $("#EmailUser").val(),
+                                  Total : $("#TotalOrder").val(),
+                                  MessageDate : $("#MessageDate").val()
+                                },
+                                error: function(){
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: 'Oops...',
+                                      text: 'Something went wrong!',
+                                      footer: '<a href>If there is a problem please report it immediately!</a>'
+                                    })
+                                },
+                                success : function(result){
+                                  const Name = result.nama;   
+                
+                                  Swal.fire(
+                                    'What you want to enjoy?',
+                                    `${Name}, The table that you ordered has been processed`,
+                                    'success'
+                                  )
+                  
+                                }
+                            })
+                
+                            const CircleOne = document.querySelector(".barOne");
+                            const CircleOneAfter = document.querySelector(".LineOne");
+                            const Check = document.querySelector(".circle-1");
+                            const iconTable = document.querySelector(".fa-feather-alt")
+                
+                            CircleOne.style.background = " #2dce89";
+                            CircleOneAfter.style.background = "#2dce89";
+                            Check.style.display = "block";
+                            Check.style.color = "white";
+                            iconTable.style.display = "none";
+                
+                            const WrapperLPartOne = document.querySelector(".WrapperLPart-1");
+                            const WrapperRPartOne = document.querySelector(".WrapperRPart-1");
+                            const WrapperLPartTwo = document.querySelector(".WrapperLPart-2");
+                            const WrapperRPartTwo = document.querySelector(".WrapperRPart-2");
+                
+                            const barTwo = document.querySelector(".barTwo i");
+                
+                            if(barTwo.classList.contains("text-primary")){
+                                barTwo.classList.remove("text-primary")
+                                barTwo.classList.add("text-success")
+                            }
+                
+                            WrapperLPartOne.style.transform = "translateX(635px)";
+                            WrapperRPartOne.style.transform = "translateX(635px) translateY(-50%)";
+                
+                            setTimeout(function(){
+                                WrapperLPartOne.style.display = "none";
+                                WrapperRPartOne.style.display = "none";
+                            }, 500)
+                
+                            setTimeout(function(){
+                                WrapperLPartTwo.style.display = "block";
+                                WrapperRPartTwo.style.display = "block";
+                            }, 100)
+                
+                            setTimeout(function(){
+                                WrapperLPartTwo.style.transform = "translateX(0px)";
+                                WrapperRPartTwo.style.transform = "translateX(0px)";
+                            }, 500)
+                        }
+                    })
+                }
+    
+            } // end success ajax pertama
+        })
+    }
 
 })
 
@@ -1592,3 +1606,128 @@ function PayIfGuest(Data){
         },
     });
 }
+
+const ResetOrder = document.querySelector('.ResetOrder');
+
+ResetOrder.addEventListener('click', function(){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "All inputs will be reset again!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, reset it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const AuthTotalFood = document.querySelector(".AuthTotalFood");
+            const AuthTotalDrink = document.querySelector(".AuthTotalDrink");
+            const AuthTotalDessert = document.querySelector(".AuthTotalDessert");
+            const AuthAddress = document.querySelector(".AuthAddress");
+            const AuthName = document.querySelector(".AuthName");
+            const AuthEmail = document.querySelector(".AuthEmail");
+        
+            AuthEmail.style.display = "none";
+            AuthName.style.display = "none";
+            AuthTotalFood.style.display = "none";
+            AuthTotalDrink.style.display = "none";
+            AuthTotalDessert.style.display = "none";
+            AuthAddress.style.display = "none";
+
+            const getName = document.querySelector("#name");
+            getName.value = '';
+
+
+            const contentOrder = document.querySelector('.contentOrder');
+
+            contentOrder.innerHTML = ` <div class="d-flex setOrder">
+                    <p style="margin-right: 5px;" class="setName">Order...</p>
+                    <p>X <span class="setAmount">...</span></p>
+                </div>
+            <p>$ <span class="setPrice">0</span></p>`;
+        
+            const yourEmail = document.querySelector('.yourEmail');
+            const yourName = document.querySelector('.yourName');
+        
+            yourEmail.innerHTML = 'YourEmail@gmail.com';
+            yourName.innerHTML = 'John Doe';
+        
+            const wrapperAddress = document.querySelector('.wrapperAddress');
+            wrapperAddress.innerHTML = 'Where will we deliver';
+        
+            let ShippingCost = document.querySelector(".Shipping-Cost");
+            let Tax = document.querySelector(".Tax");
+            let OrderFee = document.querySelector(".Order-Fee");
+            OrderFee.innerHTML = '0';
+            
+            const setTotal = document.querySelector(".totalPembayaran");
+            
+            if (ShippingCost.innerHTML != "FREE") {
+                let Hasil =
+                    parseInt(ShippingCost.innerHTML) +
+                    parseInt(Tax.innerHTML) +
+                    parseInt(OrderFee.innerHTML);
+                setTotal.innerHTML = Hasil;
+            } else {
+                let Hasil = parseInt(Tax.innerHTML) + parseInt(OrderFee.innerHTML);
+                setTotal.innerHTML = Hasil;
+            }
+
+            // Jumlah pesanan
+
+            const totalFood = document.querySelector("#totalFood");
+            const totalDrink = document.querySelector("#totalDrink");
+            const totalDessert = document.querySelector("#totalDessert");
+
+            // Input Value
+
+            const Food = document.getElementById("food");
+            const Drink = document.getElementById("drink");
+            const Dessert = document.getElementById("dessert");
+
+            totalFood.value = '';
+            totalDrink.value = '';
+            totalDessert.value = '';
+
+            Food.value = 'Choose Your Food';
+            Drink.value = 'Choose Your Drink';
+            Dessert.value = 'Choose Your Dessert';
+        
+            OrderFoodTwice = [];
+            OrderDrinkTwice = [];
+            OrderDessertTwice = [];
+
+            Swal.fire(
+                'Success!',
+                'Your order was successfully reset.',
+                'success'
+            )
+        }
+    })
+})
+
+const BtnReset1 = document.querySelector('#BtnReset1');
+
+BtnReset1.addEventListener('click', function () {
+    const NameUser = document.querySelector('#NameUser');
+    const TotalOrder = document.querySelector('#TotalOrder');
+    const MessageDate = document.querySelector('#MessageDate');
+    const TableName = document.querySelector('#TableName');
+
+    const AuthNamaTable = document.querySelector(".AuthNamaTable");
+    const AuthEmailTable = document.querySelector(".AuthEmailTable");
+    const AuthTotalTable = document.querySelector(".AuthTotalTable");
+    const AuthTanggalTable = document.querySelector(".AuthTanggalTable");
+    const AuthTableName = document.querySelector('.AuthTableName');
+
+    AuthEmailTable.style.display = "none";
+    AuthNamaTable.style.display = "none";
+    AuthTanggalTable.style.display = "none";
+    AuthTotalTable.style.display = "none";
+    AuthTableName.style.display = "none";
+
+    NameUser.value = '';
+    TotalOrder.value = '';
+    MessageDate.value = '';
+    TableName.value = ''
+});

@@ -59,16 +59,16 @@
                                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                                                 <input id="email" type="email" value="{{old('email')}}" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type Your Email" autocomplete="off">
                                                 <div class="mt-2">
-                                                    @error('email') <!-- Dari name -->
+                                                    @error('email')
                                                         <div class="wrong alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-3 col-md-6">
-                                                <label for="exampleInputEmail1" class="form-label">Name</label>
-                                                <input type="text" value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type Your Name" autocomplete="off">
+                                                <label for="exampleInputEmail1" class="form-label">Username</label>
+                                                <input type="text" value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type Your Username" autocomplete="off">
                                                 <div class="mt-2">
-                                                    @error('name') <!-- Dari name -->
+                                                    @error('name')
                                                         <div class="wrong alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>   
@@ -79,7 +79,7 @@
                                                 <label for="exampleInputPassword1" class="form-label">Password</label>
                                                 <input type="password" value="{{old('password')}}" name="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" autocomplete="off" placeholder="Type your password">
                                                 <div class="mt-2">
-                                                    @error('password') <!-- Dari name -->
+                                                    @error('password')
                                                         <div class="wrong alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -99,7 +99,7 @@
                                             <label class="form-check-label" for="exampleCheck1" style="font-size: 15px;">{{ __('Remember Me') }}</label>
                                         </div>
                                         <button type="submit" name="submit" class="btn btn-orange text-white">Register</button>
-                                        <a class="btn btn-link" style="font-size: 15px;" href="">
+                                        <a class="btn btn-link" style="font-size: 15px;" href="/ForgotPassword">
                                             Forgot Your Password?
                                         </a>
                                     <div>

@@ -3,7 +3,7 @@
 @section("title", "Menu")
 
 @section('content')
-    <div class="fotoHeader">
+    <div id="." class="fotoHeader">
         <div class="blackTrans"></div>
         <img src="{{asset('img')}}/headerMenu.jpg" alt="">
     </div>
@@ -11,10 +11,10 @@
     <div class="container mt-5" style="margin-bottom: 125px;">
         <div class="col-md-12">
             <div class="headerMenu">
-                <h1 class="fw-bold text-center position-relative">MAIN MENU</h1>
+                <h1 class="fw-bold text-center position-relative" data-aos="fade-up">MAIN MENU</h1>
             </div>
             <div class="contentMenu">
-                <p class="text-center mt-3" style="font-size: 15px; line-height: 28px; margin: 0 15%">Contrary to popular belief, Lorem Ipsum is not simply random text.
+                <p class="text-center mt-3" style="font-size: 15px; line-height: 28px; margin: 0 15%" data-aos="fade-up">Contrary to popular belief, Lorem Ipsum is not simply random text.
                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
             </div>
         </div>
@@ -24,11 +24,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="headerMenu-2">
-                    <h3 class="fw-bold text-center position-relative">Food</h3>
+                    <h3 class="fw-bold text-center position-relative" data-aos="fade-up">Food</h3>
                 </div>
 
                 <div class="OperationFood position-relative">
-                    <div class="hiddenFood-Y">
+                    <div class="hiddenFood-Y" data-aos="fade-up" data-aos-delay="200">
                         
                     </div>
                     <div class="slideDown">
@@ -40,7 +40,7 @@
 
             </div>
             <div class="col-md-6 headerMenu-Img-2">
-                <img src="{{asset('img')}}/FoodMenu.jpg" alt="">
+                <img src="{{asset('img')}}/FoodMenu.jpg" data-aos="zoom-in">
             </div>
         </div>
     </div>
@@ -49,16 +49,16 @@
         <div class="row">
 
             <div class="col-md-6 headerMenu-Img-2">
-                <img src="{{asset('img')}}/DrinkMenu.jpg" id="drinkMenu" alt="">
+                <img src="{{asset('img')}}/DrinkMenu.jpg" id="drinkMenu" data-aos="zoom-in">
             </div>
 
             <div class="col-md-6">
                 <div class="headerMenu-2">
-                    <h3 class="fw-bold text-center position-relative">Drink</h3>
+                    <h3 class="fw-bold text-center position-relative" data-aos="fade-up">Drink</h3>
                 </div>
 
                 <div class="OperationDrink position-relative">
-                    <div class="hiddenDrink-Y">
+                    <div class="hiddenDrink-Y" data-aos="fade-up" data-aos-delay="200">
                         
                     </div>
                     <div class="slideDownDrink">
@@ -76,11 +76,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="headerMenu-2">
-                        <h3 class="fw-bold text-center position-relative">Dessert</h3>
+                        <h3 class="fw-bold text-center position-relative" data-aos="fade-up">Dessert</h3>
                     </div>
     
                     <div class="OperationDessert position-relative">
-                        <div class="hiddenDessert-Y">
+                        <div class="hiddenDessert-Y" data-aos="fade-up" data-aos-delay="200">
                             
                         </div>
                         <div class="slideDown">
@@ -92,7 +92,7 @@
     
                 </div>
                 <div class="col-md-6 headerMenu-Img-2">
-                    <img src="{{asset('img')}}/dessertMenu.jpg" alt="">
+                    <img src="{{asset('img')}}/dessertMenu.jpg" data-aos="zoom-in">
                 </div>
             </div>
         </div>
@@ -100,17 +100,19 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-7">
-                <div class="cardOrder mb-3">
+                
+                <div class="cardOrder mb-3" data-aos="fade-up">
                     <div class="headerOrder">
                         <h3 class="fw-bold">Order Your Food</h3>
                     </div>
+                    
                     <div class="inputOrder mt-3">
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="inputValues d-flex flex-column mt-3">
                                         <label for="email" class="mb-1">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" value=" 
+                                        <input type="email" name="email" disabled id="email" class="form-control" value=" 
                                             @if ($Email != 'Guest@gmail.com')
                                                 {{$Email}}
                                             @else
@@ -199,7 +201,7 @@
                     </div>
 
                     <div class="infoOrder">
-                        <div class="cardOrder-2 infoLengkap my-3">
+                        <div class="cardOrder-6 infoLengkap my-3" data-aos="fade-up">
                             <div class="row">
                                 <div class="col-md-12 position-relative">
                                     <div class="row">
@@ -219,13 +221,14 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             <div class="col-md-5">
                     <div class="row">
     
                         <div class="col-md-12">
-                            <div class="cardOrder">
+                            <div class="cardOrder" data-aos="fade-up" data-aos-delay="200">
                                 <div class="headerOrder-Right">
                                     <h5 class="lineDown fw-bold mb-4">Total Orders</h5>
                                 </div>
@@ -242,7 +245,7 @@
                         </div>
                         
                         <div class="col-md-12">
-                            <div class="cardOrder mt-3">
+                            <div class="cardOrder mt-3" data-aos="fade-up" data-aos-delay="300">
                                 <div class="infoPerson">
                                     <div class="headerOrder-Right">
                                         <h5 class="lineDown fw-bold mb-4">You</h5>

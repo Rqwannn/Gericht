@@ -47,6 +47,7 @@ class LoginController extends Controller
                 $request->session()->put('nama', $sessionNama);
                 $request->session()->put('gambar', $sessionGambar);
                 $request->session()->put('status', $sessionStatus);
+                $request->session()->put('As', 'User');
                 return redirect()->route("home");
             } else {
                 return redirect()->route("login")->with("Pesan", "Your Email Or Password Is Wrong");
@@ -60,6 +61,7 @@ class LoginController extends Controller
                 $request->session()->put('email', $request->email);
                 $request->session()->put('nama', $sessionNama);
                 $request->session()->put('gambar', $sessionGambar);
+                $request->session()->put('As', 'Admin');
                 return redirect()->route("dasbord");
             } else {
                 return redirect()->route("login")->with("Pesan", "Your Email Or Password Is Wrong");

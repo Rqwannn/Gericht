@@ -35,24 +35,23 @@
         </div>
     </div>
 
-
-
-<div class="fotoHeader">
+<div id="." class="fotoHeader">
     <div class="blackTrans"></div>
-    <img src="{{asset('img')}}/pageOrder.jpg" alt="">
+    <img src="{{asset('img')}}/pageOrder.jpg">
 </div>
 <div class="container">
-    <div class="topInfo-PageOrder mt-5">
+    <div class="topInfo-PageOrder mt-5" data-aos="zoom-in">
         <h3 class="text-center fw-bold">Hello {{$Name}}</h3>
         <h5 class="text-center mt-3" style="margin: 0 10vw;">Hello, our respected guests, this is the info page of your order and the details of the order you ordered beforehand, I hope you always enjoy the dishes we serve, come here again, thank you</h5>
     </div>
 </div>
 
+@if ($CekPesanan)
 <div class="container">
-    <div class="row">
 
-        <div class="col-md-8">
-            <div class="infoOrder">
+    <div class="WrapperInfoOrder owl-carousel">
+
+            <div class="infoOrder" data-aos="fade-up">
                 @foreach ($Pesanan as $result)
                     @if ($result->proses == 1 && $result->id_user == $Name)
                     
@@ -147,107 +146,112 @@
                 @endforeach
 
             </div>
-        </div>
 
-        <div class="col-md-8">
+    </div>
+</div>
+@endif
 
-            <div class="infoOrder">
-                @foreach ($OrderTable as $result)
-                    @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name)
+@if ($cekTable)
+<div class="container">
+    <div class="WrapperInfoTable owl-carousel">
 
-                    <?php 
-                    
-                    $idUser = $result->id;
-                    
-                    ?>
+        <div class="infoOrder" data-aos="fade-up">
+            @foreach ($OrderTable as $result)
+                @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name)
 
-                    <div class="cardOrder-2 mt-5" style="border-radius: 0px;">
-                        <div class="row">
+                <?php 
+                
+                $idUser = $result->id;
+                
+                ?>
 
-                            <div class="col-md-12 position-relative">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <img src="{{asset('img')}}/PaymentDetail.jpg" style="border-radius: 0px;" class="imgProof" alt="">
+                <div class="cardOrder-2 mt-5" style="border-radius: 0px;">
+                    <div class="row">
+
+                        <div class="col-md-12 position-relative">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{asset('img')}}/PaymentDetail.jpg" style="border-radius: 0px;" class="imgProof" alt="">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="headerPaymentDetail">
+                                        <h4 class="mt-5 fw-bold">Table Info</h4>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div class="headerPaymentDetail">
-                                            <h4 class="mt-5 fw-bold">Table Info</h4>
-                                        </div>
-                                        <div class="contentPaymentDetail mt-3">
+                                    <div class="contentPaymentDetail mt-3">
 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="textValue mb-3">
-                                                        <p>Email Name</p>
-                                                        <p>{{$result->email}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="textValue mb-3">
-                                                        <p>Order Name</p>
-                                                        <p>{{$result->nama}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="textValue mb-3">
-                                                        <p>Table Name</p>
-                                                        <p>{{$result->nama_meja}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="textValue mb-3">
-                                                        <p>Tax</p>
-                                                        <p>$ {{$result->pajak}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="textValue mb-3">
-                                                        <p>Date</p>
-                                                        <p>{{$result->tanggal_pesan}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="textValue mb-3">
-                                                        <p>Status</p>
-                                                        <p class="text-warning"><?php echo ($result->proses == 1) ? 'Waiting For Payment' : 'Payment In Full' ?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="textValue d-flex mt-3 mb-5">
-                                                        @if ($result->proses == 1)
-                                                            <button type="submit">Pay Now</button>  
-                                                            <p style="display: none;"></p>
-                                                            <button type="submit" onclick="PayRestaurant({{$idUser}})">Pay At The Restaurant</button>
-                                                        @else
-                                                            <p style="display: none;"></p>
-                                                            <button type="submit" onclick="DeleteTableInfo({{$idUser}})">Delete History</button>
-                                                        @endif
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="textValue mb-3">
+                                                    <p>Email Name</p>
+                                                    <p>{{$result->email}}</p>
                                                 </div>
                                             </div>
-
+                                            <div class="col-md-6">
+                                                <div class="textValue mb-3">
+                                                    <p>Order Name</p>
+                                                    <p>{{$result->nama}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="textValue mb-3">
+                                                    <p>Table Name</p>
+                                                    <p>{{$result->nama_meja}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="textValue mb-3">
+                                                    <p>Tax</p>
+                                                    <p>$ {{$result->pajak}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="textValue mb-3">
+                                                    <p>Date</p>
+                                                    <p>{{$result->tanggal_pesan}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="textValue mb-3">
+                                                    <p>Status</p>
+                                                    <p class="<?php echo ($result->proses == 1) ? 'text-warning' : 'text-success' ?>"><?php echo ($result->proses == 1) ? 'Waiting For Payment' : 'Payment In Full' ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="textValue d-flex mt-3 mb-5">
+                                                    @if ($result->proses == 1)
+                                                        <button type="submit">Pay Now</button>  
+                                                        <p style="display: none;"></p>
+                                                        <button type="submit" onclick="PayRestaurant({{$idUser}})">Pay At The Restaurant</button>
+                                                    @else
+                                                        <p style="display: none;"></p>
+                                                        <button type="submit" onclick="DeleteTableInfo({{$idUser}})">Delete History</button>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                        
-                    @endif
-                @endforeach
 
-            </div>
+                    </div>
+                </div>
+                    
+                @endif
+            @endforeach
+
         </div>
 
     </div>
 </div>
+@endif
 
 <div class="container">
     <div class="headerPageOrder mt-5">
-        <h4 class="textOrder fw-bold">Your Order</h4>
+        <h4 class="textOrder fw-bold" data-aos="fade-up">Your Order</h4>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5 WrapperOverflow" data-aos="fade-up" data-aos-delay="100" style="overflow-y: auto; width: 100%; height: 118vh;">
         
     @foreach ($Pesanan as $Result)
         @if ($Name == $Result->id_user && "Online" == $Result->pembelian)

@@ -29,6 +29,21 @@ class OrderController extends Controller
             $setPhoto .= $request->session()->get("gambar");
         }
 
+        $cekIfTrueTable = [];
+        $cekIfTruePesanan = [];
+
+        foreach ($getAllPesanan as $result) {
+            if ($result->proses == 1 && $result->id_user == $request->session()->get("nama")) {
+                $cekIfTruePesanan[] = $result;
+            }
+        }
+
+        foreach ($getAllTable as $result) {
+            if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $request->session()->get("nama")) {
+                $cekIfTrueTable[] = $result;
+            }
+        }
+
         $data = [
             "JS" => "/order.js",
             "Name" => $request->session()->get("nama"),
@@ -36,7 +51,9 @@ class OrderController extends Controller
             "Gambar" => $setPhoto,
             "Pesanan" => $getAllPesanan,
             "StatusUser" => $photo->status,
-            "OrderTable" => $getAllTable
+            "OrderTable" => $getAllTable,
+            'CekPesanan' => $cekIfTruePesanan,
+            'cekTable' => $cekIfTrueTable
         ];
 
         return view("Order/Order", $data);
@@ -47,5 +64,17 @@ class OrderController extends Controller
         $this->BaseData->deleteTable($request->id);
 
         return redirect()->route("order");
+    }
+
+    public function PaymentProcess(Request $data)
+    {
+        dd($data->payment);
+    }
+
+    private function _generatePaymentToken($data)
+    {
+        $this->initPaymentGateway();
+
+        $costumerDetail = [];
     }
 }

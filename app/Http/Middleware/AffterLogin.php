@@ -16,8 +16,10 @@ class AffterLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session("Submit")) {
+        if (session("Submit") && session('As') == 'User') {
             return redirect()->route("home");
+        } else if (session("Submit") && session('As') == 'Admin') {
+            return redirect()->route("dasbord");
         }
         return $next($request);
     }

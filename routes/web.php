@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ForgotPassword;
 
 // User
 
@@ -55,8 +56,21 @@ Route::group(["middleware" => "check"], function () {
     Route::get('/subscribe', [SubscribeController::class, "index"]);
     Route::get('/DeleteTable/{id}', [OrderController::class, "DeleteTableHistori"]);
 
-    // Admin
+    // Payment Gateway
 
+    Route::get('/order/{payment}', [OrderController::class, 'PaymentProcess']);
+});
+
+Route::group(["middleware" => "after"], function () {
+    Route::get('/login', [LoginController::class, "index"])->name("login");
+    Route::get('/register', [RegisterController::class, "index"])->name("register");
+    Route::post('/register/tambah', [RegisterController::class, "tambah"]);
+
+    Route::get('/ForgotPassword', [ForgotPassword::class, "index"]);
+    Route::get('/ForgotPassword/VerifyEmail', [ForgotPassword::class, "EmailVerify"]);
+});
+
+Route::group(['middleware' => 'Cyber'], function () {
     Route::get('/orderSuccess', [OrderSuccessController::class, "index"]);
     Route::get('/orderFailed', [OrderFailedController::class, "index"]);
     Route::get('/dasbord', [MainAdminController::class, "index"])->name("dasbord");
@@ -64,10 +78,4 @@ Route::group(["middleware" => "check"], function () {
     Route::get("/totalOrder", [TotalOrderController::class, "index"]);
     Route::get("/totalUser", [TotalUserController::class, "index"]);
     Route::get("/updateUser/{id}", [TotalUserController::class, "updateUserView"]);
-});
-
-Route::group(["middleware" => "after"], function () {
-    Route::get('/login', [LoginController::class, "index"])->name("login");
-    Route::get('/register', [RegisterController::class, "index"])->name("register");
-    Route::post('/register/tambah', [RegisterController::class, "tambah"]);
 });
