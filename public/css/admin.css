@@ -148,7 +148,6 @@ body {
     background: #fff;
     width: 26%;
     height: auto;
-    position: block;
     transition: 0.3s;
     overflow: auto;
 }
@@ -542,11 +541,6 @@ body {
 #TableOrder-2_paginate .pagination {
     display: flex;
     flex-wrap: wrap;
-}
-
-#TableOrder_filter label,
-#TableOrder-2_filter label {
-    font-size: 0px;
 }
 
 .sorting::before,

@@ -7,6 +7,9 @@ $(document).ready(function () {
         info: true,
         autoWidth: false,
         responsive: true,
+        language: {
+          search: "",
+        }
     });
     $("#TableOrder-2").DataTable({
         paging: true,
@@ -16,6 +19,9 @@ $(document).ready(function () {
         info: false,
         autoWidth: false,
         responsive: true,
+        language: {
+          search: "",
+        }
     });
 });
 

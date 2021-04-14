@@ -144,6 +144,7 @@
                 <script>
                 document.write(new Date().getFullYear())
               </script> Gericht. All rights reserved.
+              </div>
           </div>
           
       </div>

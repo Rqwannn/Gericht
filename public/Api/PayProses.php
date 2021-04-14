@@ -2,9 +2,25 @@
 
 $conn = mysqli_connect("localhost", "root", "", "gericht");
 
-$arrayMakanan = ["Roasted Duck Colvert", "Roasted Scallop", "Scottish Langoustine", "Veal Sweetbread", "Duck Foie Gras", "Linguine Alle Vongole", "Chicken Saltimbocca", "Shrimp Fra Diavolo", "Bouillabasse", "Fettuccine Alfredo"];
-$arrayMinuman = ["Cocktail", "Negroni", "Macchiato", "Spritz", "Punch", "Caffe Freddo"];
-$arrayDessert = ["Roasted Figs", "Panna Cotta", "Rote Grütze", "Semifreddo", "La Madeline au Truffle", "Prinsesstårta"];
+$arrayMakanan = [];
+$arrayMinuman = [];
+$arrayDessert = [];
+
+$Makanan = mysqli_query($conn, 'SELECT * FROM makanan');
+$Minuman = mysqli_query($conn, 'SELECT * FROM minuman');
+$Dessert = mysqli_query($conn, 'SELECT * FROM dessert');
+
+while ($result = mysqli_fetch_assoc($Makanan)) {
+    $arrayMakanan[] = $result['nama'];
+}
+
+while ($result = mysqli_fetch_assoc($Minuman)) {
+    $arrayMinuman[] = $result['nama'];
+}
+
+while ($result = mysqli_fetch_assoc($Dessert)) {
+    $arrayDessert[] = $result['nama'];
+}
 
 $id = $_POST["Id"];
 $query = mysqli_query($conn, "SELECT * FROM pesanan WHERE id = '$id'");

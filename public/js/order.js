@@ -41,7 +41,7 @@ function btnDetail(DataId) {
 
             let setCard = ``;
 
-            if(Status == 1){
+            if (Status == 1) {
                 setCard = `
                 <div class="row">
                     <div class="col-md-12">
@@ -96,7 +96,7 @@ function btnDetail(DataId) {
                     </div>
                 </div>
             `;
-            } else if(Status == 0){
+            } else if (Status == 0) {
                 setCard = `
                 <div class="row">
                     <div class="col-md-12">
@@ -242,113 +242,109 @@ function PayConfirmation(Data) {
     });
 }
 
-function PayOnTheSpot(Data){
+function PayOnTheSpot(Data) {
     $.ajax({
-        url : "http://127.0.0.1:8000/Api/PayProses.php",
-        type : "POST",
-        dataType : "JSON",
-        data : {
-            Id : Data
+        url: "http://127.0.0.1:8000/Api/PayProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
         },
-        error : function (){
+        error: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href>If there is a problem please report it!</a>'
-              })
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
         },
-        success : function (){
+        success: function () {
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: "top-end",
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'The Order Has Been Made'
-              })
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
 
-            setTimeout(function(){
-                document.location.href ="/order";
-            }, 2200)
-        }
-    })
+            Toast.fire({
+                icon: "success",
+                title: "The Order Has Been Made",
+            });
+
+            setTimeout(function () {
+                document.location.href = "/order";
+            }, 2200);
+        },
+    });
 }
 
-function PayRestaurant(Data){
+function PayRestaurant(Data) {
     $.ajax({
-        url : "http://127.0.0.1:8000/Api/PayTableProses.php",
-        type : "POST",
-        dataType : "JSON",
-        data : {
-            Id : Data
+        url: "http://127.0.0.1:8000/Api/PayTableProses.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            Id: Data,
         },
-        error : function (){
+        error: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: '<a href>If there is a problem please report it!</a>'
-              })
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
         },
-        success : function (){
+        success: function () {
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: "top-end",
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'The Order Has Been Made'
-              })
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
 
-            setTimeout(function(){
+            Toast.fire({
+                icon: "success",
+                title: "The Order Has Been Made",
+            });
+
+            setTimeout(function () {
                 window.location.reload();
-            }, 2200)
-        }
-    })
+            }, 2200);
+        },
+    });
 }
 
-function DeleteTableInfo(Data){
+function DeleteTableInfo(Data) {
     Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You will delete history forever!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'has been deleted.',
-            'success'
-          )
+            Swal.fire("Deleted!", "has been deleted.", "success");
 
-          setTimeout(function(){
-            document.location.href = `/DeleteTable/${Data}`;
-          }, 350)
+            setTimeout(function () {
+                document.location.href = `/DeleteTable/${Data}`;
+            }, 350);
         }
-      })
+    });
 }
 
-function PayNowLink(data){
+function PayNowLink(data) {
     document.location.href = `/order/${data}`;
 }
 
@@ -359,17 +355,17 @@ $(".WrapperInfoOrder").owlCarousel({
     items: 4,
     autoplay: true,
     autoplayTimeout: 5000,
-  });
+});
 
-  $(".WrapperInfoTable").owlCarousel({
+$(".WrapperInfoTable").owlCarousel({
     margin: 20,
     loop: true,
     autoWidth: true,
     items: 4,
     autoplay: true,
     autoplayTimeout: 5000,
-  });
+});
 
-  if(JSON.parse(localStorage.getItem('Order'))){
-    localStorage.removeItem('Order');
-  }
+if (JSON.parse(localStorage.getItem("Order"))) {
+    localStorage.removeItem("Order");
+}

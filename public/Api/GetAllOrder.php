@@ -7,7 +7,7 @@ $URL = mysqli_query($conn, "SELECT * FROM pesanan WHERE id_user = '$idUser'");
 $Result = [];
 
 while ($row = mysqli_fetch_assoc($URL)) {
-    if ($row["konfirmasi"] == 0) {
+    if ($row["konfirmasi"] == 0 && $row['pembelian'] == 'Online') {
         $Result[] = $row;
     }
 }
