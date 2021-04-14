@@ -1266,11 +1266,11 @@ PayNow.addEventListener("click", function () {
                             const btnInfoPayment = document.querySelector(".btnInfoPayment");
 
                             if(idUser.innerHTML != "Guest"){
-                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
                                 <button type="submit" onclick="PayLaterLink()">PayLater</button>
                                 <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>`
                             } else {
-                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${id_Order})">PayNow</button>
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
                                 <button type="submit" onclick="PayIfGuest(${Id})">Pay On The Spot</button>`
                             }
 

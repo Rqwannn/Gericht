@@ -25,6 +25,8 @@ use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\TotalOrderController;
 use App\Http\Controllers\TotalUserController;
 
+use App\Http\Controllers\ApiMidtransController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +44,8 @@ Route::get('/signUp', [RegisterController::class, "signUp"]);
 Route::get('/guest', [LoginController::class, "guest"]);
 Route::get('/logout', [LoginController::class, "logout"]);
 Route::post('/login/validation', [LoginController::class, "validation"]);
+
+Route::post("/midtrans", [ApiMidtransController::class, "getSnapToken"])->name("apigetSnapToken");
 
 Route::group(["middleware" => "check"], function () {
     Route::get('/', [HomeController::class, "index"])->name("home");

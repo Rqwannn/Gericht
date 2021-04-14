@@ -83,4 +83,14 @@ class BaseData extends Model
     {
         DB::table("book_table")->where("id", $id)->delete();
     }
+
+    public function getPesananById($data)
+    {
+        return DB::table('pesanan')->where('id', $data)->first();
+    }
+
+    public function updateKonfirmasi($data, $id)
+    {
+        // DB::table('pesanan')->where('id', $id)->update($data);
+    }
 }

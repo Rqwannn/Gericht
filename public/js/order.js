@@ -344,10 +344,6 @@ function DeleteTableInfo(Data) {
     });
 }
 
-function PayNowLink(data) {
-    document.location.href = `/order/${data}`;
-}
-
 $(".WrapperInfoOrder").owlCarousel({
     margin: 20,
     loop: true,
@@ -368,4 +364,29 @@ $(".WrapperInfoTable").owlCarousel({
 
 if (JSON.parse(localStorage.getItem("Order"))) {
     localStorage.removeItem("Order");
+}
+
+function PayNowLink(Data) {
+    $.ajax({
+        url: "http://127.0.0.1:8000/midtrans",
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            id: Data,
+        },
+        error: function () {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>If there is a problem please report it!</a>",
+            });
+        },
+        success: function (result) {
+            
+        },
+    })
 }
