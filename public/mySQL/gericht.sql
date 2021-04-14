@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Apr 2021 pada 13.53
+-- Waktu pembuatan: 14 Apr 2021 pada 16.15
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.1
 
@@ -179,7 +179,7 @@ CREATE TABLE `pesanan` (
   `alamat` varchar(255) NOT NULL,
   `pembelian` enum('Online','Offline','','') NOT NULL,
   `tanggal_pesan` timestamp NOT NULL DEFAULT current_timestamp(),
-  `total` int(11) NOT NULL,
+  `total` int(25) NOT NULL,
   `proses` int(11) NOT NULL,
   `konfirmasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -217,7 +217,9 @@ INSERT INTO `pesanan` (`id`, `id_user`, `kodePesanan`, `nama_orderan`, `jml_orde
 (70, 'Guest', '1615818436', 'Roasted Scallop,Cocktail', '2,2', 'Udin', 'Udin@gmail.com', '-', 'Offline', '2021-03-15 14:27:16', 141, 0, 0),
 (71, 'Raqwan', '1617357032', 'Chicken Saltimbocca,Chicken Saltimbocca', '2,2', 'Raqwan', 'raqwan@gmail.com', 'Jalan Cilangkap', 'Online', '2021-04-02 09:50:32', 155, 0, 1),
 (75, 'Raqwan', '1618299257', 'Chicken Saltimbocca,Macchiato', '2,2', 'Raqwan', 'raqwan@gmail.com', 'Jalan Cilangkap', 'Online', '2021-04-13 07:34:17', 155, 1, 1),
-(76, 'Einstein', '1618299358', 'Bouillabasse,Punch,Caffe Freddo,Shrimp Fra Diavolo,Negroni', '1,1,1,2,1', 'Einstein', 'Einstein@gmail.com', 'Jalan Bojong Gede', 'Online', '2021-04-13 07:35:58', 282, 0, 0);
+(76, 'Einstein', '1618299358', 'Bouillabasse,Punch,Caffe Freddo,Shrimp Fra Diavolo,Negroni', '1,1,1,2,1', 'Einstein', 'Einstein@gmail.com', 'Jalan Bojong Gede', 'Online', '2021-04-13 07:35:58', 282, 0, 0),
+(77, 'pancaran', '1618402583', 'Rote Grütze', '2', 'pancaran', 'pancaran@gmail.com', 'Jati Jajar', 'Online', '2021-04-14 12:16:23', 65, 0, 0),
+(78, 'Raqwan', '1618409689', 'Linguine Alle Vongole,Caffe Freddo', '1,1', 'Raqwan', 'Raqwan@gmail.com', 'Cilangkap', 'Online', '2021-04-14 14:14:49', 65, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -441,7 +443,7 @@ ALTER TABLE `minuman`
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT untuk tabel `petinggi`
