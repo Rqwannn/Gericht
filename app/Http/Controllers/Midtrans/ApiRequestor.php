@@ -2,8 +2,10 @@
 
 // namespace Midtrans;
 namespace App\Http\Controllers\Midtrans;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 /**
  * Send request to Midtrans API
  * Better don't use this class directly, use CoreApi, Transaction
@@ -11,7 +13,7 @@ use App\Http\Controllers\Controller;
 
 class ApiRequestor extends Controller
 {
-    
+
     /**
      * Send GET request
      * 
@@ -63,7 +65,7 @@ class ApiRequestor extends Controller
             // We need to combine headers manually, because it's array and it will no be merged
             if (Config::$curlOptions[CURLOPT_HTTPHEADER]) {
                 $mergedHeders = array_merge($curl_options[CURLOPT_HTTPHEADER], Config::$curlOptions[CURLOPT_HTTPHEADER]);
-                $headerOptions = array( CURLOPT_HTTPHEADER => $mergedHeders );
+                $headerOptions = array(CURLOPT_HTTPHEADER => $mergedHeders);
             } else {
                 $mergedHeders = array();
             }
@@ -99,11 +101,11 @@ class ApiRequestor extends Controller
             try {
                 $result_array = json_decode($result);
             } catch (\Exception $e) {
-                throw new \Exception("API Request Error unable to json_decode API response: ".$result . ' | Request url: '.$url);
+                throw new \Exception("API Request Error unable to json_decode API response: " . $result . ' | Request url: ' . $url);
             }
             if (!in_array($result_array->status_code, array(200, 201, 202, 407))) {
                 $message = 'Midtrans Error (' . $result_array->status_code . '): '
-                . $result_array->status_message;
+                    . $result_array->status_message;
                 if (isset($result_array->validation_messages)) {
                     $message .= '. Validation Messages (' . implode(", ", $result_array->validation_messages) . ')';
                 }

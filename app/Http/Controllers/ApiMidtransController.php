@@ -6,7 +6,6 @@ use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
-use App\Models\Checkout;
 use App\Http\Controllers\Midtrans\Config;
 use App\Http\Controllers\Midtrans\Transaction;
 use App\Http\Controllers\Midtrans\ApiRequestor;
@@ -37,18 +36,6 @@ class ApiMidtransController extends Controller
 
         $validation = Validator::make($input, [
             "id" => "required|integer",
-            //     "id_user" => "required|string",
-            //     "kodePesanan" => "required|string",
-            //     "nama_orderan" => "required|string",
-            //     "jml_orderan" => "required|string",
-            //     "nama_pemesan" => "required|string",
-            //     "email_pemesan" => "required|string",
-            //     "alamat" => "required|string",
-            //     "pembelian" => "required|string",
-            //     "tanggal_pesan" => "required|string",
-            //     "total" => "required|integer",
-            //     "proses" => "required|integer",
-            //     "konfirmasi" => "required|integer",
         ]);
 
         if ($validation->fails()) {
@@ -61,7 +48,6 @@ class ApiMidtransController extends Controller
                 'message' => "Id Pesanan Tidak Dapat Ditemukan."
             ], 400);
         }
-
 
         $item_list = array();
         $amount = 0;
@@ -86,7 +72,7 @@ class ApiMidtransController extends Controller
 
         $transaction_details = array(
             'order_id' => $user->kodePesanan,
-            'gross_amount' => intval($user->total), // no decimal allowed for creditcard
+            'gross_amount' => intval($user->jml_orderan), // no decimal allowed for creditcard
         );
 
         // Optional
@@ -135,7 +121,23 @@ class ApiMidtransController extends Controller
                 "konfirmasi" => 1,
                 "snaptoken" => $snapToken,
             ];
-            $this->BaseData->updateKonfirmasi($datacheckout, $request->id);
+
+            $updateData = [
+                "id_user" => $user->id_user,
+                "kodePesanan" => $user->kodePesanan,
+                "nama_orderan" => $user->nama_orderan,
+                "jml_orderan" => $user->jml_orderan,
+                "nama_pemesan" => $user->nama_pemesan,
+                "email_pemesan" => $user->email_pemesan,
+                "alamat" => $user->alamat,
+                "pembelian" => $user->pembelian,
+                "tanggal_pesan" => $user->tanggal_pesan,
+                "total" => $user->total,
+                "proses" => 1,
+                "konfirmasi" => 1,
+            ];
+
+            $this->BaseData->updateKonfirmasi($updateData, $request->id);
             // return response()->json($snapToken);
             return ['code' => 1, 'message' => 'success', 'result' => $snapToken, "redirect_url" => "http://app.sandbox.midtrans.com/snap/v2/vtweb/" . $snapToken];
         } catch (\Exception $e) {

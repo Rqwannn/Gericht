@@ -377,7 +377,8 @@ function PayNowLink(Data) {
         data: {
             id: Data,
         },
-        error: function () {
+        error: function (e) {
+            console.log(e);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
