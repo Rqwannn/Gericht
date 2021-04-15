@@ -91,6 +91,6 @@ class BaseData extends Model
 
     public function updateKonfirmasi($data, $id)
     {
-        // DB::table('pesanan')->where('id', $id)->update($data);
+        DB::table('pesanan')->where('id', $id)->update($data);
     }
 }

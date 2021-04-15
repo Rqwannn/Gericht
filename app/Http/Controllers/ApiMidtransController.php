@@ -37,18 +37,18 @@ class ApiMidtransController extends Controller
 
         $validation = Validator::make($input, [
             "id" => "required|integer",
-            "id_user" => "required|string",
-            "kodePesanan" => "required|string",
-            "nama_orderan" => "required|string",
-            "jml_orderan" => "required|string",
-            "nama_pemesan" => "required|string",
-            "email_pemesan" => "required|string",
-            "alamat" => "required|string",
-            "pembelian" => "required|string",
-            "tanggal_pesan" => "required|string",
-            "total" => "required|integer",
-            "proses" => "required|integer",
-            "konfirmasi" => "required|integer",
+            //     "id_user" => "required|string",
+            //     "kodePesanan" => "required|string",
+            //     "nama_orderan" => "required|string",
+            //     "jml_orderan" => "required|string",
+            //     "nama_pemesan" => "required|string",
+            //     "email_pemesan" => "required|string",
+            //     "alamat" => "required|string",
+            //     "pembelian" => "required|string",
+            //     "tanggal_pesan" => "required|string",
+            //     "total" => "required|integer",
+            //     "proses" => "required|integer",
+            //     "konfirmasi" => "required|integer",
         ]);
 
         if ($validation->fails()) {
@@ -79,30 +79,29 @@ class ApiMidtransController extends Controller
 
         $item_list[] = [
             'id' => $user->id,
-            'price' => $user->total,
-            'quantity' => $user->jml_orderan,
+            'price' => intval($user->total),
+            'quantity' => intval($user->jml_orderan),
             'name' => $user->nama_orderan
         ];
 
         $transaction_details = array(
-            'kode_pemesanan' => $user->kodePesanan,
-            'gross_amount' => $user->total, // no decimal allowed for creditcard
+            'order_id' => $user->kodePesanan,
+            'gross_amount' => intval($user->total), // no decimal allowed for creditcard
         );
 
         // Optional
         $item_details = $item_list;
-
         // Optional
         $shipping_address = array(
-            'Nama'    => $user->nama_pemesan,
-            'Email'     => $user->email,
-            'alamat'       => $user->alamat
+            'first_name'    => $user->nama_pemesan,
+            'address'       => $user->alamat,
         );
 
         // Optional
         $customer_details = array(
-            'nama'          => $user->nama_pemesan,
-            'email'         => $user->email,
+            'first_name'    => $user->nama_pemesan,
+            'email'         => $user->email_pemesan,
+            'billing_address'  => $shipping_address,
             'shipping_address' => $shipping_address
         );
 
