@@ -93,4 +93,24 @@ class BaseData extends Model
     {
         DB::table('pesanan')->where('id', $id)->update($data);
     }
+
+    public function DataOrderToExcel()
+    {
+        DB::statement("SELECT pesanan.kodePesanan, pesanan.nama_orderan, pesanan.jml_orderan, pesanan.nama_pemesan, pesanan.email_pemesan, pesanan.pembelian, pesanan.tanggal_pesan INTO OUTFILE 'C:/TotalOrder.xls' FROM pesanan");
+    }
+
+    public function DataUserToExcel()
+    {
+        DB::statement("SELECT user.name, user.email, user.created_at, user.status INTO OUTFILE 'C:/TotalUser.xls' FROM user");
+    }
+
+    public function DataFailedOrderToExcel()
+    {
+        DB::statement("SELECT pesanan.kodePesanan, pesanan.nama_orderan, pesanan.jml_orderan, pesanan.nama_pemesan, pesanan.email_pemesan, pesanan.pembelian, pesanan.tanggal_pesan INTO OUTFILE 'C:/FailedOrder.xls' FROM pesanan WHERE konfirmasi = 0");
+    }
+
+    public function DataSuccessOrderToExcel()
+    {
+        DB::statement("SELECT pesanan.kodePesanan, pesanan.nama_orderan, pesanan.jml_orderan, pesanan.nama_pemesan, pesanan.email_pemesan, pesanan.pembelian, pesanan.tanggal_pesan INTO OUTFILE 'C:/SuccessOrder.xls' FROM pesanan WHERE konfirmasi = 1");
+    }
 }

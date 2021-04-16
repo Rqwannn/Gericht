@@ -387,6 +387,7 @@ function PayNowLink(Data) {
             });
         },
         success: function (result) {
+            console.log(result);
             window.open(result.redirect_url, '_blank').focus();
         },
     })

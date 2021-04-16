@@ -63,12 +63,34 @@ class ApiMidtransController extends Controller
 
         // Required
 
-        $item_list[] = [
-            'id' => $user->id,
-            'price' => intval($user->total),
-            'quantity' => intval($user->jml_orderan),
-            'name' => $user->nama_orderan
-        ];
+        $setQuantity = '';
+
+        $pisahNama = explode(',', $user->nama_orderan);
+        $PisahJumlah = explode(',', $user->jml_orderan);
+
+        foreach ($pisahNama as $index => $result) {
+            if (count($pisahNama) - 1 == $index) {
+                $setQuantity .= "$result X " . $PisahJumlah[$index];
+            } else {
+                $setQuantity .= "$result X " . $PisahJumlah[$index] . ",";
+            }
+        }
+
+        if (count($pisahNama) == 1) {
+            $item_list[] = [
+                'id' => $user->id,
+                'price' => intval($user->total),
+                'quantity' => intval($user->jml_orderan),
+                'name' => $user->nama_orderan
+            ];
+        } else {
+            $item_list[] = [
+                'id' => $user->id,
+                'price' => intval($user->total),
+                'quantity' => intval($user->jml_orderan),
+                'name' => $setQuantity
+            ];
+        }
 
         $transaction_details = array(
             'order_id' => $user->kodePesanan,
@@ -105,22 +127,6 @@ class ApiMidtransController extends Controller
 
         try {
             $snapToken = Snap::getSnapToken($transaction);
-            $datacheckout = [
-                "id" => $user->id,
-                "id_user" => $user->id_user,
-                "kodePesanan" => $user->kodePesanan,
-                "nama_orderan" => $user->nama_orderan,
-                "jml_orderan" => $user->jml_orderan,
-                "nama_pemesan" => $user->nama_pemesan,
-                "email_pemesan" => $user->email_pemesan,
-                "alamat" => $user->alamat,
-                "pembelian" => $user->pembelian,
-                "tanggal_pesan" => $user->tanggal_pesan,
-                "total" => $user->total,
-                "proses" => 1,
-                "konfirmasi" => 1,
-                "snaptoken" => $snapToken,
-            ];
 
             $updateData = [
                 "id_user" => $user->id_user,

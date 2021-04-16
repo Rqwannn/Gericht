@@ -8,8 +8,8 @@ $(document).ready(function () {
         autoWidth: false,
         responsive: true,
         language: {
-          search: "",
-        }
+            search: "",
+        },
     });
     $("#TableOrder-2").DataTable({
         paging: true,
@@ -20,8 +20,8 @@ $(document).ready(function () {
         autoWidth: false,
         responsive: true,
         language: {
-          search: "",
-        }
+            search: "",
+        },
     });
 });
 
@@ -71,156 +71,203 @@ function funDelete(Data) {
     });
 }
 
-if(document.getElementById("chartSold") != null && document.getElementById("chartSoldBar") != null){
-  var options = {
-    series: [{
-    name: 'Dessert',
-    type: 'column',
-    data: [113, 101, 122, 117, 103, 112, 127, 111, 134, 112, 120]
-  }, {
-    name: 'Food',
-    type: 'area',
-    data: [144, 155, 141, 167, 152, 173, 201, 153, 162, 137, 143]
-  }, {
-    name: 'Drink',
-    type: 'line',
-    data: [130, 125, 136, 130, 145, 135, 164, 152, 159, 136, 139]
-  }],
-    chart: {
-    height: 350,
-    type: 'line',
-    stacked: false,
-  },
-  stroke: {
-    width: [0, 2, 5],
-    curve: 'smooth'
-  },
-  plotOptions: {
-    bar: {
-      columnWidth: '50%'
-    }
-  },
-  
-  fill: {
-    opacity: [0.85, 0.25, 1],
-    gradient: {
-      inverseColors: false,
-      shade: 'light',
-      type: "vertical",
-      opacityFrom: 0.85,
-      opacityTo: 0.55,
-      stops: [0, 100, 100, 100]
-    }
-  },
-  markers: {
-    size: 0
-  },
-  xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
-  },
-  yaxis: {
-    title: {
-      text: 'Points',
-    },
-    min: 0
-  },
-  tooltip: {
-    shared: true,
-    intersect: false,
-    y: {
-      formatter: function (y) {
-        if (typeof y !== "undefined") {
-          return y.toFixed(0) + " Portions Sold";
-        }
-        return y;
-  
-      }
-    }
-  }
-  };
+if (
+    document.getElementById("chartSold") != null &&
+    document.getElementById("chartSoldBar") != null
+) {
+    var options = {
+        series: [
+            {
+                name: "Dessert",
+                type: "column",
+                data: [113, 101, 122, 117, 103, 112, 127, 111, 134, 112, 120],
+            },
+            {
+                name: "Food",
+                type: "area",
+                data: [144, 155, 141, 167, 152, 173, 201, 153, 162, 137, 143],
+            },
+            {
+                name: "Drink",
+                type: "line",
+                data: [130, 125, 136, 130, 145, 135, 164, 152, 159, 136, 139],
+            },
+        ],
+        chart: {
+            height: 350,
+            type: "line",
+            stacked: false,
+        },
+        stroke: {
+            width: [0, 2, 5],
+            curve: "smooth",
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "50%",
+            },
+        },
 
-  var chart = new ApexCharts(document.querySelector("#chartSold"), options);
-  chart.render();
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: "light",
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100],
+            },
+        },
+        markers: {
+            size: 0,
+        },
+        xaxis: {
+            categories: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Des",
+            ],
+        },
+        yaxis: {
+            title: {
+                text: "Points",
+            },
+            min: 0,
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " Portions Sold";
+                    }
+                    return y;
+                },
+            },
+        },
+    };
 
-  var options = {
-    series: [{
-    data: [58, 55, 50, 49, 38, 34, 27, 24, 23, 20],
-    name : "Total"
-  }],
-    chart: {
-    type: 'bar',
-    height: 350
-  },
-  plotOptions: {
-    bar: {
-      horizontal: true,
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  xaxis: {
-    categories: [ 'Roasted Duck Colvert' ,'Chicken Saltimbocca', 'Cocktail', 'Panna Cotta', 'Bouillabasse', 'Roasted Scallop', 'Negroni',
-      'Prinsesstårta', 'Semifreddo', 'Veal Sweetbread'
-    ],
-  },
-  tooltip: {
-    shared: true,
-    intersect: false,
-    y: {
-      formatter: function (y) {
-        if (typeof y !== "undefined") {
-          return y.toFixed(0) + " Portions Sold";
-        }
-        return y;
-  
-      }
-    }
-  }
-  };
+    var chart = new ApexCharts(document.querySelector("#chartSold"), options);
+    chart.render();
 
-  var chart = new ApexCharts(document.querySelector("#chartSoldBar"), options);
-  chart.render();
+    var options = {
+        series: [
+            {
+                data: [58, 55, 50, 49, 38, 34, 27, 24, 23, 20],
+                name: "Total",
+            },
+        ],
+        chart: {
+            type: "bar",
+            height: 350,
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        xaxis: {
+            categories: [
+                "Roasted Duck Colvert",
+                "Chicken Saltimbocca",
+                "Cocktail",
+                "Panna Cotta",
+                "Bouillabasse",
+                "Roasted Scallop",
+                "Negroni",
+                "Prinsesstårta",
+                "Semifreddo",
+                "Veal Sweetbread",
+            ],
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " Portions Sold";
+                    }
+                    return y;
+                },
+            },
+        },
+    };
+
+    var chart = new ApexCharts(
+        document.querySelector("#chartSoldBar"),
+        options
+    );
+    chart.render();
 }
 
 // User Page
 
-if(document.getElementById("chart-3") != null){
-  var options = {
-    series: [{
-    name: 'User',
-    data: [1, 3, 4, 7, 12, 19, 20, 27, 28, 30, 35, 39]
-  }, {
-    name: 'Subscribe',
-    data: [2, 4, 4, 6, 8, 8, 11, 13, 15, 18, 22, 27]
-  }],
-    chart: {
-    height: 350,
-    type: 'area'
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    curve: 'smooth'
-  },
-  xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
-  },
-  tooltip: {
-    shared: true,
-    intersect: false,
-    y: {
-      formatter: function (y) {
-        if (typeof y !== "undefined") {
-          return y.toFixed(0) + " People";
-        }
-        return y;
-  
-      }
-    }
-  }
-  };
+if (document.getElementById("chart-3") != null) {
+    var options = {
+        series: [
+            {
+                name: "User",
+                data: [1, 3, 4, 7, 12, 19, 20, 27, 28, 30, 35, 39],
+            },
+            {
+                name: "Subscribe",
+                data: [2, 4, 4, 6, 8, 8, 11, 13, 15, 18, 22, 27],
+            },
+        ],
+        chart: {
+            height: 350,
+            type: "area",
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            curve: "smooth",
+        },
+        xaxis: {
+            categories: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Des",
+            ],
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " People";
+                    }
+                    return y;
+                },
+            },
+        },
+    };
 }
 
 var chart = new ApexCharts(document.querySelector("#chart-3"), options);
@@ -331,7 +378,7 @@ function setUpdateUser(Data) {
 
 // Order Success & Failed Page
 
-function orderDelete(Data){
+function orderDelete(Data) {
     Swal.fire({
         title: "Are you sure?",
         text: "Do you want to delete this data!",
@@ -373,4 +420,39 @@ function orderDelete(Data){
             }, 100);
         }
     });
+}
+
+function ToExcel(data){
+  $.ajax({
+    url: "http://127.0.0.1:8000/api/ToExcel",
+    type: "POST",
+    dataType: "JSON",
+    data : {
+      Status : data.target.dataset.type
+    },
+    error: function () {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer:
+                "<a href>Please report if there is a problem?</a>",
+        });
+    },
+    success: function (result) {
+      if(result == 'Excel Data Download File Successfully Is At Program C:'){
+        Swal.fire(
+          "Downloaded!",
+          `${result}`,
+          "success"
+      );
+      } else {
+        Swal.fire(
+          "Failed!",
+          `${result}`,
+          "error"
+      );
+      }
+    },
+});
 }
