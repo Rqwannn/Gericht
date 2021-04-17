@@ -42,6 +42,36 @@ class BaseData extends Model
         return DB::table("dessert")->get();
     }
 
+    public function SelectgetFood()
+    {
+        return DB::table("makanan")->select('makanan.nama', 'makanan.harga')->get();
+    }
+
+    public function SelectgetDrink()
+    {
+        return DB::table("minuman")->select('minuman.nama', 'minuman.harga')->get();
+    }
+
+    public function SelectgetDessert()
+    {
+        return DB::table("dessert")->select('dessert.nama', 'dessert.harga')->get();
+    }
+
+    public function getHargaMakanan($data)
+    {
+        return DB::table("makanan")->select('makanan.harga')->where('nama', $data)->first();
+    }
+
+    public function getHargaMinuman($data)
+    {
+        return DB::table("minuman")->select('minuman.harga')->where('nama', $data)->first();
+    }
+
+    public function getHargaDessert($data)
+    {
+        return DB::table("dessert")->select('dessert.harga')->where('nama', $data)->first();
+    }
+
     public function getAdmin($data)
     {
         return DB::table("admin")->where("email", $data)->first();

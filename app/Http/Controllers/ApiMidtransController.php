@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
@@ -63,32 +63,52 @@ class ApiMidtransController extends Controller
 
         // Required
 
-        $setQuantity = '';
+        $arrayMakanan = [];
+        $arrayMinuman = [];
+        $arrayDessert = [];
+
+        $Makanan = $this->BaseData->SelectgetFood();
+        $Minuman = $this->BaseData->SelectgetDrink();
+        $Dessert = $this->BaseData->SelectgetDessert();
+
+        foreach ($Makanan as $result) {
+            $arrayMakanan[] = $result->nama;
+        }
+
+        foreach ($Minuman as $result) {
+            $arrayMinuman[] = $result->nama;
+        }
+
+        foreach ($Dessert as $result) {
+            $arrayDessert[] = $result->nama;
+        }
 
         $pisahNama = explode(',', $user->nama_orderan);
         $PisahJumlah = explode(',', $user->jml_orderan);
 
-        foreach ($pisahNama as $index => $result) {
-            if (count($pisahNama) - 1 == $index) {
-                $setQuantity .= "$result X " . $PisahJumlah[$index];
-            } else {
-                $setQuantity .= "$result X " . $PisahJumlah[$index] . ",";
-            }
-        }
+        $item_list = [];
 
-        if (count($pisahNama) == 1) {
+        $price = 0;
+        foreach ($pisahNama as $index => $result) {
+            if (in_array($result, $arrayMakanan)) {
+                $getHarga = $this->BaseData->getHargaMakanan($result);
+                $setHarga = $getHarga->harga;
+                $price = intval($setHarga);
+            } else if (in_array($result, $arrayMinuman)) {
+                $getHarga = $this->BaseData->getHargaMinuman($result);
+                $setHarga = $getHarga->harga;
+                $price = intval($setHarga);
+            } else if (in_array($result, $arrayDessert)) {
+                $getHarga = $this->BaseData->getHargaDessert($result);
+                $setHarga = $getHarga->harga;
+                $price = intval($setHarga);
+            }
+
             $item_list[] = [
-                'id' => $user->id,
-                'price' => intval($user->total),
-                'quantity' => intval($user->jml_orderan),
-                'name' => $user->nama_orderan
-            ];
-        } else {
-            $item_list[] = [
-                'id' => $user->id,
-                'price' => intval($user->total),
-                'quantity' => intval($user->jml_orderan),
-                'name' => $setQuantity
+                'id' => '111',
+                'price' => $price,
+                'quantity' => intval($PisahJumlah[$index]),
+                'name' => $result,
             ];
         }
 

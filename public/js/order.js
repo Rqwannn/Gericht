@@ -389,6 +389,17 @@ function PayNowLink(Data) {
         success: function (result) {
             console.log(result);
             window.open(result.redirect_url, '_blank').focus();
+            Swal.fire({
+                title: 'Success',
+                text: "Thank you For Completing The Payment.",
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Close'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                }
+              })
         },
     })
 }
