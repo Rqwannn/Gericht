@@ -163,6 +163,23 @@ class ApiMidtransController extends Controller
                 "konfirmasi" => 1,
             ];
 
+            for ($index = 0; $index < count($pisahNama); $index++) {
+
+                $getNama = $pisahNama[$index];
+                $getJumlah = $PisahJumlah[$index];
+
+                if (in_array($getNama, $arrayMakanan)) {
+                    $this->BaseData->OverloadMakanan($getJumlah, $getNama);
+                    continue;
+                } else if (in_array($getNama, $arrayMinuman)) {
+                    $this->BaseData->OverloadMinuman($getJumlah, $getNama);
+                    continue;
+                } else if (in_array($getNama, $arrayDessert)) {
+                    $this->BaseData->OverloadDessert($getJumlah, $getNama);
+                    continue;
+                }
+            }
+
             $this->BaseData->updateKonfirmasi($updateData, $request->id);
             // return response()->json($snapToken);
             return ['code' => 1, 'message' => 'success', 'result' => $snapToken, "redirect_url" => "http://app.sandbox.midtrans.com/snap/v2/vtweb/" . $snapToken];

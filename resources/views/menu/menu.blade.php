@@ -112,12 +112,16 @@
                                 <div class="col-md-6">
                                     <div class="inputValues d-flex flex-column mt-3">
                                         <label for="email" class="mb-1">Email</label>
-                                        <input type="email" name="email" disabled id="email" class="form-control" value=" 
+                                        @if ($Email != 'Guest@gmail.com'))
+                                            <input type="email" name="email" disabled id="email" class="form-control" value=" 
                                             @if ($Email != 'Guest@gmail.com')
                                                 {{$Email}}
                                             @else
                                                 
                                             @endif" placeholder="Type Your Email">
+                                        @else
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Type Your Email">
+                                        @endif
                                     </div>
                                     <label class="text-danger AuthEmail" style="font-size: 14px; display: none;"></label>
                                 </div>

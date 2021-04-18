@@ -143,4 +143,19 @@ class BaseData extends Model
     {
         DB::statement("SELECT pesanan.kodePesanan, pesanan.nama_orderan, pesanan.jml_orderan, pesanan.nama_pemesan, pesanan.email_pemesan, pesanan.pembelian, pesanan.tanggal_pesan INTO OUTFILE 'C:/SuccessOrder.xls' FROM pesanan WHERE konfirmasi = 1");
     }
+
+    public function OverloadMakanan($getJumlah, $getNama)
+    {
+        DB::statement("UPDATE makanan set tersedia = tersedia - '$getJumlah' WHERE nama = '$getNama'");
+    }
+
+    public function OverloadMinuman($getJumlah, $getNama)
+    {
+        DB::statement("UPDATE minuman set tersedia = tersedia - '$getJumlah' WHERE nama = '$getNama'");
+    }
+
+    public function OverloadDessert($getJumlah, $getNama)
+    {
+        DB::statement("UPDATE dessert set tersedia = tersedia - '$getJumlah' WHERE nama = '$getNama'");
+    }
 }
