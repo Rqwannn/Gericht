@@ -872,12 +872,11 @@ body {
     content: "Into Payment";
 }
 
-.barOne .LineOne,
-.barTwo .LineTwo {
+.barOne .LineOne {
     position: absolute;
     top: 50%;
     left: 100%;
-    width: 11.5vw;
+    width: 20vw;
     height: 1.5px;
     background: #fff;
     transition: 0.5s;

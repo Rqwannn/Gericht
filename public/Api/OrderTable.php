@@ -3,6 +3,7 @@
 $conn = mysqli_connect("localhost", "root", "", "gericht");
 
 $id_user = $_POST["id_user"];
+$KodePesanan = time();
 $namaTabel = $_POST["NamaTabel"];
 $nama = $_POST["Nama"];
 $email = $_POST["Email"];
@@ -22,10 +23,13 @@ if ($getStatus["status"] == "Member") {
     $setTax = 3;
 }
 
-mysqli_query($conn, "INSERT INTO book_table VALUES('', '$id_user', '$namaTabel', '$email' ,'$nama', '$total', '$konfirmasi' , '$setTax' , '$Proses' , '$date')");
+mysqli_query($conn, "INSERT INTO book_table VALUES('', '$id_user', '$KodePesanan' ,'$namaTabel', '$email' ,'$nama', '$total', '$konfirmasi' , '$setTax' , '$Proses' , '$date')");
+$getBookTable = mysqli_query($conn, "SELECT * FROM book_table WHERE kodePesanan = '$KodePesanan'");
+$getSingle = mysqli_fetch_assoc($getBookTable);
 
 $Result = [];
 $Result["nama"] = $nama;
+$Result['id'] = $getSingle['id'];
 
 echo json_encode($Result, JSON_PRETTY_PRINT);
 

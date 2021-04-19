@@ -47,11 +47,10 @@
 </div>
 
 @if ($CekPesanan)
-<div class="container">
+    <div class="container">
 
-    <div class="WrapperInfoOrder owl-carousel">
+        <div class="WrapperInfoOrder owl-carousel" data-aos="fade-up">
 
-            <div class="infoOrder" data-aos="fade-up">
                 @foreach ($Pesanan as $result)
                     @if ($result->proses == 1 && $result->id_user == $Name)
                     
@@ -59,7 +58,7 @@
                         $setDate = explode(" ", $result->tanggal_pesan);
                         $getPesan = $setDate[0];
 
-                        $getNameOrder = explode(",", $result->nama_orderan);    
+                        $getNameOrder = explode(",", $result->nama_orderan);
                         $getAmountOrder = explode(",", $result->jml_orderan);
 
                         $idUser = $result->id;
@@ -145,17 +144,14 @@
                     @endif
                 @endforeach
 
-            </div>
-
+        </div>
     </div>
-</div>
 @endif
 
 @if ($cekTable)
 <div class="container">
-    <div class="WrapperInfoTable owl-carousel">
+    <div class="WrapperInfoTable owl-carousel" data-aos="fade-up">
 
-        <div class="infoOrder" data-aos="fade-up">
             @foreach ($OrderTable as $result)
                 @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name)
 
@@ -219,7 +215,7 @@
                                             <div class="col-md-12">
                                                 <div class="textValue d-flex mt-3 mb-5">
                                                     @if ($result->proses == 1)
-                                                        <button type="submit">Pay Now</button>  
+                                                        <button type="submit" onclick="PayTableNow({{$idUser}})">Pay Now</button>  
                                                         <p style="display: none;"></p>
                                                         <button type="submit" onclick="PayRestaurant({{$idUser}})">Pay At The Restaurant</button>
                                                     @else
@@ -242,9 +238,7 @@
             @endforeach
 
         </div>
-
     </div>
-</div>
 @endif
 
 <div class="container">

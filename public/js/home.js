@@ -45,3 +45,63 @@ for ([index, result] of getDataOrder.entries()) {
         });
     });
 }
+
+function ConfirmPayment(){
+    const idUser = document.querySelector('.idUser');
+    const EmailUser = document.querySelector('.EmailUser');
+    const HargaPremium = document.querySelector('.HargaPremium');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will immediately be directed to the payment method!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, do it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url : 'http://127.0.0.1:8000/PremiumMember',
+                type : 'POST',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType : 'JSON',
+                data : {
+                    Nama : idUser.innerHTML,
+                    Email : EmailUser.innerHTML,
+                    Harga : parseInt(HargaPremium.innerHTML)
+                },
+                success : function (result) {
+                    console.log(result);
+                    window.open(result.redirect_url, '_blank').focus();
+                      Swal.fire({
+                        title: 'Success',
+                        text: "Thank You For Becoming A Premium Member..",
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'To The Home Page',
+                        cancelButtonText: 'Stay Here'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                           document.location.href = '/home';
+                        } else if(!result.isConfirmed){
+                            window.location.reload();
+                        }
+                      })
+                },
+                error : function (e) {
+                    console.log(e);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        footer: "<a href>If there is a problem please report it!</a>",
+                    });
+                }
+            })
+        }
+    })
+}

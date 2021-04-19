@@ -158,4 +158,29 @@ class BaseData extends Model
     {
         DB::statement("UPDATE dessert set tersedia = tersedia - '$getJumlah' WHERE nama = '$getNama'");
     }
+
+    public function UpdateMember($data, $id)
+    {
+        DB::table('user')->where('id', $id)->update($data);
+    }
+
+    public function getUserByEmail($data)
+    {
+        return DB::table('user')->where('email', $data)->first();
+    }
+
+    public function getBookById($data)
+    {
+        return DB::table('book_table')->where("id", $data)->first();
+    }
+
+    public function updateBookTable($updateData, $id)
+    {
+        DB::table('book_table')->where('id', $id)->update($updateData);
+    }
+
+    public function OverloadTable($getTotalByFetch, $getNameByFetch)
+    {
+        DB::statement("UPDATE private_table SET tersedia = tersedia - '$getTotalByFetch' WHERE nama = '$getNameByFetch' ");
+    }
 }

@@ -188,4 +188,194 @@ class ApiMidtransController extends Controller
             return ['code' => 0, 'message' => 'failed'];
         }
     }
+
+    public function PremiumMember(Request $request)
+    {
+        $input  = $request->only("Nama", "Email", "Harga"); //Specify Request
+
+        $validation = Validator::make($input, [
+            "Nama" => "required|string",
+            "Email" => "required|string",
+        ]);
+
+        if ($validation->fails()) {
+            return response($validation->errors()->toJson(), 400);
+        }
+        $user = $this->BaseData->getUserByEmail($request->input("Email"));
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => "Id Pesanan Tidak Dapat Ditemukan."
+            ], 400);
+        }
+
+        $item_list = array();
+
+        // CLIENT ID MIDTRANS TARO SINI
+        Config::$serverKey = 'SB-Mid-server-GNcL8wPmhyTaYdU_9uAi1pC5';
+        if (!isset(Config::$serverKey)) {
+            return "Di Mohon Untuk Memasukan Server Key Anda";
+        }
+
+        Config::$isSanitized = true;
+
+        // Enable 3D-Secure
+        Config::$is3ds = true;
+
+        // Required
+
+        $KodePesanan = time();
+        $id = time();
+
+        $item_list[] = [
+            'id' => "$id",
+            'price' => $request->Harga,
+            'quantity' => intval(1),
+            'name' => "Premium Member",
+        ];
+
+        $transaction_details = array(
+            'order_id' => strval($KodePesanan),
+            'gross_amount' => 1, // no decimal allowed for creditcard
+        );
+
+
+        // Optional
+        $item_details = $item_list;
+        // Optional
+        $shipping_address = array(
+            'first_name'    => $user->name,
+        );
+
+        // Optional
+        $customer_details = array(
+            'first_name'    => $user->name,
+            'email'         => $user->email,
+            'billing_address'  => $shipping_address,
+            'shipping_address' => $shipping_address
+        );
+
+        // Optional, remove this to display all available payment methods
+        $enable_payments = array();
+
+        // Fill transaction details
+        $transaction = array(
+            'enabled_payments' => $enable_payments,
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+
+        // return $transaction;
+
+        try {
+            $snapToken = Snap::getSnapToken($transaction);
+
+            $updateData = [
+                'status' => "Premium"
+            ];
+
+            $this->BaseData->updateMember($updateData, $user->id);
+            return ['code' => 1, 'message' => 'success', 'result' => $snapToken, "redirect_url" => "http://app.sandbox.midtrans.com/snap/v2/vtweb/" . $snapToken];
+        } catch (\Exception $e) {
+            dd($e);
+            return ['code' => 0, 'message' => 'failed'];
+        }
+    }
+
+    public function TablePayment(Request $request)
+    {
+        $input  = $request->only("id"); //Specify Request
+
+        $validation = Validator::make($input, [
+            "id" => "required|integer",
+        ]);
+
+        if ($validation->fails()) {
+            return response($validation->errors()->toJson(), 400);
+        }
+        $user = $this->BaseData->getBookById($request->input("id"));
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => "Id Pesanan Tidak Dapat Ditemukan."
+            ], 400);
+        }
+
+        $item_list = array();
+
+        // CLIENT ID MIDTRANS TARO SINI
+        Config::$serverKey = 'SB-Mid-server-GNcL8wPmhyTaYdU_9uAi1pC5';
+        if (!isset(Config::$serverKey)) {
+            return "Di Mohon Untuk Memasukan Server Key Anda";
+        }
+
+        Config::$isSanitized = true;
+
+        // Enable 3D-Secure
+        Config::$is3ds = true;
+
+        // Required
+        $id = time();
+
+        $item_list[] = [
+            'id' => "$id",
+            'price' => $user->pajak,
+            'quantity' => intval(1),
+            'name' => $user->nama_meja,
+        ];
+
+        $transaction_details = array(
+            'order_id' => $user->kodePesanan,
+            'gross_amount' => 1, // no decimal allowed for creditcard
+        );
+
+
+        // Optional
+        $item_details = $item_list;
+        // Optional
+        $shipping_address = array(
+            'first_name'    => $user->nama,
+        );
+
+        // Optional
+        $customer_details = array(
+            'first_name'    => $user->nama,
+            'email'         => $user->email,
+            'billing_address'  => $shipping_address,
+            'shipping_address' => $shipping_address
+        );
+
+        // Optional, remove this to display all available payment methods
+        $enable_payments = array();
+
+        // Fill transaction details
+        $transaction = array(
+            'enabled_payments' => $enable_payments,
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+
+        // return $transaction;
+
+        try {
+            $snapToken = Snap::getSnapToken($transaction);
+
+            $updateData = [
+                'konfirmasi' => 1,
+                'proses' => 0
+            ];
+
+            $getTotalByFetch = $user->total;
+            $getNameByFetch = $user->nama_meja;
+
+            $this->BaseData->OverloadTable($getTotalByFetch, $getNameByFetch);
+            $this->BaseData->updateBookTable($updateData, $user->id);
+            return ['code' => 1, 'message' => 'success', 'result' => $snapToken, "redirect_url" => "http://app.sandbox.midtrans.com/snap/v2/vtweb/" . $snapToken];
+        } catch (\Exception $e) {
+            dd($e);
+            return ['code' => 0, 'message' => 'failed'];
+        }
+    }
 }

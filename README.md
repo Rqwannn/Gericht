@@ -1,3 +1,1 @@
-### Masih Tahab Pengembangan
-
-Sekitar 95%
+### Aplikasi Sudah Selesai

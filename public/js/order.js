@@ -378,7 +378,6 @@ function PayNowLink(Data) {
             id: Data,
         },
         error: function (e) {
-            console.log(e);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -387,7 +386,6 @@ function PayNowLink(Data) {
             });
         },
         success: function (result) {
-            console.log(result);
             window.open(result.redirect_url, '_blank').focus();
             Swal.fire({
                 title: 'Success',
@@ -401,5 +399,55 @@ function PayNowLink(Data) {
                 }
               })
         },
+    })
+}
+
+function PayTableNow(data){
+    const idTable = data;
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will go directly to the payment menu!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, do it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url : 'http://127.0.0.1:8000/TablePayment',
+                type : "POST",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType : 'JSON',
+                data : {
+                    id : idTable
+                },
+                success : function (result) {
+                    window.open(result.redirect_url, '_blank').focus();
+                    Swal.fire({
+                        title: 'Success',
+                        text: "Thank you For Completing The Payment.",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Close'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                      })
+                },
+                error : function (e){
+                    console.log(e);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        footer: "<a href>If there is a problem please report it!</a>",
+                    });
+                }
+            })
+        }
     })
 }

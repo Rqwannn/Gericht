@@ -8,8 +8,9 @@
     <img src="{{asset('img')}}/bgSub.jpg" alt="">
 </div>
 <div class="container">
-    <div class="headerInfoSub mt-4 d-flex justify-content-end">
-        <h5 class="fw-bold" style="font-size: 15px;">Your subscription status : {{$StatusUser}}</h5>
+    <div class="headerInfoSub mt-4 d-flex justify-content-between">
+        <h5 class="fw-bold" style="font-size: 15px;">Your Email : <span class="EmailUser">{{$Email}}</span></h5>
+        <h5 class="fw-bold" style="font-size: 15px;">Your Subscription Status : {{$StatusUser}}</h5>
     </div>
 </div>
 <div class="container">
@@ -29,9 +30,9 @@
                     <h4 class="fw-bold pb-2">Premium</h4>
                 </div>
                 <div class="infoPriceSub mt-3">
-                    <p class="text-center fw-bold">Save 55%</p>
-                    <p class="text-center">$ 5,80</p>
-                    <h5 class="text-center fw-bold">$2,60</h5>
+                    <p class="text-center fw-bold">Save 48%</p>
+                    <p class="text-center">$ 5.80</p>
+                    <h5 class="text-center fw-bold">$ <span class="HargaPremium">3</span></h5>
                 </div>
                 <div class="contentCardSub-Right mt-3">
                     <ul>
@@ -47,7 +48,7 @@
                     @if ($StatusUser == 'Premium')
                     <button class="btn btnCheckout">Thank You For Subscribing</button>
                     @else
-                    <button type="submit" class="btn btnCheckout">Secure Checkout</button>
+                    <button type="submit" class="btn btnCheckout" onclick="ConfirmPayment()">Secure Checkout</button>
                     @endif
                 </div>
             </div>
