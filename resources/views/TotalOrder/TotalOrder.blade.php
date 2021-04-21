@@ -27,6 +27,7 @@
                         <th>Order Number</th>
                         <th>Email</th>
                         <th>Order Name</th>
+                        <th>Purchase Date</th>
                         <th>Total</th>
                         <th>Aksi</th>
                     </tr>
@@ -34,11 +35,17 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($Data as $result) : ?>
+                        <?php 
+                            $setCreated = explode(" ", $result->tanggal_pesan);
+                            $getCreated = $setCreated[0];
+                        ?>
+
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{$result->kodePesanan}}</td>
                             <td>{{$result->email_pemesan}}</td>
                             <td>{{$result->nama_pemesan}}</td>
+                            <td>{{$getCreated}}</td>
                             <td>$ {{$result->total}}</td>
                             <td>
                                 <p style="display: none;"></p>

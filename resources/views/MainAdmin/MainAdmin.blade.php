@@ -19,10 +19,10 @@
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
                                 <h5>Total Order</h5>
-                                <h4>{{$Order}}</h4>
+                                <h4 class="TotalOrder">0</h4>
                                 <div class="pertumbuhanUntung d-flex mt-2">
                                     <i class="material-icons">trending_up</i>
-                                    <p style="font-size: 14px; margin-left: 1vw;">4.38%</p>
+                                    <p style="font-size: 14px; margin-left: 1vw;"> <span class="PersenPesanan">0</span> %</p>
                                 </div>
                             </div>
                         </div>
@@ -46,10 +46,10 @@
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
                                 <h5>Total User</h5>
-                                <h4>{{$User}}</h4>
+                                <h4 class="TotalUser">0</h4>
                                 <div class="pertumbuhanUntung d-flex mt-2">
                                     <i class="material-icons">trending_up</i>
-                                    <p style="font-size: 14px; margin-left: 1vw;">4.38%</p>
+                                    <p style="font-size: 14px; margin-left: 1vw;"> <span class="PersenUser">0</span> %</p>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                 <h4>$ <span class="totalRevenue">0</span></h4>
                                 <div class="pertumbuhanUntung d-flex mt-2">
                                     <i class="material-icons">trending_up</i>
-                                    <p style="font-size: 14px; margin-left: 1vw;">4.38%</p>
+                                    <p style="font-size: 14px; margin-left: 1vw;"> <span class="PersenRevenue"></span> %</p>
                                 </div>
                             </div>
                         </div>
@@ -100,10 +100,10 @@
                         <div class="col-md-7">
                             <div class="top-cardInfoDasbord d-flex flex-column">
                                 <h5>Subscribe</h5>
-                                <h4>{{count($Subscribe)}}</h4>
+                                <h4 class="TotalSubscribe">0</h4>
                                 <div class="pertumbuhanUntung d-flex mt-2">
                                     <i class="material-icons">trending_up</i>
-                                    <p style="font-size: 14px; margin-left: 1vw;">2.38%</p>
+                                    <p style="font-size: 14px; margin-left: 1vw;"> <span class="PersenSubscribe">0</span> %</p>
                                 </div>
                             </div>
                         </div>

@@ -82,4 +82,6 @@ Route::group(['middleware' => 'Cyber'], function () {
     Route::get("/totalOrder", [TotalOrderController::class, "index"]);
     Route::get("/totalUser", [TotalUserController::class, "index"]);
     Route::get("/updateUser/{id}", [TotalUserController::class, "updateUserView"]);
+
+    Route::get('/setData', [MainAdminController::class, "setData"]);
 });

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
-use mysqli;
-use mysqli_result;
 
 class MainAdminController extends Controller
 {
@@ -21,8 +19,6 @@ class MainAdminController extends Controller
     {
         $photo = $this->BaseData->getAdmin($request->session()->get("email"));
         $Employe = $this->BaseData->getEmployee();
-        $Order = $this->BaseData->getPesanan();
-        $User = $this->BaseData->getAllUser();
 
         $setPhoto = "";
 
@@ -32,26 +28,100 @@ class MainAdminController extends Controller
             $setPhoto .= $request->session()->get("gambar");
         }
 
-        $setSubscribe = [];
-
-        foreach ($User as $Result) {
-            if ($Result->status == "Premium") {
-                $setSubscribe[] = $Result;
-            }
-        }
-
         $data = [
             "JS" => "/dasbord.js",
             "Employe" => $Employe,
             "Name" => $photo->name,
             "Email" => $photo->email,
             "Gambar" => $setPhoto,
-            "Order" => count($Order),
             "CekIcon" => "dasbord",
-            "User" => count($User),
             "Status" => "Dasbord",
-            "Subscribe" => $setSubscribe
         ];
         return view("MainAdmin/MainAdmin", $data);
+    }
+
+    public function setData()
+    {
+        $Order = $this->BaseData->getPesanan();
+        $User = $this->BaseData->getAllUser();
+
+        // Di hitung dari bulang yang sekarang
+
+        // Filter Pesanan
+
+        $setPesananSekarang = [];
+        $setPesananLalu = [];
+
+        foreach ($Order as $item) {
+            $BulanSekarang = date('m');
+            $pisahBulan = explode(" ", $item->tanggal_pesan);
+            $PisahLagi = explode("-", $pisahBulan[0]);
+            if ($BulanSekarang == $PisahLagi[1]) {
+                $setPesananSekarang[] = $item;
+            } else if (($BulanSekarang - 01) == $PisahLagi[1]) {
+                $setPesananLalu[] = $item;
+            }
+        }
+
+        if (count($setPesananSekarang) == 0 && count($setPesananLalu) == 0) {
+            $HitungPersen = 0;
+        } else {
+            $HitungPersen = round((100 * count($setPesananSekarang)) / count($setPesananLalu));
+        }
+
+        // Filter User
+
+        $setUserSekarang = [];
+        $setUserLalu = [];
+
+        foreach ($User as $item) {
+            $BulanSekarang = date('m');
+            $pisahBulan = explode(" ", $item->created_at);
+            $PisahLagi = explode("-", $pisahBulan[0]);
+            if ($BulanSekarang == $PisahLagi[1]) {
+                $setUserSekarang[] = $item;
+            } else if (($BulanSekarang - 01) == $PisahLagi[1]) {
+                $setUserLalu[] = $item;
+            }
+        }
+
+        if (count($setUserSekarang) == 0 || count($setUserLalu) == 0) {
+            $HitungSecondPersen = 0;
+        } else {
+            $HitungSecondPersen = round((100 * count($setUserSekarang)) / count($setUserLalu));
+        }
+
+        // Filter Subscribe
+
+        $setSubscribeLalu = [];
+        $setSubscribeSekarang = [];
+
+        foreach ($User as $Result) {
+            $BulanSekarang = date('m');
+            $pisahBulan = explode(" ", $Result->created_at);
+            $PisahLagi = explode("-", $pisahBulan[0]);
+            if ($Result->status == "Premium" && $BulanSekarang == $PisahLagi[1]) {
+                $setSubscribeSekarang[] = $Result;
+            } else if (($BulanSekarang - 01) == $PisahLagi[1] && $Result->status == "Premium") {
+                $setSubscribeLalu[] = $Result;
+            }
+        }
+
+        if (count($setSubscribeSekarang) == 0 || count($setSubscribeLalu) == 0) {
+            $HitungThirdPersen = 0;
+        } else {
+            $HitungThirdPersen = round((100 * count($setSubscribeSekarang)) / count($setSubscribeLalu));
+        }
+
+        $Result = [];
+
+        $Result["TotalOrder"] = count($setPesananSekarang);
+        $Result["PersenOrder"] = $HitungPersen;
+        $Result["TotalUser"] = count($setUserSekarang);
+        $Result["PersenUser"] = $HitungSecondPersen;
+        $Result["TotalSubscribe"] = count($setSubscribeSekarang);
+        $Result["PersenSubscribe"] = $HitungThirdPersen;
+
+        return json_encode($Result);
     }
 }

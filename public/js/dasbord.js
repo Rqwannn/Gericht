@@ -187,8 +187,39 @@ var options = {
     },
     success : function(result){
       let getJSON = result.Revenue;
+      let getPersen = result.Persen;
       const setWrapper = document.querySelector(".totalRevenue");
+      const PersenRevenue = document.querySelector(".PersenRevenue");
 
       setWrapper.innerHTML = getJSON;
+      PersenRevenue.innerHTML = getPersen;
     }
   })
+
+  $.ajax({
+    url : 'http://127.0.0.1:8000/setData',
+    type: 'GET',
+    dataType: 'JSON',
+    error : function(){
+      alert("Opps");
+    },
+    success : function(result){
+      // Temtep Total Data
+      const TotalOrder = document.querySelector('.TotalOrder');
+      const TotalUser = document.querySelector(".TotalUser");
+      const TotalSubscribe = document.querySelector('.TotalSubscribe');
+
+      // Tempat Persen Data
+      const PersenPesanan = document.querySelector('.PersenPesanan');
+      const PersenUser = document.querySelector('.PersenUser');
+      const PersenSubscribe = document.querySelector('.PersenSubscribe');
+
+      TotalOrder.innerHTML = result.TotalOrder;
+      TotalUser.innerHTML = result.TotalUser;
+      TotalSubscribe.innerHTML = result.TotalSubscribe;
+      
+      PersenPesanan.innerHTML = result.PersenOrder;
+      PersenUser.innerHTML = result.PersenUser;
+      PersenSubscribe.innerHTML = result.PersenSubscribe;
+    }
+})
