@@ -112,7 +112,7 @@
                                 <div class="col-md-6">
                                     <div class="inputValues d-flex flex-column mt-3">
                                         <label for="email" class="mb-1">Email</label>
-                                        @if ($Email != 'Guest@gmail.com'))
+                                        @if ($Email != 'Guest@gmail.com')
                                             <input type="email" name="email" disabled id="email" class="form-control" value=" 
                                             @if ($Email != 'Guest@gmail.com')
                                                 {{$Email}}

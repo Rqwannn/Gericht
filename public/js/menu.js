@@ -1546,7 +1546,7 @@ function PayNowLink(Data) {
     $.ajax({
         url: "http://127.0.0.1:8000/midtrans",
         headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
         },
         type: "POST",
         dataType: "JSON",
@@ -1562,23 +1562,38 @@ function PayNowLink(Data) {
             });
         },
         success: function (result) {
-            window.open(result.redirect_url, '_blank').focus();
-            Swal.fire({
-                title: 'Success',
-                text: "Thank you For Completing The Payment.",
-                icon: 'success',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'To The Order Page',
-                cancelButtonText: 'Stay Here'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                   document.location.href = '/order';
-                } else if(!result.isConfirmed){
-                    window.location.reload();
-                }
-              })
+            const IFUser = document.querySelector('.idUser');
+            window.open(result.redirect_url, "_blank").focus();
+            if(IFUser.innerHTML != "Guest"){
+                Swal.fire({
+                    title: "Success",
+                    text: "Thank you For Completing The Payment.",
+                    icon: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "To The Order Page",
+                    cancelButtonText: "Stay Here",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href = "/order";
+                    } else if (!result.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Success",
+                    text: "Thank you For Completing The Payment. Your Order Is Being Processed Please Wait",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Close",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    } 
+                });
+            }
         },
-    })
+    });
 }

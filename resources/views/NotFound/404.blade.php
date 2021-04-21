@@ -208,8 +208,8 @@
 		</g>
 	</svg>
 	<div class="content">
-		<h3>Maaf halaman yang anda tuju tidak di temukan</h3>
-		<p>Kami tahu ini menakutkan, tetapi halaman yang Anda coba buka tidak dapat ditemukan. Mungkin anda salah ketik atau terjadi typo? <a href="/" style="color: white;">Kembali ke home</a></p>
+		<h3>Sorry, the page you are referring to cannot be found</h3>
+		<p>We know this is scary, but the page you were trying to open couldn't be found. Maybe you made a typo or a typo happened? <a href="/" style="color: white;">Go back to home</a></p>
 	</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
 	<script src="{{asset('js')}}/TweenMax.min.js"></script>

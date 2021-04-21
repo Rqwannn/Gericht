@@ -45,10 +45,6 @@ Route::get('/guest', [LoginController::class, "guest"]);
 Route::get('/logout', [LoginController::class, "logout"]);
 Route::post('/login/validation', [LoginController::class, "validation"]);
 
-Route::post("/midtrans", [ApiMidtransController::class, "getSnapToken"])->name("apigetSnapToken");
-Route::post("/PremiumMember", [ApiMidtransController::class, "PremiumMember"])->name("PremiumMember");
-Route::post("/TablePayment", [ApiMidtransController::class, "TablePayment"])->name("TablePayment");
-
 Route::group(["middleware" => "check"], function () {
     Route::get('/', [HomeController::class, "index"])->name("home");
     Route::post('/updateFoto', [HomeController::class, "updateFoto"]);
@@ -64,7 +60,9 @@ Route::group(["middleware" => "check"], function () {
 
     // Payment Gateway
 
-    Route::get('/order/{payment}', [OrderController::class, 'PaymentProcess']);
+    Route::post("/midtrans", [ApiMidtransController::class, "getSnapToken"])->name("apigetSnapToken");
+    Route::post("/PremiumMember", [ApiMidtransController::class, "PremiumMember"])->name("PremiumMember");
+    Route::post("/TablePayment", [ApiMidtransController::class, "TablePayment"])->name("TablePayment");
 });
 
 Route::group(["middleware" => "after"], function () {

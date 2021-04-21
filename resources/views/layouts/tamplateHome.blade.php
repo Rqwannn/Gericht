@@ -95,8 +95,11 @@
                         @csrf
 
                         @if ($Email != "Guest@gmail.com")
+                            @if ($Gambar != "profile.png")
+                                <a href="/withoutPicture" class="dropdown-item">Without Picture</a>
+                            @else
                             <label class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Picture</label>     
-                            <a href="/withoutPicture" class="dropdown-item">Without Picture</a>
+                            @endif
                             <a href="/subscribe" style="background: {{Request()->is('subscribe') ? '#fb6340' : ''}}; color: {{Request()->is('subscribe') ? '#fff' : ''}}" class="dropdown-item">Subscribe</a>
                             <label class="dropdown-item">Status : {{$StatusUser}}</label>     
                         @endif
