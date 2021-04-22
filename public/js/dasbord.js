@@ -223,3 +223,5 @@ var options = {
       PersenSubscribe.innerHTML = result.PersenSubscribe;
     }
 })
+
+console.log(window);

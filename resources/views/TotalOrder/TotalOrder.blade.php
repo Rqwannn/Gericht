@@ -12,11 +12,8 @@
 <div class="col-md-12">
     <div class="cardTableData mt-4">
         <div class="container">
-            <div class="headerTable d-flex justify-content-between my-3">
+            <div class="headerTable mt-3 mb-5">
                 <h5 class="mt-2">Table Order</h5>
-                <div class="d-flex">
-                    <button class="btn btn-success" onclick="ToExcel(event)" data-type="Order" style="cursor: pointer;">Export To Excel</button>
-                </div>
             </div>
         </div>
         <div id="contentTable">

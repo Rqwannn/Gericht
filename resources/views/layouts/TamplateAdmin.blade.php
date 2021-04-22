@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css">
     
     <link rel="stylesheet" href="{{asset('css')}}/admin.css">
+    <link rel="stylesheet" href="{{asset('css/Table')}}/buttons.dataTables.min.css">
     <link rel="icon" href="{{asset('img')}}/MainLogo.png">
     <link
     rel="stylesheet"
@@ -160,9 +161,18 @@
         <script src="{{asset('js/Table')}}/dataTables.bootstrap4.min.js"></script>
         <script src="{{asset('js/Table')}}/dataTables.responsive.min.js"></script>
         <script src="{{asset('js/Table')}}/responsive.bootstrap4.min.js"></script>
+        <script src="{{asset('js/Table')}}/dataTables.buttons.min.js"></script>
+        <script src="{{asset('js/Table')}}/jszip.min.js"></script>
+        <script src="{{asset('js/Table')}}/pdfmake.min.js"></script>
+        <script src="{{asset('js/Table')}}/vfs_fonts.js"></script>
+        <script src="{{asset('js/Table')}}/buttons.html5.min.js"></script>
+        <script src="{{asset('js/Table')}}/buttons.print.min.js"></script>
+
         <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
         <script src="{{asset('js')}}/apexcharts.min.js"></script>    
         <script src="{{asset('js')}}/navbarAdmin.js"></script>
+        {{-- <script src="{{asset('js')}}/jspdf.umd.min.js"></script>
+        <script src="{{asset('js')}}/html2pdf.bundle.min.js"></script> --}}
 
         <script src="{{asset('js')}}{{$JS}}"></script>    
         

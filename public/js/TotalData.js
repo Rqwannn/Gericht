@@ -10,6 +10,10 @@ $(document).ready(function () {
         language: {
             search: "",
         },
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'pdf', 'excel'
+        ]
     });
     $("#TableOrder-2").DataTable({
         paging: true,
@@ -420,39 +424,4 @@ function orderDelete(Data) {
             }, 100);
         }
     });
-}
-
-function ToExcel(data){
-  $.ajax({
-    url: "http://127.0.0.1:8000/api/ToExcel",
-    type: "POST",
-    dataType: "JSON",
-    data : {
-      Status : data.target.dataset.type
-    },
-    error: function () {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer:
-                "<a href>Please report if there is a problem?</a>",
-        });
-    },
-    success: function (result) {
-      if(result == 'Excel Data Download File Successfully Is At Program C:'){
-        Swal.fire(
-          "Downloaded!",
-          `${result}`,
-          "success"
-      );
-      } else {
-        Swal.fire(
-          "Failed!",
-          `${result}`,
-          "error"
-      );
-      }
-    },
-});
 }

@@ -840,3 +840,39 @@ body {
     height: 1.5px;
     background: var(--gray);
 }
+
+.dt-button.buttons-csv.buttons-html5 {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+}
+
+.dt-button.buttons-csv.buttons-html5:hover {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+}
+
+.dt-button.buttons-excel.buttons-html5 {
+    background: var(--green);
+    color: #fff;
+    border: none;
+}
+
+.dt-button.buttons-excel.buttons-html5:hover {
+    background: var(--green);
+    color: #fff;
+    border: none;
+}
+
+.dt-button.buttons-pdf.buttons-html5 {
+    background: var(--red);
+    color: #fff;
+    border: none;
+}
+
+.dt-button.buttons-pdf.buttons-html5:hover {
+    background: var(--red);
+    color: #fff;
+    border: none;
+}

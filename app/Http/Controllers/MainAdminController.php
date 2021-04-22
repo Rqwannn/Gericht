@@ -65,6 +65,11 @@ class MainAdminController extends Controller
 
         if (count($setPesananSekarang) == 0 && count($setPesananLalu) == 0) {
             $HitungPersen = 0;
+        } else if (count($setPesananLalu) == 0 && count($setPesananSekarang) == 0) {
+            $HitungPersen = 0;
+        } else if (count($setPesananLalu) == 0 && count($setPesananSekarang) > 1) {
+            $setPesananLalu = 1;
+            $HitungPersen = round((100 * count($setPesananSekarang)) / $setPesananLalu);
         } else {
             $HitungPersen = round((100 * count($setPesananSekarang)) / count($setPesananLalu));
         }
@@ -85,8 +90,13 @@ class MainAdminController extends Controller
             }
         }
 
-        if (count($setUserSekarang) == 0 || count($setUserLalu) == 0) {
+        if (count($setUserSekarang) == 0) {
             $HitungSecondPersen = 0;
+        } else if (count($setUserLalu) == 0 && count($setUserSekarang) == 0) {
+            $HitungSecondPersen = 0;
+        } else if (count($setUserLalu) == 0 && count($setUserSekarang) > 0) {
+            $setUserLalu = 1;
+            $HitungSecondPersen = round((100 * count($setUserSekarang)) / $setUserLalu);
         } else {
             $HitungSecondPersen = round((100 * count($setUserSekarang)) / count($setUserLalu));
         }
@@ -107,8 +117,13 @@ class MainAdminController extends Controller
             }
         }
 
-        if (count($setSubscribeSekarang) == 0 || count($setSubscribeLalu) == 0) {
+        if (count($setSubscribeSekarang) == 0) {
             $HitungThirdPersen = 0;
+        } else if (count($setSubscribeLalu) == 0 && count($setSubscribeSekarang) == 0) {
+            $HitungThirdPersen = 0;
+        } else if (count($setSubscribeLalu) == 0 && count($setSubscribeSekarang) > 0) {
+            $setSubscribeLalu = 1;
+            $HitungThirdPersen = round((100 * count($setSubscribeSekarang)) / $setSubscribeLalu);
         } else {
             $HitungThirdPersen = round((100 * count($setSubscribeSekarang)) / count($setSubscribeLalu));
         }
