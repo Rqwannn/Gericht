@@ -86,7 +86,7 @@
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                                                <input type="password" value="{{old('password2')}}" name="password_confirmation" class="form-control @error('password2') is-invalid @enderror" id="exampleInputPassword1" autocomplete="off" placeholder="Comfirm your password">
+                                                <input type="password" value="{{old('password2')}}" name="password_confirmation" class="form-control @error('password2') is-invalid @enderror" id="exampleInputPassword1" autocomplete="off" placeholder="Confirm your password">
                                                 <div class="mt-2">
                                                     @error('password2') <!-- Dari name -->
                                                         <div class="wrong alert-danger">{{ $message }}</div>

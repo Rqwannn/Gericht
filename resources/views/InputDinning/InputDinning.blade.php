@@ -207,7 +207,7 @@
                         <div class="col-md-6">
                             <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Message Date</label>
-                                <input type="date" id="MessageDate" class="form-control">
+                                <input type="text" id="MessageDate" class="form-control">
                                 <label class="text-danger AuthTanggalTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>

@@ -362,9 +362,11 @@ $(".WrapperInfoTable").owlCarousel({
     autoplayTimeout: 5000,
 });
 
-if (JSON.parse(localStorage.getItem("Order"))) {
-    localStorage.removeItem("Order");
-}
+if(JSON.parse(localStorage.getItem('Order'))){
+    localStorage.removeItem('Order');
+  } else if(JSON.parse(localStorage.getItem('OrderTable'))){
+    localStorage.removeItem('OrderTable');
+  }
 
 function PayNowLink(Data) {
     $.ajax({

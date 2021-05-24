@@ -69,9 +69,6 @@ Route::group(["middleware" => "after"], function () {
     Route::get('/login', [LoginController::class, "index"])->name("login");
     Route::get('/register', [RegisterController::class, "index"])->name("register");
     Route::post('/register/tambah', [RegisterController::class, "tambah"]);
-
-    Route::get('/ForgotPassword', [ForgotPassword::class, "index"]);
-    Route::get('/ForgotPassword/VerifyEmail', [ForgotPassword::class, "EmailVerify"]);
 });
 
 Route::group(['middleware' => 'Cyber'], function () {

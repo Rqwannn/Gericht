@@ -13,7 +13,7 @@
     <div class="cardTableData mt-4">
         <div class="container">
             <div class="headerTable mt-3 mb-5">
-                <h5 class="mt-2">Table Order</h5>
+                <h5 class="mt-2">Order Failed</h5>
             </div>
         </div>
         <div id="contentTable">

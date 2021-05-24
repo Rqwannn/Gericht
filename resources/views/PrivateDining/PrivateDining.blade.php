@@ -17,11 +17,11 @@
         </div>
         <div class="privateDining-content">
             <p class="text-center" style="font-size: 15px; line-height: 28px; margin: 0 5%;" data-aos="fade-up">
-                Gericht, awalnya nama sebuah mitos, yang kini menjadi nama Grande Maison, 
-                di mana perpaduan makanan dan anggur ditampilkan dengan kehalusan dan modernitas. 
-                Produk-produknya, ditingkatkan dengan jus dan masakan, berkembang seiring dengan musim, 
-                disertai dengan anggur yang matang di ruang bawah tanah bersejarah tempat crus dan grands crus bertemu. 
-                Seni memotong meja atau menekuk adalah sorotan dari penemuan ini.
+                Gericht, originally the name of a myth, which is now a restaurant,
+                where the fusion of food and wine is presented with refinement and modernity.
+                Its products, enhanced by juices and cooking, evolve with the seasons,
+                accompanied by mature grapes in the historic cellar where crus and grands crus meet.
+                The art of cutting the table or bending is a highlight of this invention.
             </p>
         </div>
         <div class="privateDining-bottom">
@@ -45,7 +45,7 @@
                         Located on the top floor, this dining area can accommodate between 6 and 12 guests.</h5>
                 </div>
                 <div class="privateDining2-bottom">
-                    <button class="btn btn-orange text-white mt-3" data-aos="fade-left">Request Proposal</button>
+                    <button class="btn btn-orange text-white mt-3" onclick="Proposal('Japanese Table')" data-aos="fade-left">Request Proposal</button>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                         Located on the top floor, this dining room can accommodate between 12 and 20 guests.</h5>
                 </div>
                 <div class="privateDining2-bottom">
-                    <button class="btn btn-orange text-white mt-3" data-aos="fade-left">Request Proposal</button>
+                    <button class="btn btn-orange text-white mt-3" onclick="Proposal('Chinese Table')" data-aos="fade-left">Request Proposal</button>
                 </div>
             </div>
         </div>
@@ -120,6 +120,7 @@
                         <div class="content-privateDining-2 mt-3">
                             <p style="font-size: 14px; line-height: 28px;">Contrary to popular belief, Lorem Ipsum is not simply random text.
                             It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                            <button class="btn btn-orange text-white mt-3" onclick="Proposal('Dating Table')" data-aos="fade-up">Request Proposal</button>
                         </div>
                     </div>
                 </div>
@@ -136,6 +137,7 @@
                         <div class="content-privateDining-2 mt-3">
                             <p style="font-size: 14px; line-height: 28px;">Contrary to popular belief, Lorem Ipsum is not simply random text.
                             It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                            <button class="btn btn-orange text-white mt-3" onclick="Proposal('Family  Table')" data-aos="fade-up">Request Proposal</button>
                         </div>
                     </div>
                 </div>

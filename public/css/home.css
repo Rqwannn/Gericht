@@ -805,7 +805,6 @@ body {
     width: 50%;
     height: 100%;
     overflow-x: hidden;
-    z-index: 100;
 }
 
 .infoPaymentStatus {
@@ -837,8 +836,7 @@ body {
 }
 
 .barOne,
-.barTwo,
-.barThree {
+.barTwo {
     position: relative;
     margin-left: -100px;
     width: 30px;
@@ -847,14 +845,12 @@ body {
     transform: translateY(100%);
 }
 
-.barTwo,
-.barThree {
+.barTwo {
     margin-left: -200px;
 }
 
 .barOne::after,
-.barTwo::after,
-.barThree::after {
+.barTwo::after {
     content: "Book A Table";
     position: absolute;
     left: -100%;
@@ -865,10 +861,6 @@ body {
 }
 
 .barTwo::after {
-    content: "Order Food";
-}
-
-.barThree::after {
     content: "Into Payment";
 }
 
@@ -1088,4 +1080,15 @@ body {
     border: none;
     outline: none;
     color: #fff;
+}
+
+.ui-datepicker-next,
+.ui-datepicker-prev {
+    background: var(--light);
+    cursor: pointer;
+}
+
+.ui-datepicker-next:hover,
+.ui-datepicker-prev:hover {
+    background: var(--light);
 }

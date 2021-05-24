@@ -1597,3 +1597,7 @@ function PayNowLink(Data) {
         },
     });
 }
+
+if(JSON.parse(localStorage.getItem('OrderTable'))){
+    localStorage.removeItem('OrderTable');
+  }

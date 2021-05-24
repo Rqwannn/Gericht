@@ -153,7 +153,7 @@
     <div class="WrapperInfoTable owl-carousel" data-aos="fade-up">
 
             @foreach ($OrderTable as $result)
-                @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name)
+                @if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $Name || $result->konfirmasi == 1 && $result->id_user == $Name)
 
                 <?php 
                 

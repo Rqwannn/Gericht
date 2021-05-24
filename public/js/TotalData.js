@@ -10,10 +10,8 @@ $(document).ready(function () {
         language: {
             search: "",
         },
-        dom: 'Bfrtip',
-        buttons: [
-            'csv', 'pdf', 'excel'
-        ]
+        dom: "Bfrtip",
+        buttons: ["pdf", "excel"],
     });
     $("#TableOrder-2").DataTable({
         paging: true,
@@ -55,8 +53,7 @@ function funDelete(Data) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
-                            footer:
-                                "<a href>Please report if there is a problem?</a>",
+                            footer: "<a href>Please report if there is a problem?</a>",
                         });
                     },
                     success: function () {
@@ -301,8 +298,7 @@ function intDelete(Data) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
-                            footer:
-                                "<a href>Please report if there is a problem?</a>",
+                            footer: "<a href>Please report if there is a problem?</a>",
                         });
                     },
                     success: function () {
@@ -406,8 +402,7 @@ function orderDelete(Data) {
                             icon: "error",
                             title: "Oops...",
                             text: "Something went wrong!",
-                            footer:
-                                "<a href>Please report if there is a problem?</a>",
+                            footer: "<a href>Please report if there is a problem?</a>",
                         });
                     },
                     success: function () {

@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d1a508a7c1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('css')}}/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{asset('css')}}/jquery-ui.css">
     <link rel="stylesheet" href="{{asset('css')}}/home.css">
     <link rel="icon" href="{{asset('img')}}/MainLogo.png">
     <title>@yield('title')</title>
@@ -51,8 +52,9 @@
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"> --}}
-    <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
     <script src="{{asset('js')}}/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
     <script src="{{asset('js')}}/apexcharts.min.js"></script>
     <script src="{{asset('js')}}{{$JS}}"></script>
 </body>

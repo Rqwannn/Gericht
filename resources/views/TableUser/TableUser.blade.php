@@ -79,7 +79,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Available</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
