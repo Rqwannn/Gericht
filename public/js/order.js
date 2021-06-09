@@ -1,4 +1,5 @@
 function btnDetail(DataId) {
+
     $.ajax({
         url: "http://127.0.0.1:8000/Api/DetailOrder.php",
         type: "POST",
@@ -145,9 +146,9 @@ function btnDetail(DataId) {
                     </div>
                     <div class="col-md-12">
                         <div class="textValue d-flex mt-3 mb-5">
-                            <button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
+                            <button type="submit" onclick="PayNowLink(event, ${Id})">PayNow</button>
                             <button type="submit" onclick="DeleteOrderUser(${Id})">Delete Order</button>
-                            <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>
+                            <button type="submit" onclick="PayOnTheSpot(event, ${Id})">Pay On The Spot</button>
                         </div>
                     </div>
                 </div>
@@ -161,7 +162,7 @@ function btnDetail(DataId) {
             function getNumberPesanan() {
                 for (let index = 0; index < setNamaPesanan.length; index++) {
                     $(setAllOrder).append(`
-                            <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} X ${setJumlahPesanan[index]}</option>
+                            <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} - ${setJumlahPesanan[index]}</option>
                         `);
                 }
             }
@@ -242,15 +243,33 @@ function PayConfirmation(Data) {
     });
 }
 
-function PayOnTheSpot(Data) {
+function PayOnTheSpot(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[1].querySelector('.wrapperOrder-Food');
+    let namaPesanan = "";
+    let jmlPesanan = "";
+
+    for(let index = 0; index < getInput.options.length; index++){
+        if(index > 0){
+            const getData = getInput.options[index].innerHTML;
+            const pisahData = getData.split("-");
+            const setName = pisahData[0].trim(" ");
+            const setJml = pisahData[1].trim(" ");
+
+            namaPesanan += `${setName},`;
+            jmlPesanan += `${setJml},`;
+        }
+    }
+
     $.ajax({
         url: "http://127.0.0.1:8000/Api/PayProses.php",
         type: "POST",
         dataType: "JSON",
         data: {
             Id: Data,
+            nama : namaPesanan,
+            jml : jmlPesanan
         },
-        error: function () {
+        error: function (e) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -258,40 +277,55 @@ function PayOnTheSpot(Data) {
                 footer: "<a href>If there is a problem please report it!</a>",
             });
         },
-        success: function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: "success",
-                title: "The Order Has Been Made",
-            });
-
-            setTimeout(function () {
-                document.location.href = "/order";
-            }, 2200);
+        success: function (result) {
+            if(result.status == false){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener("mouseenter", Swal.stopTimer);
+                        toast.addEventListener("mouseleave", Swal.resumeTimer);
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "The Order Has Been Made",
+                });
+    
+                setTimeout(function () {
+                    document.location.href = "/order";
+                }, 2200);
+            }
         },
     });
 }
 
-function PayRestaurant(Data) {
+function PayRestaurant(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[5].childNodes[1].querySelector('.NameOfTable');
+
     $.ajax({
         url: "http://127.0.0.1:8000/Api/PayTableProses.php",
         type: "POST",
         dataType: "JSON",
         data: {
             Id: Data,
+            namaTable : getInput.innerHTML
         },
-        error: function () {
+        error: function (e) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -299,27 +333,45 @@ function PayRestaurant(Data) {
                 footer: "<a href>If there is a problem please report it!</a>",
             });
         },
-        success: function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-            });
+        success: function (result) {
+            if(result.status == false){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener("mouseenter", Swal.stopTimer);
+                            toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        },
+                    });
 
-            Toast.fire({
-                icon: "success",
-                title: "The Order Has Been Made",
-            });
-
-            setTimeout(function () {
-                window.location.reload();
-            }, 2200);
+                    Swal.fire({
+                        title: 'Success.',
+                        text: `The Order Has Been Made, the order will be forfeited in three hours`,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Close'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2200);
+                        }
+                    })
+                }
         },
     });
 }
@@ -368,7 +420,23 @@ if(JSON.parse(localStorage.getItem('Order'))){
     localStorage.removeItem('OrderTable');
   }
 
-function PayNowLink(Data) {
+function PayNowLink(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[1].querySelector('.wrapperOrder-Food');
+    let namaPesanan = "";
+    let jmlPesanan = "";
+
+    for(let index = 0; index < getInput.options.length; index++){
+        if(index > 0){
+            const getData = getInput.options[index].innerHTML;
+            const pisahData = getData.split("-");
+            const setName = pisahData[0].trim(" ");
+            const setJml = pisahData[1].trim(" ");
+
+            namaPesanan += `${setName},`;
+            jmlPesanan += `${setJml},`;
+        }
+    }
+
     $.ajax({
         url: "http://127.0.0.1:8000/midtrans",
         headers: {
@@ -378,8 +446,11 @@ function PayNowLink(Data) {
         dataType: "JSON",
         data: {
             id: Data,
+            nama : namaPesanan,
+            jml : jmlPesanan
         },
         error: function (e) {
+            console.log(e);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -388,23 +459,37 @@ function PayNowLink(Data) {
             });
         },
         success: function (result) {
-            window.open(result.redirect_url, '_blank').focus();
-            Swal.fire({
-                title: 'Success',
-                text: "Thank you For Completing The Payment.",
-                icon: 'success',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Close'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.reload();
-                }
-              })
+            if(result.status == false){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+            } else {
+                window.open(result.redirect_url, '_blank').focus();
+                Swal.fire({
+                    title: 'Success',
+                    text: "Thank you For Completing The Payment.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                  })
+            }
         },
     })
 }
 
-function PayTableNow(data){
+function PayTableNow(event, data){
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[5].childNodes[1].querySelector('.NameOfTable');
     const idTable = data;
     Swal.fire({
         title: 'Are you sure?',
@@ -424,21 +509,35 @@ function PayTableNow(data){
                 },
                 dataType : 'JSON',
                 data : {
-                    id : idTable
+                    id : idTable,
+                    namaTable : getInput.innerHTML
                 },
                 success : function (result) {
-                    window.open(result.redirect_url, '_blank').focus();
-                    Swal.fire({
-                        title: 'Success',
-                        text: "Thank you For Completing The Payment.",
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Close'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.reload();
+                    if(result.status == false){
+                        Swal.fire({
+                            title: 'Oppss.',
+                            text: `${result.massage}`,
+                            icon: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Close'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                            }
+                          })
+                        } else {
+                            window.open(result.redirect_url, '_blank').focus();
+                            Swal.fire({
+                                title: 'Success',
+                                text: "Thank you For Completing The Payment.",
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Close'
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.reload();
+                                }
+                              })
                         }
-                      })
                 },
                 error : function (e){
                     console.log(e);
@@ -456,8 +555,6 @@ function PayTableNow(data){
 
 const cardPageOrder = document.querySelectorAll('.cardPage-Order');
 const WrapperOverflow = document.querySelector('.WrapperOverflow');
-
-console.log(cardPageOrder);
 
 if(cardPageOrder.length < 7){
     WrapperOverflow.style.height = 'auto';

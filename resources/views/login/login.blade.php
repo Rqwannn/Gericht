@@ -82,8 +82,7 @@
                                         <button type="submit" name="submit" class="btn btn-orange text-white">Login</button>
                                         <label style="font-size: 15px">
                                             Sign In As 
-                                            <a href="/guest">Guest</a>,
-                                            <a href="/ForgotPassword">Forgot Password?</a>
+                                            <a href="/guest">Guest</a>
                                         </label>
                                     <div>
                                 </form>

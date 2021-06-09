@@ -99,9 +99,6 @@
                                             <label class="form-check-label" for="exampleCheck1" style="font-size: 15px;">{{ __('Remember Me') }}</label>
                                         </div>
                                         <button type="submit" name="submit" class="btn btn-orange text-white">Register</button>
-                                        <a class="btn btn-link" style="font-size: 15px;" href="/ForgotPassword">
-                                            Forgot Your Password?
-                                        </a>
                                     <div>
                                 </form>
                             </div>

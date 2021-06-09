@@ -192,23 +192,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="inputTable d-flex flex-column mb-3">
-                                <label class="mb-2">Name</label>
-                                <input type="text" id="NameUser" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>">
-                                <label class="text-danger AuthNamaTable mt-2" style="display: none; font-size: 15px;"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputTable d-flex flex-column mb-3">
-                                <label class="mb-2">Total Table</label>
-                                <input type="text" id="TotalOrder" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control">
-                                <label class="text-danger AuthTotalTable mt-2" style="display: none; font-size: 15px;"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Message Date</label>
                                 <input type="text" id="MessageDate" class="form-control">
                                 <label class="text-danger AuthTanggalTable mt-2" style="display: none; font-size: 15px;"></label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="TotalOrder" value="1" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control">
+                        <div class="col-md-12">
+                            <div class="inputTable d-flex flex-column mb-3">
+                                <label class="mb-2">Name</label>
+                                <input type="text" id="NameUser" class="form-control" value="<?php echo($Name != 'Guest') ? $Name : '' ?>">
+                                <label class="text-danger AuthNamaTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -2,6 +2,76 @@
 
 $conn = mysqli_connect("localhost", "root", "", "gericht");
 
+$getFood = mysqli_query($conn, "SELECT nama FROM makanan");
+$getDrink = mysqli_query($conn, "SELECT nama FROM minuman");
+$getDessert = mysqli_query($conn, "SELECT nama FROM dessert");
+
+$WrapperFood = [];
+$WrapperDrink = [];
+$WrapperDessert = [];
+
+foreach ($getFood as $item) {
+    $WrapperFood[] = $item['nama'];
+}
+
+foreach ($getDrink as $item) {
+    $WrapperDrink[] = $item['nama'];
+}
+
+foreach ($getDessert as $item) {
+    $WrapperDessert[] = $item['nama'];
+}
+
+$NamaPesanan = $_POST["nama"];
+$JmlPesanan = $_POST["jml"];
+
+$PisahNama = explode(",", $NamaPesanan);
+$PisahJml = explode(",", $JmlPesanan);
+
+for ($index = 0; $index < count($PisahNama) - 1; $index++) {
+
+    if (in_array($PisahNama[$index], $WrapperFood)) {
+        $getJml = $PisahJml[$index];
+        $getName = $PisahNama[$index];
+        $validData = mysqli_query($conn, "SELECT * FROM makanan WHERE tersedia < '$getJml' AND nama = '$getName'");
+        if (mysqli_num_rows($validData)) {
+            $NamaMenu = mysqli_fetch_assoc($validData)['nama'];
+            $data = [
+                'status' => false,
+                'massage' => "For the $NamaMenu order, the portion you ordered is not sufficient, please order it tomorrow"
+            ];
+            echo json_encode($data);
+            die;
+        }
+    } else if (in_array($PisahNama[$index], $WrapperDrink)) {
+        $getJml = $PisahJml[$index];
+        $getName = $PisahNama[$index];
+        $validData = mysqli_query($conn, "SELECT * FROM minuman WHERE tersedia < '$getJml' AND WHERE nama = '$getName'");
+        if (mysqli_num_rows($validData)) {
+            $NamaMenu = mysqli_fetch_assoc($validData)['nama'];
+            $data = [
+                'status' => false,
+                'massage' => "For the $NamaMenu order, the portion you ordered is not sufficient, please order it tomorrow"
+            ];
+            echo json_encode($data);
+            die;
+        }
+    } else if (in_array($PisahNama[$index], $WrapperDessert)) {
+        $getJml = $PisahJml[$index];
+        $getName = $PisahNama[$index];
+        $validData = mysqli_query($conn, "SELECT * FROM dessert WHERE tersedia < '$getJml' AND WHERE nama = '$getName'");
+        if (mysqli_num_rows($validData)) {
+            $NamaMenu = mysqli_fetch_assoc($validData)['nama'];
+            $data = [
+                'status' => false,
+                'massage' => "For the $NamaMenu order, the portion you ordered is not sufficient, please order it tomorrow"
+            ];
+            echo json_encode($data);
+            die;
+        }
+    }
+}
+
 $arrayMakanan = [];
 $arrayMinuman = [];
 $arrayDessert = [];

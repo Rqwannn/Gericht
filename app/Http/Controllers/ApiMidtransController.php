@@ -38,6 +38,67 @@ class ApiMidtransController extends Controller
             "id" => "required|integer",
         ]);
 
+        $getFood = $this->BaseData->SelectByFoodName();
+        $getDrink = $this->BaseData->SelectByDrinkName();
+        $getDessert = $this->BaseData->SelectByDessertName();
+
+        $WrapperFood = [];
+        $WrapperDrink = [];
+        $WrapperDessert = [];
+
+        foreach ($getFood as $item) {
+            $WrapperFood[] = $item->nama;
+        }
+
+        foreach ($getDrink as $item) {
+            $WrapperDrink[] = $item->nama;
+        }
+
+        foreach ($getDessert as $item) {
+            $WrapperDessert[] = $item->nama;
+        }
+
+        $NamaPesanan = $request->nama;
+        $JmlPesanan = $request->jml;
+
+        $PisahNama = explode(",", $NamaPesanan);
+        $PisahJml = explode(",", $JmlPesanan);
+
+        for ($index = 0; $index < count($PisahNama) - 1; $index++) {
+
+            if (in_array($PisahNama[$index], $WrapperFood)) {
+                $validData = $this->BaseData->ValidateFood($PisahJml[$index], $PisahNama[$index]);
+                if ($validData != null) {
+                    $data = [
+                        'status' => false,
+                        'massage' => "For the $validData->nama order, the portion you ordered is not sufficient, please order it tomorrow"
+                    ];
+                    return json_encode($data);
+                    die;
+                }
+            } else if (in_array($PisahNama[$index], $WrapperDrink)) {
+                $validData = $this->BaseData->ValidateDrink($PisahJml[$index], $PisahNama[$index]);
+                if ($validData != null) {
+                    $data = [
+                        'status' => false,
+                        'massage' => "For the $validData->nama order, the portion you ordered is not sufficient, please order it tomorrow"
+                    ];
+                    return json_encode($data);
+                    die;
+                }
+            } else if (in_array($PisahNama[$index], $WrapperDessert)) {
+                $validData = $this->BaseData->ValidateDessert($PisahJml[$index], $PisahNama[$index]);
+                if ($validData != null) {
+                    $data = [
+                        'status' => false,
+                        'massage' => "For the $validData->nama order, the portion you ordered is not sufficient, please order it tomorrow"
+                    ];
+                    return json_encode($data);
+                    die;
+                }
+            }
+        }
+
         if ($validation->fails()) {
             return response($validation->errors()->toJson(), 400);
         }
@@ -290,6 +351,19 @@ class ApiMidtransController extends Controller
         $validation = Validator::make($input, [
             "id" => "required|integer",
         ]);
+
+        $Name = $request->namaTable;
+
+        $ValidateTable = $this->BaseData->ValidateTable($Name);
+
+        if ($ValidateTable != null) {
+            $data = [
+                'status' => false,
+                'massage' => "Sorry the table you ordered is full"
+            ];
+            return json_encode($data);
+            die;
+        }
 
         if ($validation->fails()) {
             return response($validation->errors()->toJson(), 400);

@@ -427,9 +427,8 @@ SubmitOrder.addEventListener("click", function (event) {
 
                 if (Authorize == 0) {
                     for (cekJikaSudah = 0; cekJikaSudah <= 1; cekJikaSudah++) {
-                        const ParentWrapper = document.querySelector(
-                            ".FoodOrder"
-                        );
+                        const ParentWrapper =
+                            document.querySelector(".FoodOrder");
 
                         if (cekJikaSudah == 0) {
                             if (setOrderName.innerHTML == "Order...") {
@@ -598,9 +597,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                         harga: hasilPrice,
                                     };
 
-                                    let GetWrapper = setWrapperOrder(
-                                        setObjectDrink
-                                    );
+                                    let GetWrapper =
+                                        setWrapperOrder(setObjectDrink);
                                     $(ParentWrapper).append(GetWrapper);
 
                                     Drink.value = "Choose Your Drink";
@@ -641,9 +639,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                             harga: hasilPrice,
                                         };
 
-                                        let GetWrapper = setWrapperOrder(
-                                            setObjectDessert
-                                        );
+                                        let GetWrapper =
+                                            setWrapperOrder(setObjectDessert);
                                         $(ParentWrapper).append(GetWrapper);
 
                                         Dessert.value = "Choose Your Dessert";
@@ -681,9 +678,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                     harga: hasilPrice,
                                 };
 
-                                let GetWrapper = setWrapperOrder(
-                                    setObjectDrink
-                                );
+                                let GetWrapper =
+                                    setWrapperOrder(setObjectDrink);
                                 $(ParentWrapper).append(GetWrapper);
 
                                 Drink.value = "Choose Your Drink";
@@ -723,9 +719,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                         harga: hasilPrice,
                                     };
 
-                                    let GetWrapper = setWrapperOrder(
-                                        setObjectDessert
-                                    );
+                                    let GetWrapper =
+                                        setWrapperOrder(setObjectDessert);
                                     $(ParentWrapper).append(GetWrapper);
 
                                     Dessert.value = "Choose Your Dessert";
@@ -764,9 +759,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                     harga: hasilPrice,
                                 };
 
-                                let GetWrapper = setWrapperOrder(
-                                    setObjectDessert
-                                );
+                                let GetWrapper =
+                                    setWrapperOrder(setObjectDessert);
                                 $(ParentWrapper).append(GetWrapper);
 
                                 Dessert.value = "Choose Your Dessert";
@@ -796,9 +790,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                 InputTwice <= 3;
                                 InputTwice++
                             ) {
-                                const ParentWrapper = document.querySelector(
-                                    ".FoodOrder"
-                                );
+                                const ParentWrapper =
+                                    document.querySelector(".FoodOrder");
 
                                 if (InputTwice == 1) {
                                     if (
@@ -832,9 +825,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                             harga: hasilPrice,
                                         };
 
-                                        let GetWrapper = setWrapperOrder(
-                                            setObjectFood
-                                        );
+                                        let GetWrapper =
+                                            setWrapperOrder(setObjectFood);
                                         $(ParentWrapper).append(GetWrapper);
 
                                         Food.value = "Choose Your Food";
@@ -876,9 +868,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                             harga: hasilPrice,
                                         };
 
-                                        let GetWrapper = setWrapperOrder(
-                                            setObjectDrink
-                                        );
+                                        let GetWrapper =
+                                            setWrapperOrder(setObjectDrink);
                                         $(ParentWrapper).append(GetWrapper);
 
                                         Drink.value = "Choose Your Drink";
@@ -920,9 +911,8 @@ SubmitOrder.addEventListener("click", function (event) {
                                             harga: hasilPrice,
                                         };
 
-                                        let GetWrapper = setWrapperOrder(
-                                            setObjectDessert
-                                        );
+                                        let GetWrapper =
+                                            setWrapperOrder(setObjectDessert);
                                         $(ParentWrapper).append(GetWrapper);
 
                                         Dessert.value = "Choose Your Dessert";
@@ -1159,15 +1149,13 @@ PayNow.addEventListener("click", function () {
                         let setNamaPesanan = Nama_Pesanan.split(",");
                         let setJumlahPesanan = Jumlah_Pesanan.split(",");
 
-                        const setPembungkus = document.querySelector(
-                            ".FoodOrder"
-                        );
+                        const setPembungkus =
+                            document.querySelector(".FoodOrder");
                         const setName = document.querySelector(".yourName");
                         const setEmail = document.querySelector(".yourEmail");
                         const setFee = document.querySelector(".Order-Fee");
-                        const setTotalPayment = document.querySelector(
-                            ".totalPembayaran"
-                        );
+                        const setTotalPayment =
+                            document.querySelector(".totalPembayaran");
 
                         let id_Order = `id_order-${Id}`;
 
@@ -1198,9 +1186,8 @@ PayNow.addEventListener("click", function () {
                             const wrapperFullInfo = document.querySelector(
                                 ".contentPaymentDetail"
                             );
-                            const cardOrder = document.querySelector(
-                                ".infoLengkap"
-                            );
+                            const cardOrder =
+                                document.querySelector(".infoLengkap");
                             cardOrder.style.display = "block";
 
                             let setCard = `
@@ -1260,22 +1247,20 @@ PayNow.addEventListener("click", function () {
                             wrapperFullInfo.innerHTML = setCard;
 
                             const idUser = document.querySelector(".idUser");
-                            const btnInfoPayment = document.querySelector(
-                                ".btnInfoPayment"
-                            );
+                            const btnInfoPayment =
+                                document.querySelector(".btnInfoPayment");
 
                             if (idUser.innerHTML != "Guest") {
-                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(event, ${Id})">PayNow</button>
                                 <button type="submit" onclick="PayLaterLink()">PayLater</button>
-                                <button type="submit" onclick="PayOnTheSpot(${Id})">Pay On The Spot</button>`;
+                                <button type="submit" onclick="PayOnTheSpot(event, ${Id})">Pay On The Spot</button>`;
                             } else {
-                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(${Id})">PayNow</button>
-                                <button type="submit" onclick="PayIfGuest(${Id})">Pay On The Spot</button>`;
+                                btnInfoPayment.innerHTML = `<button type="submit" onclick="PayNowLink(event, ${Id})">PayNow</button>
+                                <button type="submit" onclick="PayIfGuest(event, ${Id})">Pay On The Spot</button>`;
                             }
 
-                            const setAllOrder = document.querySelector(
-                                ".wrapperOrder-Food"
-                            );
+                            const setAllOrder =
+                                document.querySelector(".wrapperOrder-Food");
 
                             function getNumberPesanan() {
                                 for (
@@ -1284,7 +1269,7 @@ PayNow.addEventListener("click", function () {
                                     index++
                                 ) {
                                     $(setAllOrder).append(`
-                                            <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} X ${setJumlahPesanan[index]}</option>
+                                            <option value="${setNamaPesanan[index]} X ${setJumlahPesanan[index]}">${setNamaPesanan[index]} - ${setJumlahPesanan[index]}</option>
                                         `);
                                 }
                             }
@@ -1332,15 +1317,33 @@ function PayLaterLink() {
     document.location.href = "/order";
 }
 
-function PayOnTheSpot(Data) {
+function PayOnTheSpot(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[1].querySelector('.wrapperOrder-Food');
+    let namaPesanan = "";
+    let jmlPesanan = "";
+
+    for(let index = 0; index < getInput.options.length; index++){
+        if(index > 0){
+            const getData = getInput.options[index].innerHTML;
+            const pisahData = getData.split("-");
+            const setName = pisahData[0].trim(" ");
+            const setJml = pisahData[1].trim(" ");
+
+            namaPesanan += `${setName},`;
+            jmlPesanan += `${setJml},`;
+        }
+    }
+
     $.ajax({
         url: "http://127.0.0.1:8000/Api/PayProses.php",
         type: "POST",
         dataType: "JSON",
         data: {
             Id: Data,
+            nama : namaPesanan,
+            jml : jmlPesanan
         },
-        error: function () {
+        error: function (e) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -1348,38 +1351,68 @@ function PayOnTheSpot(Data) {
                 footer: "<a href>If there is a problem please report it!</a>",
             });
         },
-        success: function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: "success",
-                title: "The Order Has Been Made",
-            });
-
-            setTimeout(function () {
-                document.location.href = "/order";
-            }, 2200);
+        success: function (result) {
+            if(result.status == false){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener("mouseenter", Swal.stopTimer);
+                        toast.addEventListener("mouseleave", Swal.resumeTimer);
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "The Order Has Been Made",
+                });
+    
+                setTimeout(function () {
+                    document.location.href = "/order";
+                }, 2200);
+            }
         },
     });
 }
 
-function PayIfGuest(Data) {
+function PayIfGuest(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[1].querySelector('.wrapperOrder-Food');
+    let namaPesanan = "";
+    let jmlPesanan = "";
+
+    for(let index = 0; index < getInput.options.length; index++){
+        if(index > 0){
+            const getData = getInput.options[index].innerHTML;
+            const pisahData = getData.split("-");
+            const setName = pisahData[0].trim(" ");
+            const setJml = pisahData[1].trim(" ");
+
+            namaPesanan += `${setName},`;
+            jmlPesanan += `${setJml},`;
+        }
+    }
+
     $.ajax({
         url: "http://127.0.0.1:8000/Api/PayProses.php",
         type: "POST",
         dataType: "JSON",
         data: {
             Id: Data,
+            nama : namaPesanan,
+            jml : jmlPesanan
         },
         error: function () {
             Swal.fire({
@@ -1389,27 +1422,40 @@ function PayIfGuest(Data) {
                 footer: "<a href>If there is a problem please report it!</a>",
             });
         },
-        success: function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: "success",
-                title: "The Order Has Been Made",
-            });
-
-            setTimeout(function () {
-                window.location.reload();
-            }, 2200);
+        success: function (result) {
+            if(result.status == false){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener("mouseenter", Swal.stopTimer);
+                        toast.addEventListener("mouseleave", Swal.resumeTimer);
+                    },
+                });
+    
+                Toast.fire({
+                    icon: "success",
+                    title: "The Order Has Been Made",
+                });
+    
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2200);
+            }
         },
     });
 }
@@ -1456,9 +1502,8 @@ ResetOrder.addEventListener("click", function () {
         if (result.isConfirmed) {
             const AuthTotalFood = document.querySelector(".AuthTotalFood");
             const AuthTotalDrink = document.querySelector(".AuthTotalDrink");
-            const AuthTotalDessert = document.querySelector(
-                ".AuthTotalDessert"
-            );
+            const AuthTotalDessert =
+                document.querySelector(".AuthTotalDessert");
             const AuthAddress = document.querySelector(".AuthAddress");
             const AuthName = document.querySelector(".AuthName");
             const AuthEmail = document.querySelector(".AuthEmail");
@@ -1542,7 +1587,23 @@ ResetOrder.addEventListener("click", function () {
     });
 });
 
-function PayNowLink(Data) {
+function PayNowLink(event, Data) {
+    const getInput = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[1].querySelector('.wrapperOrder-Food');
+    let namaPesanan = "";
+    let jmlPesanan = "";
+
+    for(let index = 0; index < getInput.options.length; index++){
+        if(index > 0){
+            const getData = getInput.options[index].innerHTML;
+            const pisahData = getData.split("-");
+            const setName = pisahData[0].trim(" ");
+            const setJml = pisahData[1].trim(" ");
+
+            namaPesanan += `${setName},`;
+            jmlPesanan += `${setJml},`;
+        }
+    }
+
     $.ajax({
         url: "http://127.0.0.1:8000/midtrans",
         headers: {
@@ -1552,6 +1613,8 @@ function PayNowLink(Data) {
         dataType: "JSON",
         data: {
             id: Data,
+            nama : namaPesanan,
+            jml : jmlPesanan
         },
         error: function (e) {
             Swal.fire({
@@ -1562,9 +1625,21 @@ function PayNowLink(Data) {
             });
         },
         success: function (result) {
-            const IFUser = document.querySelector('.idUser');
+            if(result.status == false ){
+                Swal.fire({
+                    title: 'Oppss.',
+                    text: `${result.massage}`,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Close'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                  })
+            } else {
+            const IFUser = document.querySelector(".idUser");
             window.open(result.redirect_url, "_blank").focus();
-            if(IFUser.innerHTML != "Guest"){
+            if (IFUser.innerHTML != "Guest") {
                 Swal.fire({
                     title: "Success",
                     text: "Thank you For Completing The Payment.",
@@ -1591,13 +1666,14 @@ function PayNowLink(Data) {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.reload();
-                    } 
+                    }
                 });
+            }
             }
         },
     });
 }
 
-if(JSON.parse(localStorage.getItem('OrderTable'))){
-    localStorage.removeItem('OrderTable');
-  }
+if (JSON.parse(localStorage.getItem("OrderTable"))) {
+    localStorage.removeItem("OrderTable");
+}

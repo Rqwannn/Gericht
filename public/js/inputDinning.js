@@ -222,20 +222,17 @@ const BtnStep1 = document.querySelector("#BtnStep1");
 BtnStep1.addEventListener("click", function () {
     const EmailValue = document.querySelector("#EmailUser");
     const NamaValue = document.querySelector("#NameUser");
-    const TotalOrder = document.querySelector("#TotalOrder");
     const MessageDate = document.querySelector("#MessageDate");
     const TableName = document.querySelector("#TableName");
 
     const AuthNamaTable = document.querySelector(".AuthNamaTable");
     const AuthEmailTable = document.querySelector(".AuthEmailTable");
-    const AuthTotalTable = document.querySelector(".AuthTotalTable");
     const AuthTanggalTable = document.querySelector(".AuthTanggalTable");
     const AuthTableName = document.querySelector(".AuthTableName");
 
     AuthEmailTable.style.display = "none";
     AuthNamaTable.style.display = "none";
     AuthTanggalTable.style.display = "none";
-    AuthTotalTable.style.display = "none";
     AuthTableName.style.display = "none";
 
     if (TableName.value == "") {
@@ -269,7 +266,7 @@ BtnStep1.addEventListener("click", function () {
                     TotalOrder.value >= TotalTersedia ||
                     TotalOrder.value == 0
                 ) {
-                    for (let index = 0; index <= 5; index++) {
+                    for (let index = 0; index <= 2; index++) {
                         if (EmailValue.value == "" && index == 0) {
                             AuthEmailTable.style.display = "block";
                             AuthEmailTable.innerHTML = "Email must be entered";
@@ -281,27 +278,6 @@ BtnStep1.addEventListener("click", function () {
                         } else if (MessageDate.value == "" && index == 2) {
                             AuthTanggalTable.style.display = "block";
                             AuthTanggalTable.innerHTML = "Date must be entered";
-                            continue;
-                        } else if (TotalOrder.value == "" && index == 3) {
-                            AuthTotalTable.style.display = "block";
-                            AuthTotalTable.innerHTML =
-                                "Total Table must be entered";
-                            continue;
-                        } else if (
-                            parseInt(TotalOrder.value) >=
-                                parseInt(TotalTersedia) &&
-                            index == 4
-                        ) {
-                            AuthTotalTable.style.display = "block";
-                            AuthTotalTable.innerHTML = `Only ${TotalTersedia} tables available`;
-                            continue;
-                        } else if (
-                            parseInt(TotalOrder.value) == 0 &&
-                            index == 5
-                        ) {
-                            AuthTotalTable.style.display = "block";
-                            AuthTotalTable.innerHTML =
-                                "The total cannot contain numbers of 0";
                             break;
                         }
                     }

@@ -57,6 +57,21 @@ class BaseData extends Model
         return DB::table("dessert")->select('dessert.nama', 'dessert.harga')->get();
     }
 
+    public function SelectByFoodName()
+    {
+        return DB::table("makanan")->select('nama')->get();
+    }
+
+    public function SelectByDrinkName()
+    {
+        return DB::table("minuman")->select('nama')->get();
+    }
+
+    public function SelectByDessertName()
+    {
+        return DB::table("dessert")->select('nama')->get();
+    }
+
     public function getHargaMakanan($data)
     {
         return DB::table("makanan")->select('makanan.harga')->where('nama', $data)->first();
@@ -182,5 +197,25 @@ class BaseData extends Model
     public function OverloadTable($getTotalByFetch, $getNameByFetch)
     {
         DB::statement("UPDATE private_table SET tersedia = tersedia - '$getTotalByFetch' WHERE nama = '$getNameByFetch' ");
+    }
+
+    public function ValidateFood($jml, $nama)
+    {
+        return DB::table('makanan')->where("tersedia", "<", $jml)->where("nama", $nama)->first();
+    }
+
+    public function ValidateDrink($jml, $nama)
+    {
+        return DB::table('minuman')->where("tersedia", "<", $jml)->where("nama", $nama)->first();
+    }
+
+    public function ValidateDessert($jml, $nama)
+    {
+        return DB::table('dessert')->where("tersedia", "<", $jml)->where("nama", $nama)->first();
+    }
+
+    public function ValidateTable($data)
+    {
+        return DB::table('private_table')->where("tersedia", "<", '1')->where("nama", $data)->first();
     }
 }

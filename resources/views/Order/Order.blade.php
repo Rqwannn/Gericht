@@ -191,7 +191,7 @@
                                             <div class="col-md-6">
                                                 <div class="textValue mb-3">
                                                     <p>Table Name</p>
-                                                    <p>{{$result->nama_meja}}</p>
+                                                    <p class="NameOfTable">{{$result->nama_meja}}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -215,9 +215,9 @@
                                             <div class="col-md-12">
                                                 <div class="textValue d-flex mt-3 mb-5">
                                                     @if ($result->proses == 1)
-                                                        <button type="submit" onclick="PayTableNow({{$idUser}})">Pay Now</button>  
+                                                        <button type="submit" onclick="PayTableNow(event, {{$idUser}})">Pay Now</button>  
                                                         <p style="display: none;"></p>
-                                                        <button type="submit" onclick="PayRestaurant({{$idUser}})">Pay At The Restaurant</button>
+                                                        <button type="submit" onclick="PayRestaurant(event, {{$idUser}})">Pay At The Restaurant</button>
                                                     @else
                                                         <p style="display: none;"></p>
                                                         <button type="submit" onclick="DeleteTableInfo({{$idUser}})">Delete History</button>
