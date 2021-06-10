@@ -12,6 +12,13 @@ $date = $_POST["MessageDate"];
 $konfirmasi = 0;
 $Proses = 1;
 
+$ValidateTable = mysqli_query($conn, "SELECT * FROM private_table WHERE tersedia < '1' AND nama = '$namaTabel' ");
+
+if (mysqli_num_rows($ValidateTable)) {
+    echo json_encode('Table Is Not Available');
+    die;
+}
+
 $cekStatus = mysqli_query($conn, "SELECT * FROM user WHERE name = '$id_user' ");
 $getStatus = mysqli_fetch_assoc($cekStatus);
 

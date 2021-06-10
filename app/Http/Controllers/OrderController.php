@@ -39,8 +39,10 @@ class OrderController extends Controller
         }
 
         foreach ($getAllTable as $result) {
-            if (strtotime(date("Y-m-d")) <= strtotime($result->tanggal_pesan) && $result->id_user == $request->session()->get("nama")) {
+            if (strtotime(date("Y-m-d")) < strtotime($result->tanggal_pesan) || $result->konfirmasi == 1 && $result->id_user == $request->session()->get("nama")) {
                 $cekIfTrueTable[] = $result;
+            } else if (strtotime(date("Y-m-d")) >= strtotime($result->tanggal_pesan) && $result->id_user == $request->session()->get("nama") && $result->konfirmasi == 0) {
+                $this->BaseData->deleteTable($result->id);
             }
         }
 
