@@ -26,7 +26,9 @@ for ($index = 0; $index < count($setArray); $index++) {
     }
 }
 
-$HitungPersen = round((100 * $setRevenue) / $setLastMont);
+$setLastRevenue = ($setLastMont < 1) ? 100 : $setLastMont;
+
+$HitungPersen = round((100 * $setRevenue) / $setLastRevenue);
 
 $Result = [];
 

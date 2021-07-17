@@ -420,3 +420,342 @@ function orderDelete(Data) {
         }
     });
 }
+
+
+function PageTambahMakanan(){
+    document.location.href = "/TambahMakanan";
+}
+
+function PageTambahMinuman(){
+    document.location.href = "/TambahMinuman";
+}
+
+function PageTambahDessert(){
+    document.location.href = "/TambahDessert";
+}
+
+function TambahDataMakanan(){
+    const nama = document.getElementById('nama');
+    const tersedia = document.getElementById('tersedia');
+    const price = document.getElementById('price');
+    const explanation = document.getElementById('explanation');
+    const picture = document.getElementById('picture').files[0];
+
+    if(nama.value == "" || tersedia.value == "" || price.value == "" || explanation.value == "" || !picture){
+        Swal.fire(
+            "Oopppss....",
+            "No Input Is Allowed",
+            "error"
+        );
+    } else {
+        let Form = new FormData();
+
+        Form.append('nama', nama.value);
+        Form.append('tersedia', tersedia.value);
+        Form.append('price', price.value);
+        Form.append('explanation', explanation.value);
+        Form.append('picture', picture);
+
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/TambahMakanan",
+            type : 'POST',
+            dataType : 'JSON',
+            data : Form,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success : function (result) {
+                if(result == "Food Data Added Successfully"){
+                    Swal.fire({
+                        title: "Success",
+                        text: `${result}`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Submit",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = "/totalMenu"
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Ooppss...",
+                        text: `${result}`,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Close",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        }
+                    });
+                }
+            },
+            error : function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: "<a href>Please report if there is a problem?</a>",
+                });
+            }
+        })
+    }
+}
+
+function TambahDataMinuman(){
+    const nama = document.getElementById('nama');
+    const tersedia = document.getElementById('tersedia');
+    const price = document.getElementById('price');
+    const explanation = document.getElementById('explanation');
+    const picture = document.getElementById('picture').files[0];
+
+    if(nama.value == "" || tersedia.value == "" || price.value == "" || explanation.value == "" || !picture){
+        Swal.fire(
+            "Oopppss....",
+            "No Input Is Allowed",
+            "error"
+        );
+    } else {
+        let Form = new FormData();
+
+        Form.append('nama', nama.value);
+        Form.append('tersedia', tersedia.value);
+        Form.append('price', price.value);
+        Form.append('explanation', explanation.value);
+        Form.append('picture', picture);
+
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/TambahMinuman",
+            type : 'POST',
+            dataType : 'JSON',
+            data : Form,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success : function (result) {
+                if(result == "Drink Data Added Successfully"){
+                    Swal.fire({
+                        title: "Success",
+                        text: `${result}`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Submit",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = "/totalMenu"
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Ooppss...",
+                        text: `${result}`,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Close",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        }
+                    });
+                }
+            },
+            error : function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: "<a href>Please report if there is a problem?</a>",
+                });
+            }
+        })
+    }
+}
+
+function TambahDataDessert(){
+    const nama = document.getElementById('nama');
+    const tersedia = document.getElementById('tersedia');
+    const price = document.getElementById('price');
+    const explanation = document.getElementById('explanation');
+    const picture = document.getElementById('picture').files[0];
+
+    if(nama.value == "" || tersedia.value == "" || price.value == "" || explanation.value == "" || !picture){
+        Swal.fire(
+            "Oopppss....",
+            "No Input Is Allowed",
+            "error"
+        );
+    } else {
+        let Form = new FormData();
+
+        Form.append('nama', nama.value);
+        Form.append('tersedia', tersedia.value);
+        Form.append('price', price.value);
+        Form.append('explanation', explanation.value);
+        Form.append('picture', picture);
+
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/TambahDessert",
+            type : 'POST',
+            dataType : 'JSON',
+            data : Form,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success : function (result) {
+                if(result == "Dessert Data Added Successfully"){
+                    Swal.fire({
+                        title: "Success",
+                        text: `${result}`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Submit",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = "/totalMenu"
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Ooppss...",
+                        text: `${result}`,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Close",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        }
+                    });
+                }
+            },
+            error : function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: "<a href>Please report if there is a problem?</a>",
+                });
+            }
+        })
+    }
+}
+
+function UpdateDataMenu(){
+    const nama = document.getElementById('nama');
+    const tersedia = document.getElementById('tersedia');
+    const price = document.getElementById('price');
+    const explanation = document.getElementById('explanation');
+    const oldPicture = document.getElementById('oldPicture');
+    const idUser = document.getElementById('idUser');
+    const picture = document.getElementById('picture').files[0];
+
+    if(nama.value == "" || tersedia.value == "" || price.value == "" || explanation.value == ""){
+        Swal.fire(
+            "Oopppss....",
+            "No Input Is Allowed",
+            "error"
+        );
+    } else {
+        let Form = new FormData();
+
+        Form.append('nama', nama.value);
+        Form.append('tersedia', tersedia.value);
+        Form.append('price', price.value);
+        Form.append('oldPicture', oldPicture.value);
+        Form.append('explanation', explanation.value);
+        Form.append('id', idUser.value);
+
+        if(picture){
+            Form.append('picture', picture);
+        }
+
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/UpdateMenuData",
+            type : 'POST',
+            dataType : 'JSON',
+            data : Form,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success : function (result) {
+                if(result == "Data Updated Successfully"){
+                    Swal.fire({
+                        title: "Success",
+                        text: `${result}`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Submit",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = "/totalMenu"
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Ooppss...",
+                        text: `${result}`,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Close",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        }
+                    });
+                }
+            },
+            error : function (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: "<a href>Please report if there is a problem?</a>",
+                });
+            }
+        })
+    }
+}
+
+function DeleteDataMenu(idMenu, namaMenu){
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/DeleteMenuData",
+        type : 'POST',
+        dataType : 'JSON',
+        data : {
+            id : idMenu,
+            nama : namaMenu
+        },
+        success : function (result) {
+            if(result == "Data Deleted Successfully"){
+                Swal.fire({
+                    title: "Success",
+                    text: `${result}`,
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Submit",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href = "/totalMenu"
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Ooppss...",
+                    text: `${result}`,
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Close",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    }
+                });
+            }
+        },
+        error : function (e) {
+            console.log(e);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: "<a href>Please report if there is a problem?</a>",
+            });
+        }
+    })
+}

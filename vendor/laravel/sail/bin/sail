@@ -25,6 +25,10 @@ export DB_PORT=${DB_PORT:-3306}
 export WWWUSER=${WWWUSER:-$UID}
 export WWWGROUP=${WWWGROUP:-$(id -g)}
 
+export SAIL_SHARE_DASHBOARD=${SAIL_SHARE_DASHBOARD:-4040}
+export SAIL_SHARE_SERVER_HOST=${SAIL_SHARE_SERVER_HOST:-"laravel-sail.site"}
+export SAIL_SHARE_SERVER_PORT=${SAIL_SHARE_SERVER_PORT:-8080}
+
 if [ "$MACHINE" == "linux" ]; then
     export SEDCMD="sed -i"
 elif [ "$MACHINE" == "mac" ]; then
@@ -41,7 +45,7 @@ fi
 # Determine if Sail is currently up...
 PSRESULT="$(docker-compose ps -q)"
 
-if docker-compose ps | grep 'Exit'; then
+if docker-compose ps | grep $APP_SERVICE | grep 'Exit'; then
     echo -e "${WHITE}Shutting down old Sail processes...${NC}" >&2
 
     docker-compose down > /dev/null 2>&1
@@ -77,6 +81,19 @@ if [ $# -gt 0 ]; then
                 -u sail \
                 "$APP_SERVICE" \
                 php "$@"
+        else
+            sail_is_not_running
+        fi
+
+    # Proxy vendor binary commands on the application container...
+    elif [ "$1" == "bin" ]; then
+        shift 1
+
+        if [ "$EXEC" == "yes" ]; then
+            docker-compose exec \
+                -u sail \
+                "$APP_SERVICE" \
+                ./vendor/bin/"$@"
         else
             sail_is_not_running
         fi
@@ -227,6 +244,18 @@ if [ $# -gt 0 ]; then
             sail_is_not_running
         fi
 
+    # Initiate a MySQL CLI terminal session within the "mariadb" container...
+    elif [ "$1" == "mariadb" ]; then
+        shift 1
+
+        if [ "$EXEC" == "yes" ]; then
+            docker-compose exec \
+                mariadb \
+                bash -c 'MYSQL_PWD=${MYSQL_PASSWORD} mysql -u ${MYSQL_USER} ${MYSQL_DATABASE}'
+        else
+            sail_is_not_running
+        fi
+
     # Initiate a PostgreSQL CLI terminal session within the "pgsql" container...
     elif [ "$1" == "psql" ]; then
         shift 1
@@ -264,14 +293,27 @@ if [ $# -gt 0 ]; then
             sail_is_not_running
         fi
 
+    # Initiate a Redis CLI terminal session within the "redis" container...
+    elif [ "$1" == "redis" ] ; then
+        shift 1
+
+        if [ "$EXEC" == "yes" ]; then
+            docker-compose exec \
+                redis \
+                redis-cli
+        else
+            sail_is_not_running
+        fi
+
     # Share the site...
     elif [ "$1" == "share" ]; then
         shift 1
 
         if [ "$EXEC" == "yes" ]; then
-            docker run --init beyondcodegmbh/expose-server:latest share http://host.docker.internal:"$APP_PORT" \
-            --server-host=laravel-sail.site \
-            --server-port=8080 \
+            docker run --init --rm -p $SAIL_SHARE_DASHBOARD:4040 beyondcodegmbh/expose-server:latest share http://host.docker.internal:"$APP_PORT" \
+            --server-host="$SAIL_SHARE_SERVER_HOST" \
+            --server-port="$SAIL_SHARE_SERVER_PORT" \
+            --auth="$SAIL_SHARE_TOKEN" \
             "$@"
         else
             sail_is_not_running

@@ -1344,6 +1344,7 @@ function PayOnTheSpot(event, Data) {
             jml : jmlPesanan
         },
         error: function (e) {
+            console.log(e);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",

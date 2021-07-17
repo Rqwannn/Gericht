@@ -182,7 +182,8 @@ var options = {
     url : 'http://127.0.0.1:8000/Api/setRevenue.php',
     type: 'POST',
     dataType: 'JSON',
-    error : function(){
+    error : function(e){
+      console.log(e);
       alert("Opps");
     },
     success : function(result){
@@ -223,5 +224,3 @@ var options = {
       PersenSubscribe.innerHTML = result.PersenSubscribe;
     }
 })
-
-console.log(window);

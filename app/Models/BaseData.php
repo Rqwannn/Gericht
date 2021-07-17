@@ -218,4 +218,49 @@ class BaseData extends Model
     {
         return DB::table('private_table')->where("tersedia", "<", '1')->where("nama", $data)->first();
     }
+
+    public function ValidateFoodTrue($nama, $id)
+    {
+        return DB::table('makanan')->where(['nama' => $nama, 'id' => $id])->first();
+    }
+
+    public function ValidateDrinkTrue($nama, $id)
+    {
+        return DB::table('minuman')->where(['nama' => $nama, 'id' => $id])->first();
+    }
+
+    public function ValidateDessertTrue($nama, $id)
+    {
+        return DB::table('dessert')->where(['nama' => $nama, 'id' => $id])->first();
+    }
+
+    public function UpdateMenuFood($data, $id)
+    {
+        DB::table('makanan')->where('id', $id)->update($data);
+    }
+
+    public function UpdateMenuDrink($data, $id)
+    {
+        DB::table('minuman')->where('id', $id)->update($data);
+    }
+
+    public function UpdateMenuDessert($data, $id)
+    {
+        DB::table('dessert')->where('id', $id)->update($data);
+    }
+
+    public function DeleteMakananMenu($nama, $id)
+    {
+        DB::table('makanan')->where(['nama' => $nama, 'id' => $id])->delete();
+    }
+
+    public function DeleteMinumanMenu($nama, $id)
+    {
+        DB::table('minuman')->where(['nama' => $nama, 'id' => $id])->delete();
+    }
+
+    public function DeleteDessertMenu($nama, $id)
+    {
+        DB::table('dessert')->where(['nama' => $nama, 'id' => $id])->delete();
+    }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BaseData;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class InputDinningController extends Controller
 {
@@ -35,6 +38,9 @@ class InputDinningController extends Controller
             "Dessert" => $this->BaseData->getDessert(),
             "StatusUser" => $photo->status
         ];
+
+        // $encrypted = Crypt::encryptString($photo->status);
+        // $decrypted = Crypt::decryptString($encrypted);
 
         return view("InputDinning/InputDinning", $data);
     }

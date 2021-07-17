@@ -46,7 +46,7 @@ for ($index = 0; $index < count($PisahNama) - 1; $index++) {
     } else if (in_array($PisahNama[$index], $WrapperDrink)) {
         $getJml = $PisahJml[$index];
         $getName = $PisahNama[$index];
-        $validData = mysqli_query($conn, "SELECT * FROM minuman WHERE tersedia < '$getJml' AND WHERE nama = '$getName'");
+        $validData = mysqli_query($conn, "SELECT * FROM minuman WHERE tersedia < '$getJml' AND nama = '$getName'");
         if (mysqli_num_rows($validData)) {
             $NamaMenu = mysqli_fetch_assoc($validData)['nama'];
             $data = [
@@ -59,7 +59,7 @@ for ($index = 0; $index < count($PisahNama) - 1; $index++) {
     } else if (in_array($PisahNama[$index], $WrapperDessert)) {
         $getJml = $PisahJml[$index];
         $getName = $PisahNama[$index];
-        $validData = mysqli_query($conn, "SELECT * FROM dessert WHERE tersedia < '$getJml' AND WHERE nama = '$getName'");
+        $validData = mysqli_query($conn, "SELECT * FROM dessert WHERE tersedia < '$getJml' AND nama = '$getName'");
         if (mysqli_num_rows($validData)) {
             $NamaMenu = mysqli_fetch_assoc($validData)['nama'];
             $data = [

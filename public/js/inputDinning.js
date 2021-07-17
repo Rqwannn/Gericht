@@ -239,9 +239,10 @@ BtnStep1.addEventListener("click", function () {
             EmailValue.value == "" ||
             NamaValue.value == "" ||
             MessageDate.value == "" ||
-            TableName.value == ""
+            TableName.value == "" ||
+            !EmailValue.value.includes("@")
         ) {
-            for (let index = 0; index <= 3; index++) {
+            for (let index = 0; index <= 4; index++) {
                 if (EmailValue.value == "" && index == 0) {
                     AuthEmailTable.style.display = "block";
                     AuthEmailTable.innerHTML = "Email must be entered";
@@ -257,194 +258,52 @@ BtnStep1.addEventListener("click", function () {
                 }   else if (TableName.value == "" && index == 3) {
                     AuthTableName.style.display = "block";
                     AuthTableName.innerHTML = "Table must be entered";
+                    continue;
+                } else if (!EmailValue.value.includes("@") && EmailValue.value.length > 0 && index == 4) {
+                    AuthEmailTable.style.display = "block";
+                    AuthEmailTable.innerHTML = "Email must have an @ symbol";
                     break;
                 }
             }
         } else {
 
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Do you want to pay off immediately?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#fb6340",
-                confirmButtonText: "Yes, Pay Now",
-                cancelButtonText: "No, Pay Later",
-            }).then((result) => {
-                if (result.isConfirmed) {
+            const GetStatus = document.getElementById('GetStatus');
 
-                    $.ajax({
-                        url: "http://127.0.0.1:8000/Api/OrderTable.php",
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            id_user: $("#Id_User").val(),
-                            NamaTabel: $("#TableName").val(),
-                            Nama: $("#NameUser").val(),
-                            Email: $("#EmailUser").val(),
-                            Total: $("#TotalOrder").val(),
-                            MessageDate: $("#MessageDate").val(),
-                        },
-                        error: function (e) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops...",
-                                text: "Something went wrong!",
-                                footer:
-                                    "<a href>If there is a problem please report it immediately!</a>",
-                            });
-                        },
-                        success: function (result) {
-                            $.ajax({
-                                url:
-                                    "http://127.0.0.1:8000/TablePayment",
-                                headers: {
-                                    "X-CSRF-Token": $(
-                                        'meta[name="csrf-token"]'
-                                    ).attr("content"),
-                                },
-                                type: "POST",
-                                dataType: "JSON",
-                                data: {
-                                    id: result.id,
-                                    namaTable : TableName.value
-                                },
-                                error: function (e) {
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Oops...",
-                                        text: "Something went wrong!",
-                                        footer:
-                                            "<a href>If there is a problem please report it!</a>",
-                                    });
-                                },
-                                success: function (result) {
-                                    if(result.status == false){
-                                        Swal.fire({
-                                            title: 'Oppss.',
-                                            text: `${result.massage}`,
-                                            icon: 'error',
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Close'
-                                          }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                
-                                            }
-                                          })
-                                        } else {
-                                            window
-                                            .open(
-                                                result.redirect_url,
-                                                "_blank"
-                                            )
-                                            .focus();
-                                        Swal.fire({
-                                            title: "Success",
-                                            text:
-                                                "Thank you For Completing The Payment.",
-                                            icon: "success",
-                                            showCancelButton: true,
-                                            confirmButtonColor: "#3085d6",
-                                            cancelButtonColor: "#d33",
-                                            confirmButtonText:
-                                                "To The Order Page",
-                                            cancelButtonText: "Stay Here",
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                document.location.href =
-                                                    "/order";
-                                            } else if (
-                                                !result.isConfirmed
-                                            ) {
-                                                const CircleOne = document.querySelector(
-                                                    ".barOne"
-                                                );
-                                                const CircleOneAfter = document.querySelector(
-                                                    ".LineOne"
-                                                );
-                                                const Check = document.querySelector(
-                                                    ".circle-1"
-                                                );
-                                                const iconTable = document.querySelector(
-                                                    ".fa-feather-alt"
-                                                );
-    
-                                                CircleOne.style.background =
-                                                    " #2dce89";
-                                                CircleOneAfter.style.background =
-                                                    "#2dce89";
-                                                Check.style.display =
-                                                    "block";
-                                                Check.style.color = "white";
-                                                iconTable.style.display =
-                                                    "none";
-    
-                                                const CircleTow = document.querySelector(
-                                                    ".barTwo"
-                                                );
-                                                const CheckTwo = document.querySelector(
-                                                    ".circle-2"
-                                                );
-                                                const iconTableTwo = document.querySelector(
-                                                    ".fa-credit-card"
-                                                );
-    
-                                                CircleTow.style.background =
-                                                    " #2dce89";
-                                                CheckTwo.style.display =
-                                                    "block";
-                                                CheckTwo.style.color =
-                                                    "white";
-                                                iconTableTwo.style.display =
-                                                    "none";
-                                            }
-                                        });
-                                    }
-                                },
-                            });
-                        },
-                    });
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    $.ajax({
-                        url: "http://127.0.0.1:8000/Api/OrderTable.php",
-                        type: "POST",
-                        dataType: "JSON",
-                        data: {
-                            id_user: $("#Id_User").val(),
-                            NamaTabel: $("#TableName").val(),
-                            Nama: $("#NameUser").val(),
-                            Email: $("#EmailUser").val(),
-                            Total: $("#TotalOrder").val(),
-                            MessageDate: $("#MessageDate").val(),
-                        },
-                        error: function () {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops...",
-                                text: "Something went wrong!",
-                                footer:
-                                    "<a href>If there is a problem please report it immediately!</a>",
-                            });
-                        },
-                        success: function (result) {
-                            const Name = result.nama;
-
-                            Swal.fire(
-                                "Begged To Pay Immediately?",
-                                `${Name}, The table that you ordered has been processed`,
-                                "success"
-                            );
-
-                            setTimeout(() => {
-                                document.location.href = "/order";
-                            }, 700);
-                        },
-                    });
-                }
-            });
+            if(GetStatus.value == "Guest"){
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to pay off immediately?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#fb6340",
+                    confirmButtonText: "Yes, Pay Now",
+                    cancelButtonText: "Cancel",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        AjaxBayarSekarang();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to pay off immediately?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#fb6340",
+                    confirmButtonText: "Yes, Pay Now",
+                    cancelButtonText: "No, Pay Later",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        AjaxBayarSekarang();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        AjaxBayarNanti();
+                    }
+                });
+            }
         }
 });
 
@@ -503,14 +362,12 @@ BtnReset1.addEventListener("click", function () {
 
     const AuthNamaTable = document.querySelector(".AuthNamaTable");
     const AuthEmailTable = document.querySelector(".AuthEmailTable");
-    const AuthTotalTable = document.querySelector(".AuthTotalTable");
     const AuthTanggalTable = document.querySelector(".AuthTanggalTable");
     const AuthTableName = document.querySelector(".AuthTableName");
 
     AuthEmailTable.style.display = "none";
     AuthNamaTable.style.display = "none";
     AuthTanggalTable.style.display = "none";
-    AuthTotalTable.style.display = "none";
     AuthTableName.style.display = "none";
 
     NameUser.value = "";
@@ -537,4 +394,176 @@ if(JSON.parse(localStorage.getItem('OrderTable'))){
     const TableName = document.getElementById('TableName');
 
     TableName.value = getData;
+}
+
+function AjaxBayarNanti(){
+    $.ajax({
+        url: "http://127.0.0.1:8000/Api/OrderTable.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            id_user: $("#Id_User").val(),
+            NamaTabel: $("#TableName").val(),
+            Nama: $("#NameUser").val(),
+            Email: $("#EmailUser").val(),
+            Total: $("#TotalOrder").val(),
+            MessageDate: $("#MessageDate").val(),
+        },
+        error: function () {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer:
+                    "<a href>If there is a problem please report it immediately!</a>",
+            });
+        },
+        success: function (result) {
+            const Name = result.nama;
+
+            Swal.fire(
+                "Begged To Pay Immediately?",
+                `${Name}, The table that you ordered has been processed`,
+                "success"
+            );
+
+            setTimeout(() => {
+                document.location.href = "/order";
+            }, 700);
+        },
+    });
+}
+
+function AjaxBayarSekarang(){
+    $.ajax({
+        url: "http://127.0.0.1:8000/Api/OrderTable.php",
+        type: "POST",
+        dataType: "JSON",
+        data: {
+            id_user: $("#Id_User").val(),
+            NamaTabel: $("#TableName").val(),
+            Nama: $("#NameUser").val(),
+            Email: $("#EmailUser").val(),
+            Total: $("#TotalOrder").val(),
+            MessageDate: $("#MessageDate").val(),
+        },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer:
+                    "<a href>If there is a problem please report it immediately!</a>",
+            });
+        },
+        success: function (result) {
+            $.ajax({
+                url:
+                    "http://127.0.0.1:8000/TablePayment",
+                headers: {
+                    "X-CSRF-Token": $(
+                        'meta[name="csrf-token"]'
+                    ).attr("content"),
+                },
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    id: result.id,
+                    namaTable : TableName.value
+                },
+                error: function (e) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        footer:
+                            "<a href>If there is a problem please report it!</a>",
+                    });
+                },
+                success: function (result) {
+                    if(result.status == false){
+                        Swal.fire({
+                            title: 'Oppss.',
+                            text: `${result.massage}`,
+                            icon: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Close'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                
+                            }
+                          })
+                        } else {
+                            window
+                            .open(
+                                result.redirect_url,
+                                "_blank"
+                            )
+                            .focus();
+                        Swal.fire({
+                            title: "Success",
+                            text:
+                                "Thank you For Completing The Payment.",
+                            icon: "success",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText:
+                                "To The Order Page",
+                            cancelButtonText: "Stay Here",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.location.href =
+                                    "/order";
+                            } else if (
+                                !result.isConfirmed
+                            ) {
+                                const CircleOne = document.querySelector(
+                                    ".barOne"
+                                );
+                                const CircleOneAfter = document.querySelector(
+                                    ".LineOne"
+                                );
+                                const Check = document.querySelector(
+                                    ".circle-1"
+                                );
+                                const iconTable = document.querySelector(
+                                    ".fa-feather-alt"
+                                );
+
+                                CircleOne.style.background =
+                                    " #2dce89";
+                                CircleOneAfter.style.background =
+                                    "#2dce89";
+                                Check.style.display =
+                                    "block";
+                                Check.style.color = "white";
+                                iconTable.style.display =
+                                    "none";
+
+                                const CircleTow = document.querySelector(
+                                    ".barTwo"
+                                );
+                                const CheckTwo = document.querySelector(
+                                    ".circle-2"
+                                );
+                                const iconTableTwo = document.querySelector(
+                                    ".fa-credit-card"
+                                );
+
+                                CircleTow.style.background =
+                                    " #2dce89";
+                                CheckTwo.style.display =
+                                    "block";
+                                CheckTwo.style.color =
+                                    "white";
+                                iconTableTwo.style.display =
+                                    "none";
+                            }
+                        });
+                    }
+                },
+            });
+        },
+    });
 }

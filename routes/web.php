@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ForgotPassword;
 
 // User
 
@@ -24,6 +23,7 @@ use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\TotalOrderController;
 use App\Http\Controllers\TotalUserController;
+use App\Http\Controllers\TotalMenuController;
 
 use App\Http\Controllers\ApiMidtransController;
 
@@ -78,7 +78,13 @@ Route::group(['middleware' => 'Cyber'], function () {
     Route::get("/profileAdmin", [ProfileAdminController::class, "index"]);
     Route::get("/totalOrder", [TotalOrderController::class, "index"]);
     Route::get("/totalUser", [TotalUserController::class, "index"]);
+    Route::get("/totalMenu", [TotalMenuController::class, "index"]);
+    Route::get("/updateMenu/{id}/{nama}", [TotalMenuController::class, "updateMenuView"]);
     Route::get("/updateUser/{id}", [TotalUserController::class, "updateUserView"]);
+
+    Route::get("/TambahMakanan", [TotalMenuController::class, "TambahMakanan"]);
+    Route::get("/TambahMinuman", [TotalMenuController::class, "TambahMinuman"]);
+    Route::get("/TambahDessert", [TotalMenuController::class, "TambahDessert"]);
 
     Route::get('/setData', [MainAdminController::class, "setData"]);
 });

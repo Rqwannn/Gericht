@@ -71,6 +71,15 @@
                 </a>
               </li>
             </ul>
+
+            <ul class="sideNav-link <?php echo($Status == "Total Menu") ? 'activeBG' : '' ?> mt-2">
+              <li>
+                <a class="nav-link <?php echo($Status == "Total Menu") ? 'activeColor' : '' ?>" href="/totalMenu">
+                  <i class="material-icons <?php echo($CekIcon == "Total_Menu") ? '' : 'totalUserIcon' ?>">library_books</i>
+                  <p>Total Menu</p>
+                </a>
+              </li>
+            </ul>
            
             <ul class="sideNav-link <?php echo($Status == "Order Failed") ? 'activeBG' : '' ?> mt-2">
               <li>

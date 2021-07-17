@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Apr 2021 pada 15.42
+-- Waktu pembuatan: 14 Jun 2021 pada 17.24
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.1
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `alamat`, `kota`, `negara`, `postal_code`, `status`, `pendidikan`, `created_at`, `update_at`, `gambar`) VALUES
-(1, 'Eren Yeager', 'eren@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Takeshita Dori (Takeshita Street) a narrow 400-meter street lined with shops, boutiques', 'Tokyo', 'Japan', '135-6027', 'Web Developer-Gericht Team', 'Kyoto University', '2021-02-11 11:43:21', '2021-04-05 09:42:49', 'profileAdmin/eren.jpg');
+(1, 'Eren Yeager', 'eren@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Takeshita Dori (Takeshita Street) a narrow 400-meter street lined with shops, boutiques', 'Shigashima', 'Japan', '135-6027', 'Web Developer-Gericht Team', 'Kyoto University', '2021-02-11 11:43:21', '2021-06-11 15:37:22', 'profileAdmin/eren.jpg');
 
 -- --------------------------------------------------------
 
@@ -76,10 +76,15 @@ CREATE TABLE `book_table` (
 
 INSERT INTO `book_table` (`id`, `id_user`, `kodePesanan`, `nama_meja`, `email`, `nama`, `total`, `konfirmasi`, `pajak`, `proses`, `tanggal_pesan`) VALUES
 (2, 'pancaran', 1613294350, 'Japanese Table', 'Pancaran@gmail.com', 'Pancaran', 1, 0, 3, 1, '2021-02-28'),
-(12, 'Raqwan', 1613294960, 'Japanese Table', 'raqwan@gmail.com', 'Raqwan', 1, 1, 3, 0, '2021-04-13'),
 (17, 'Meliodas', 1618833029, 'Dating Table', 'Meliodas@gmail.com', 'Meliodas', 1, 1, 3, 0, '2021-04-21'),
 (18, 'Meliodas', 1618833260, 'Chinese Table', 'Meliodas@gmail.com', 'Meliodas', 1, 0, 3, 1, '2021-04-20'),
-(19, 'Meliodas', 1618834001, 'Dating Table', 'Meliodas@gmail.com', 'Meliodas', 1, 1, 3, 0, '2021-04-21');
+(19, 'Meliodas', 1618834001, 'Dating Table', 'Meliodas@gmail.com', 'Meliodas', 1, 1, 3, 0, '2021-04-21'),
+(20, 'Raqwan', 1620575096, 'Dating Table', 'raqwan@gmail.com', 'Raqwan', 1, 1, 3, 0, '2021-05-18'),
+(21, 'Raqwan', 1622569755, 'Chinese Table', 'raqwan@gmail.com', 'Raqwan', 1, 1, 3, 0, '2021-06-02'),
+(22, 'Meliodas', 1622569804, 'Family Table', 'Meliodas@gmail.com', 'Meliodas', 1, 0, 3, 1, '2021-06-03'),
+(25, 'eden', 1623254109, 'Dating Table', 'eden@gmail.com', 'eden', 1, 1, 6, 0, '2021-06-09'),
+(28, 'eden', 1623257960, 'Dating Table', 'eden@gmail.com', 'eden', 1, 0, 6, 1, '2021-06-10'),
+(31, 'Angel', 1623427284, 'Dating Table', 'angel@gmail.com', 'Angel', 1, 1, 6, 0, '2021-06-11');
 
 -- --------------------------------------------------------
 
@@ -101,10 +106,10 @@ CREATE TABLE `dessert` (
 --
 
 INSERT INTO `dessert` (`id`, `nama`, `tersedia`, `harga`, `penjelasan`, `gambar`) VALUES
-(1, 'Roasted Figs', 50, 43, 'A dessert menu with figs covered with honey and yogurt is served which makes this dessert very popular', 'roasted-figs-honeyYogurt.jpg'),
-(2, 'Panna Cotta', 50, 40, 'Served with soft pudding with added strawberry cream and mix it with strawberries and blueberries', 'Panna-Cotta.jpg'),
-(3, 'Rote Grütze', 49, 32, 'Served with a blend of lots of fresh fruit with vanilla cream added and has a lot of flavor in it', 'rote-grütze.jpg'),
-(4, 'Semifreddo', 46, 46, 'served with creamy bread with added crimson ice on top and two chocolate bars that indulge the tongue', 'Semifreddo.jpg'),
+(1, 'Roasted Figs', 49, 43, 'A dessert menu with figs covered with honey and yogurt is served which makes this dessert very popular', 'roasted-figs-honeyYogurt.jpg'),
+(2, 'Panna Cotta', 49, 40, 'Served with soft pudding with added strawberry cream and mix it with strawberries and blueberries', 'Panna-Cotta.jpg'),
+(3, 'Rote Grütze', 48, 32, 'Served with a blend of lots of fresh fruit with vanilla cream added and has a lot of flavor in it', 'rote-grütze.jpg'),
+(4, 'Semifreddo', 49, 46, 'served with creamy bread with added crimson ice on top and two chocolate bars that indulge the tongue', 'Semifreddo.jpg'),
 (5, 'La Madeline au Truffle', 50, 250, 'The dessert is served with a slice of chocolate and covered in gold flakes which make this dessert very premium', 'la_madeline_au_truffle.jpg'),
 (6, 'Prinsesstårta', 49, 35, 'served from a layer of sponge cake, pastry cream and combined with whipped cream wrapped in green paste', 'Prinsesstårta.jpeg');
 
@@ -128,13 +133,13 @@ CREATE TABLE `makanan` (
 --
 
 INSERT INTO `makanan` (`id`, `nama`, `tersedia`, `harga`, `penjelasan`, `gambar`) VALUES
-(1, 'Roasted Duck Colvert', 49, 69, 'Served with premium quality duck with a combination of turnips and sauce salmis which gives a different impression', 'roasted-duck-colvert.png'),
+(1, 'Roasted Duck Colvert', 47, 69, 'Served with premium quality duck with a combination of turnips and sauce salmis which gives a different impression', 'roasted-duck-colvert.png'),
 (2, 'Roasted Scallop', 49, 69, 'Served with fresh scallops and roasted romaine lettuce, it\'s even more smoky and savory because of the iodized seasoning', 'roasted-scallop.jpg'),
-(3, 'Scottish Langoustine', 46, 115, 'Premium meal served with Norwegian lobster along with fish roe and a combination of caleriact and creamy sauce', 'scottish-langoustine.jpg'),
-(4, 'Veal Sweetbread', 50, 115, 'served withquality veal sweetbreads with the addition of carrots and of course the high quality olive seasoning', 'veal-sweetbread.jpg'),
-(5, 'Duck Foie Gras', 47, 72, 'served with very tender duck meat accompanied by grated apple and quince and the fragrant aroma of hibiscus flowers', 'duck-foie-gras.jpg'),
+(3, 'Scottish Langoustine', 48, 115, 'Premium meal served with Norwegian lobster along with fish roe and a combination of caleriact and creamy sauce', 'scottish-langoustine.jpg'),
+(4, 'Veal Sweetbread', 49, 115, 'served withquality veal sweetbreads with the addition of carrots and of course the high quality olive seasoning', 'veal-sweetbread.jpg'),
+(5, 'Duck Foie Gras', 50, 72, 'served with very tender duck meat accompanied by grated apple and quince and the fragrant aroma of hibiscus flowers', 'duck-foie-gras.jpg'),
 (6, 'Linguine Alle Vongole', 50, 64, 'served with a mixture of fresh shellfish and soft pasta and mixed with a creamy sauce and mixed with green onion flakes', 'Linguine-alle-vongole.jpg'),
-(7, 'Chicken Saltimbocca', 40, 77, 'served with quality chicken pieces with added ingredients and covered in gluten flour and sprinkled with white wine', 'chicken-saltimbocca.jpg'),
+(7, 'Chicken Saltimbocca', 47, 77, 'served with quality chicken pieces with added ingredients and covered in gluten flour and sprinkled with white wine', 'chicken-saltimbocca.jpg'),
 (8, 'Shrimp Fra Diavolo', 50, 72, 'served with a mix of fresh prawns and delicious pasta with additional sauce that adds a spicy taste and vegetable flakes', 'Shrimp-Fra-Diavolo.jpg'),
 (9, 'Bouillabasse', 48, 66, 'serving fresh seafood accompanied by fresh sauce with a spicy and savory taste that will spoil the tongue', 'Bouillabasse.jpg'),
 (10, 'Fettuccine Alfredo', 50, 69, 'we serve famous Italian style pasta with cream sauce and quality pasta style with added tooping', 'fettuccine-alfredo.jpg');
@@ -159,12 +164,12 @@ CREATE TABLE `minuman` (
 --
 
 INSERT INTO `minuman` (`id`, `nama`, `tersedia`, `harga`, `penjelasan`, `gambar`) VALUES
-(1, 'Cocktail', 49, 37, 'multi-flavored drinks and sodas along with the sour taste of lemon make this drink a delicious and popular one', 'Cocktail.jpeg'),
+(1, 'Cocktail', 45, 37, 'multi-flavored drinks and sodas along with the sour taste of lemon make this drink a delicious and popular one', 'Cocktail.jpeg'),
 (2, 'Negroni', 49, 33, 'A drink served with a mixture of sweet vermouth, Campari, gin and orange or lemon zest for garnish.', 'Negroni.jpg'),
 (3, 'Macchiato', 48, 35, 'Caffè macchiato, espresso coffee with a little milk, usually frothy. with a mixed vanilla flavor', 'Macchiato.jpg'),
 (4, 'Spritz', 47, 38, 'served as an alcoholic beverage in Northeast Italy. It consists of prosecco, Aperol and sparkling water', 'Spritz.jpg'),
 (5, 'Punch', 47, 38, 'served a combination of fruit and soda with the addition of a sour taste of lemon that makes this drink look fresh', 'Punch.jpg'),
-(6, 'Caffe Freddo', 50, 33, 'iced coffee served cold, brewed in various kinds with the basic division into cold drinks - brew cold coffee', 'caffe freddo.jpg');
+(6, 'Caffe Freddo', 48, 33, 'iced coffee served cold, brewed in various kinds with the basic division into cold drinks - brew cold coffee', 'caffe freddo.jpg');
 
 -- --------------------------------------------------------
 
@@ -193,7 +198,6 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id`, `id_user`, `kodePesanan`, `nama_orderan`, `jml_orderan`, `nama_pemesan`, `email_pemesan`, `alamat`, `pembelian`, `tanggal_pesan`, `total`, `proses`, `konfirmasi`) VALUES
-(25, 'Raqwan', '1613294260', 'Chicken Saltimbocca,Cocktail,Panna Cotta,Macchiato', '4,2,2,2', 'Raqwan', 'raqwan@gmail.com', 'Jalan Banjaran Pucung', 'Online', '2021-02-14 09:17:40', 535, 0, 1),
 (26, 'Raqwan', '1613294565', 'Veal Sweetbread,Cocktail,Bouillabasse,Cocktail', '3,1,1,3', 'William Jose', 'wiliam@gmail.com', 'Jalan Simpangan Depok', 'Online', '2021-02-14 09:22:45', 562, 0, 1),
 (27, 'Raqwan', '1613294673', 'Fettuccine Alfredo,Cocktail,Scottish Langoustine,Shrimp Fra Diavolo', '1,5,2,2', 'Julian', 'Julain@gmail.com', 'Jalan Cilodong', 'Online', '2021-02-14 09:24:33', 631, 0, 1),
 (41, 'Meliodas', '1613707333', 'Veal Sweetbread,Cocktail,Linguine Alle Vongole', '2,3,1', 'Meliodas', 'Meliodas@gmail.com', 'Jalan Cilangkap', 'Online', '2021-02-19 04:02:13', 344, 0, 1),
@@ -234,7 +238,18 @@ INSERT INTO `pesanan` (`id`, `id_user`, `kodePesanan`, `nama_orderan`, `jml_orde
 (92, 'Meliodas', '1618807695', 'Roasted Scallop,Macchiato', '1,2', 'Meliodas', 'Meliodas@gmail.com', 'Pamulang', 'Online', '2021-04-19 04:48:15', 72, 1, 1),
 (93, 'Meliodas', '1618807749', 'Duck Foie Gras,Cocktail,Semifreddo,Spritz', '3,1,2,2', 'Meliodas', 'Meliodas@gmail.com', 'Bogor', 'Online', '2021-04-19 04:49:09', 348, 0, 1),
 (94, 'Guest', '1618999794', 'Scottish Langoustine,Spritz,Punch', '2,1,1', 'Ethan', 'Ethan@gmail.com', 'Chicago', 'Online', '2021-04-21 10:09:54', 271, 1, 1),
-(95, 'Guest', '1619000247', 'Scottish Langoustine,Punch,Prinsesstårta', '2,2,1', 'Lara', 'Lara@gmail.com', 'Pamulang', 'Online', '2021-04-21 10:17:27', 233, 1, 1);
+(95, 'Guest', '1619000247', 'Scottish Langoustine,Punch,Prinsesstårta', '2,2,1', 'Lara', 'Lara@gmail.com', 'Pamulang', 'Online', '2021-04-21 10:17:27', 233, 1, 1),
+(96, 'Raqwan', '1621872760', 'Veal Sweetbread,Negroni,Roasted Figs,Chicken Saltimbocca', '2,3,2,1', 'Raqwan', 'raqwan@gmail.com', 'Jalan Sukamaju', 'Online', '2021-05-24 16:12:40', 416, 0, 0),
+(97, 'Raqwan', '1623049196', 'Duck Foie Gras,Spritz,Semifreddo', '1,1,1', 'Raqwan', 'raqwan@gmail.com', 'Banjaran Pucung', 'Online', '2021-06-07 06:59:56', 73, 1, 1),
+(98, 'eden', '1623167806', 'Chicken Saltimbocca,Spritz,Semifreddo', '2,1,1', 'eden', 'eden@gmail.com', 'Cilodong', 'Online', '2021-06-08 15:56:46', 157, 0, 1),
+(99, 'eden', '1623174507', 'Scottish Langoustine,Caffe Freddo,Linguine Alle Vongole', '1,2,1', 'eden', 'eden@gmail.com', 'Bogor', 'Online', '2021-06-08 17:48:27', 184, 0, 1),
+(100, 'eden', '1623247556', 'Linguine Alle Vongole,Macchiato', '1,1', 'eden', 'eden@gmail.com', 'Cilodong', 'Online', '2021-06-09 14:05:56', 67, 0, 0),
+(101, 'eden', '1623247662', 'Linguine Alle Vongole,Spritz', '1,2', 'eden', 'eden@gmail.com', 'Cilodong', 'Online', '2021-06-09 14:07:42', 67, 0, 0),
+(102, 'Muhammad Raqwan', '1623424666', 'Chicken Saltimbocca,Cocktail,Panna Cotta', '1,1,1', 'Muhammad Raqwan', 'Raqwan1@gmail.com', 'Banjaran Pucung', 'Online', '2021-06-11 15:17:46', 80, 0, 1),
+(104, 'Angel', '1623427394', 'Roasted Duck Colvert,Cocktail,Rote Grütze', '1,1,1', 'Angel', 'angel@gmail.com', 'Banjaran Pucung', 'Online', '2021-06-11 16:03:14', 72, 0, 1),
+(110, 'Angel', '1623427952', 'Duck Foie Gras,Cocktail', '1,1', 'Angel', 'angel@gmail.com', 'asdas', 'Online', '2021-06-11 16:12:32', 75, 0, 0),
+(112, 'Angel', '1623428175', 'Roasted Duck Colvert,Cocktail,Roasted Figs', '1,1,1', 'Angel', 'angel@gmail.com', 'Banjaran Pucung', 'Online', '2021-06-11 16:16:15', 72, 0, 1),
+(113, 'Angel', '1623428316', 'Scottish Langoustine,Cocktail,Veal Sweetbread', '1,1,1', 'Angel', 'angel@gmail.com', 'Banjaran Pucung', 'Online', '2021-06-11 16:18:36', 155, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -282,52 +297,10 @@ CREATE TABLE `private_table` (
 --
 
 INSERT INTO `private_table` (`id`, `nama`, `min_People`, `max_People`, `tersedia`) VALUES
-(1, 'Japanese Table', 6, 12, 5),
+(1, 'Japanese Table', 6, 12, 4),
 (2, 'Chinese Table', 12, 20, 5),
 (3, 'Dating Table', 1, 2, 11),
-(4, 'Family Table', 2, 6, 12);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `totaldessertterjual`
---
-
-CREATE TABLE `totaldessertterjual` (
-  `id` int(11) NOT NULL,
-  `bulan` varchar(50) NOT NULL,
-  `tahun` varchar(50) NOT NULL,
-  `totalDessert` int(11) NOT NULL,
-  `keuntungan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `totalmakananterjual`
---
-
-CREATE TABLE `totalmakananterjual` (
-  `id` int(11) NOT NULL,
-  `bulan` varchar(50) NOT NULL,
-  `tahun` varchar(50) NOT NULL,
-  `totalMakanan` int(11) NOT NULL,
-  `keuntungan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `totalminumanterjual`
---
-
-CREATE TABLE `totalminumanterjual` (
-  `id` int(11) NOT NULL,
-  `bulan` varchar(50) NOT NULL,
-  `tahun` varchar(50) NOT NULL,
-  `totalMinuman` int(11) NOT NULL,
-  `keuntungan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(4, 'Family Table', 2, 6, 11);
 
 -- --------------------------------------------------------
 
@@ -341,7 +314,7 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('Member','Premium','','') NOT NULL,
+  `status` enum('Member','Premium','Guest','') NOT NULL,
   `gambar` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -350,7 +323,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `created_at`, `status`, `gambar`) VALUES
-(10, 'Raqwan', 'Raqwan@gmail.com', '$2y$10$phSBnGbiUtMZavsR38ySC.R4ms4YaufbZiJpYNiRjhPxqNBHm9DRC', '2021-01-18 10:27:36', 'Premium', 'Raqwan@gmail.jpg'),
+(10, 'Raqwan', 'Raqwan@gmail.com', '$2y$10$phSBnGbiUtMZavsR38ySC.R4ms4YaufbZiJpYNiRjhPxqNBHm9DRC', '2021-01-18 10:27:36', 'Premium', 'profile.png'),
 (12, 'Rizky', 'Rizky@gmail.com', '$2y$10$vyQVppYttZq5SpLA8Qe0B.OYljTKEwOfiCMXDhiew9g8Z6vRRmIg.', '2021-01-18 12:48:12', 'Premium', 'profile.png'),
 (17, 'Meliodas', 'Meliodas@gmail.com', '$2y$10$.TRNWke2wrpMerkvXdvoCeJxIsTDMjVbfzveGTToX3LO2OsgQNiJW', '2021-02-17 14:45:45', 'Premium', 'profile.png'),
 (18, 'Laurel', 'Laurel@gmail.com', '$2y$10$cy.5s4c0mHVg97VZWAVwJOYsWnu3aXo7s7ypWyIDnqqpaxYNhDkZi', '2021-02-19 14:57:30', 'Member', 'profile.png'),
@@ -359,9 +332,16 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `created_at`, `status`, `
 (21, 'pancaran', 'pancaran@gmail.com', '$2y$10$VO0cxFccDdq3DX9b50u03OfOiSNkazqu.22SiVKZe8a0FY1f/UtBu', '2021-02-22 15:15:54', 'Premium', 'profile.png'),
 (22, 'Jonathan', 'Jonathan@gmail.com', '$2y$10$SW7jDBlI8fdEEMreolVpgOE6HbZXSXXOMybDdbo1IY8GAcZZvWb6C', '2021-02-22 15:27:18', 'Member', 'profile.png'),
 (23, 'Einstein', 'Einstein@gmail.com', '$2y$10$dGaL/I4pMux9yUva0y6jXeBRlcAKdmu0fn8ARwPTLtfPafmI/8E76', '2021-02-25 07:45:56', 'Premium', 'profile.png'),
-(24, 'Guest', 'Guest@gmail.com', '11111111', '2021-02-25 10:34:46', 'Member', 'profile.png'),
+(24, 'Guest', 'Guest@gmail.com', '11111111', '2021-02-25 10:34:46', 'Guest', 'profile.png'),
 (25, 'Udin', 'M.Udin@gmail.com', '$2y$10$Ckj4Wrani5zcPM6XtRbnTumpDdZ4QB3.42pICcaTRJK97Z5LQvna2', '2021-03-03 14:05:44', 'Member', 'profile.png'),
-(26, 'anca', 'ancaanca@gmail.com', '$2y$10$FrIJmLA73U0e9yivpqpnbua8VqGzjVRMn/Q5.s9fduj7jwzzbfwpC', '2021-04-18 07:44:16', 'Member', 'ancaanca@gmail.jpg');
+(26, 'anca', 'ancaanca@gmail.com', '$2y$10$FrIJmLA73U0e9yivpqpnbua8VqGzjVRMn/Q5.s9fduj7jwzzbfwpC', '2021-04-18 07:44:16', 'Member', 'ancaanca@gmail.jpg'),
+(27, 'Syahrul', 'Syahrul@gmail.com', '$2y$10$K6qYzkMOYZdnEyogyAcwnun1qLYZOol/ZOjQOsZ.rYBczJUCcEGT6', '2021-05-24 15:44:56', 'Member', 'profile.png'),
+(28, 'NotHera', 'nothera@gmail.com', '$2y$10$Wel0gHYUHNxif6IAwWaWROT9N96osGgHDSbzbTVMzSZyaG3c5hD96', '2021-06-07 10:28:20', 'Member', 'nothera@gmail.jpg'),
+(29, 'eden', 'eden@gmail.com', '$2y$10$E8vYtAlM1/P538iFJno2ju.Lw/CgDQH6ntgrIFYnrOoVnN2USUxqO', '2021-06-08 15:55:47', 'Member', 'profile.png'),
+(30, 'Muhammad Raqwan', 'Raqwan1@gmail.com', '$2y$10$zpqojoyZ8o5XKhALwQj/He0SR2MxwzqMxR164lC4PnaGp.3HzJXeS', '2021-06-11 15:13:52', 'Premium', 'Raqwan1@gmail.jpg'),
+(31, 'Angel', 'Angel@gmail.com', '$2y$10$//03K.OGQhDxo7ZqZzFlDuO5WW7y3i5ytGoMyrQzLCHDXHG2erLzC', '2021-06-11 15:48:08', 'Premium', 'angel@gmail.jpg'),
+(32, 'atar', 'atar@gmail.com', '$2y$10$gMSnWa45m9/EE6qc10VW0O.MPwO6p4igktyR.J4KYevmVhmD/iQVS', '2021-06-11 15:55:09', 'Member', 'profile.png'),
+(33, 'wann', 'wan@gmail.com', '$2y$10$iGNB8y.2Z2sxppC0D1XDzetZNYb44ANNPXY1JCNh7q71az.ndfmgy', '2021-06-11 15:58:02', 'Member', 'profile.png');
 
 --
 -- Indexes for dumped tables
@@ -435,7 +415,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `book_table`
 --
 ALTER TABLE `book_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `dessert`
@@ -459,7 +439,7 @@ ALTER TABLE `minuman`
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT untuk tabel `petinggi`
@@ -477,7 +457,7 @@ ALTER TABLE `private_table`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

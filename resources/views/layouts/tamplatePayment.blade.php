@@ -56,6 +56,10 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{asset('js')}}/sweetalert2.all.min.js"></script>
     <script src="{{asset('js')}}/apexcharts.min.js"></script>
+    {{-- <script src="{{asset('js')}}/crypto-js.min.js"></script>
+    <script src="{{asset('js')}}/cipher-core.min.js"></script>
+    <script src="{{asset('js')}}/enc-utf8.min.js"></script>
+    <script src="{{asset('js')}}/aes.min.js"></script> --}}
     <script src="{{asset('js')}}{{$JS}}"></script>
 </body>
 </html>

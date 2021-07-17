@@ -1,5 +1,5 @@
     pgsql:
-        image: postgres:13
+        image: 'postgres:13'
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
@@ -13,3 +13,5 @@
             - sail
         healthcheck:
           test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+          retries: 3
+          timeout: 5s

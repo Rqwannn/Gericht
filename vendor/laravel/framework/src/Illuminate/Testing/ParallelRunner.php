@@ -106,7 +106,7 @@ class ParallelRunner implements RunnerInterface
     /**
      * Apply the given callback for each process.
      *
-     * @param  callable $callback
+     * @param  callable  $callback
      * @return void
      */
     protected function forEachProcess($callback)
@@ -126,12 +126,15 @@ class ParallelRunner implements RunnerInterface
      * Creates the application.
      *
      * @return \Illuminate\Contracts\Foundation\Application
+     *
+     * @throws \RuntimeException
      */
     protected function createApplication()
     {
         $applicationResolver = static::$applicationResolver ?: function () {
             if (trait_exists(\Tests\CreatesApplication::class)) {
-                $applicationCreator = new class {
+                $applicationCreator = new class
+                {
                     use \Tests\CreatesApplication;
                 };
 

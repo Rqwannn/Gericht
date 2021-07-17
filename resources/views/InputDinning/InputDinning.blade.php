@@ -157,6 +157,7 @@
                                 <div class="d-flex mb-3 lineTable justify-content-between">
                                     <div>Theme</div>
                                     <div>Romantic Couple</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -167,7 +168,6 @@
             </div>
         </div> {{-- End WrapperLPart-1 --}}
     </div>    
-
     <div class="wrapperTableRight">
 
         <div class="WrapperRPart-1">
@@ -205,6 +205,7 @@
                                 <label class="text-danger AuthNamaTable mt-2" style="display: none; font-size: 15px;"></label>
                             </div>
                         </div>
+                        <input type="hidden" id="GetStatus" value="{{$StatusUser}}">
                         <div class="col-md-12">
                             <div class="inputTable d-flex flex-column mb-3">
                                 <label class="mb-2">Table Name</label>
